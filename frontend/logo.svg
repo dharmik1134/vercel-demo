@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="charusatBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#003B73"/>
+      <stop offset="100%" stop-color="#0066B3"/>
+    </linearGradient>
+    <linearGradient id="charusatOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F16126"/>
+      <stop offset="100%" stop-color="#E0480C"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Crest Icon -->
+  <g transform="translate(10, 10)">
+    <!-- Sun Rays Circle / Gear Base -->
+    <circle cx="50" cy="50" r="46" fill="url(#charusatBlue)" stroke="url(#goldGlow)" stroke-width="2.5" />
+    
+    <!-- Outer Sun Spokes -->
+    <path d="M50 0 L50 6 M50 94 L50 100 M0 50 L6 50 M94 50 L100 50 M15 15 L20 20 M80 80 L85 85 M15 85 L20 80 M80 20 L85 15" stroke="url(#charusatOrange)" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Inner Radiant Flame / Sun Shape -->
+    <circle cx="50" cy="50" r="32" fill="#FFFFFF" opacity="0.96" />
+    
+    <!-- Torch & Book Emblem -->
+    <!-- Open Book Pages -->
+    <path d="M30 65 Q 40 58 50 63 Q 60 58 70 65 L 70 48 Q 60 42 50 47 Q 40 42 30 48 Z" fill="url(#charusatBlue)" />
+    <path d="M50 47 L 50 63" stroke="#FFFFFF" stroke-width="2" />
+    
+    <!-- Torch Flame -->
+    <path d="M50 25 C 44 32, 44 38, 50 44 C 56 38, 56 32, 50 25 Z" fill="url(#charusatOrange)" />
+    <circle cx="50" cy="36" r="3" fill="#FFD700" />
+    
+    <!-- Laurel Wreath Base -->
+    <path d="M32 72 Q 50 82 68 72" stroke="url(#charusatOrange)" stroke-width="3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Typography -->
+  <!-- Main Brand Acronym -->
+  <text x="130" y="58" font-family="'Space Grotesk', 'Plus Jakarta Sans', Arial, sans-serif" font-size="44" font-weight="900" letter-spacing="1.5" fill="#FFFFFF">
+    CHARUSAT
+  </text>
+
+  <!-- Orange Slogan Pill -->
+  <rect x="365" y="28" width="160" height="26" rx="6" fill="url(#charusatOrange)" />
+  <text x="445" y="45" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="11.5" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.8">
+    AI ASSISTANT
+  </text>
+
+  <!-- Full University Name Subtitle -->
+  <text x="130" y="82" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#94A3B8">
+    CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY
+  </text>
+
+  <!-- Sanskrit Motto & Accreditation -->
+  <text x="130" y="102" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="11.5" font-weight="600" fill="#F16126" letter-spacing="0.6">
+    || अमृतं तु विद्या || <tspan fill="#38BDF8">• NAAC 'A+' Grade University</tspan> <tspan fill="#F59E0B">• Changa, Anand</tspan>
+  </text>
+</svg>

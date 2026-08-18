@@ -1,0 +1,19 @@
+{
+  "name": "CHARUSAT AI Assistant",
+  "short_name": "CHARUSAT AI",
+  "description": "Official AI Intelligence Assistant for Charotar University of Science and Technology (CHARUSAT)",
+  "start_url": "/charusatAIassistant/",
+  "scope": "/charusatAIassistant/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#040D1E",
+  "theme_color": "#004B87",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

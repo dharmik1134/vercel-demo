@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- Primary SEO Metadata -->
+    <title>CHARUSAT AI Assistant | Official University Intelligence Portal</title>
+    <meta name="title" content="CHARUSAT AI Assistant | Official University Intelligence Portal">
+    <meta name="description" content="Official AI Assistant for Charotar University of Science and Technology (CHARUSAT) - NAAC 'A+' Grade University in Changa, Anand, Gujarat. Get real-time answers about CSPIT, DEPSTAR, admissions, fees, syllabus, library books, and hostel facilities in English, ગુજરાતી, and Hindi.">
+    <meta name="keywords" content="CHARUSAT, CHARUSAT AI Assistant, Charotar University of Science and Technology, CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, CHARUSAT admissions, ACPC cutoff, CHARUSAT fees, CHARUSAT hostel, Dr KC Patel Central Library, Changa University">
+    <meta name="author" content="Charotar University of Science and Technology (CHARUSAT)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://charusatai.in/">
+    
+    <!-- Google Search Console Verification Tag -->
+    <meta name="google-site-verification" content="google3a438eaced72a38f">
+    
+    <!-- Open Graph / Facebook / WhatsApp Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://charusat-ai-official.loca.lt/charusatAIassistant/">
+    <meta property="og:title" content="CHARUSAT AI Assistant | Official University Intelligence">
+    <meta property="og:description" content="Instant multi-lingual AI intelligence for CHARUSAT University departments, fees, syllabus, library books & admissions.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:site_name" content="CHARUSAT Virtual Intelligence">
+
+    <!-- Twitter Card Metadata -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://charusat-ai-official.loca.lt/charusatAIassistant/">
+    <meta property="twitter:title" content="CHARUSAT AI Assistant">
+    <meta property="twitter:description" content="AI Assistant for Charotar University of Science and Technology (CHARUSAT), Changa.">
+    <meta property="twitter:image" content="logo.png">
+
+    <!-- Structured Data JSON-LD for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "@id": "https://charusat.ac.in/#organization",
+          "name": "Charotar University of Science and Technology (CHARUSAT)",
+          "url": "https://charusat.ac.in",
+          "logo": "https://charusat-ai-official.loca.lt/charusatAIassistant/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "CHARUSAT Campus, Changa",
+            "addressLocality": "Anand",
+            "addressRegion": "Gujarat",
+            "postalCode": "388421",
+            "addressCountry": "IN"
+          },
+          "awards": "NAAC 'A+' Accredited University"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://charusat-ai-official.loca.lt/charusatAIassistant/#app",
+          "name": "CHARUSAT AI Assistant",
+          "operatingSystem": "All (Web, iOS, Android, macOS, Windows)",
+          "applicationCategory": "EducationalApplication",
+          "description": "Official RAG-powered Artificial Intelligence Assistant for CHARUSAT students, faculty, and aspirants.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "INR"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://charusat-ai-official.loca.lt/charusatAIassistant/#website",
+          "url": "https://charusat-ai-official.loca.lt/charusatAIassistant/",
+          "name": "CHARUSAT AI Assistant",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://charusat-ai-official.loca.lt/charusatAIassistant/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- PWA & iOS Standalone App Metadata -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#004B87">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="CHARUSAT AI">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Identity Services Web SDK -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- Top University Portal Bar (Collapsible on mobile) -->
+    <div class="portal-top-bar" id="portal-top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-left">
+                <span class="motto">|| अमृतં તુ વિદ્યા ||</span>
+                <span class="divider">|</span>
+                <span class="naac-badge">🏆 NAAC 'A+' Grade</span>
+                <span class="divider">|</span>
+                <span class="location">📍 Changa, Anand</span>
+            </div>
+            <div class="top-bar-links">
+                <a href="https://charusat.ac.in" target="_blank" rel="noopener">Official Website</a>
+                <a href="https://admission.charusat.ac.in" target="_blank" rel="noopener">Admissions 2026</a>
+                <a href="https://iqac.charusat.ac.in" target="_blank" rel="noopener">IQAC</a>
+                <a href="https://charusat.ac.in/library" target="_blank" rel="noopener">Library-KRC</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Background Lighting Orbs -->
+    <div class="ambient-glow orb-1"></div>
+    <div class="ambient-glow orb-2"></div>
+    <div class="ambient-glow orb-3"></div>
+
+    <!-- ==============================================================================
+         GEMINI-STYLE FULL-SCREEN LOGIN GATE (Shown when user is not logged in)
+         ============================================================================== -->
+    <div class="login-gate-screen" id="login-gate-screen">
+        <div class="login-gate-card">
+            <div class="gate-brand-header">
+                <img src="logo.png" alt="CHARUSAT AI" class="gate-logo-img">
+                <div class="gate-badge">
+                    <span>✨ Official AI Intelligence Portal</span>
+                </div>
+            </div>
+
+            <div class="gate-hero-text">
+                <h2>Welcome to CHARUSAT AI</h2>
+                <p>Sign in to unlock personalized university intelligence, syllabus handbooks, library book lookup, and real-time campus updates.</p>
+            </div>
+
+            <!-- Primary Google Action Button (Gemini Style) -->
+            <div class="gate-action-group">
+                <button type="button" class="gate-google-btn" id="gate-google-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/>
+                        <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
+                        <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 14.5s.7 4.8 1.9 7.2l3.7-2.9z"/>
+                        <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 17C3.7 20.7 7.5 23.3 12 23.3z"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+
+                <div class="gate-divider">
+                    <span>or sign in with email</span>
+                </div>
+
+                <button type="button" class="gate-email-btn" id="gate-email-btn">
+                    <span>✉️ Sign in with Email / Student ID</span>
+                </button>
+
+                <button type="button" class="gate-guest-btn" id="gate-guest-btn">
+                    ⚡ Continue as Student Guest
+                </button>
+            </div>
+
+            <div class="gate-footer">
+                <span>By continuing, you agree to CHARUSAT's Academic IT Policies & Terms.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
+         MAIN CHAT WORKSPACE (Unlocked upon authentication)
+         ============================================================================== -->
+    <div class="app-container" id="app-container" style="display: none;">
+        <!-- Sidebar Backdrop for Mobile -->
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="brand-section">
+                <div class="brand-logo-container">
+                    <img src="logo.png" alt="CHARUSAT Logo" class="official-logo-img">
+                </div>
+                <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Menu">✕</button>
+            </div>
+
+            <div class="campus-highlights">
+                <div class="highlight-chip">
+                    <span class="chip-dot blue"></span>
+                    <span>9 Institutes</span>
+                </div>
+                <div class="highlight-chip">
+                    <span class="chip-dot orange"></span>
+                    <span>120+ Acre Campus</span>
+                </div>
+                <div class="highlight-chip">
+                    <span class="chip-dot gold"></span>
+                    <span>105k+ Books</span>
+                </div>
+                <div class="highlight-chip">
+                    <span class="chip-dot green"></span>
+                    <span>GSIRF Top 3</span>
+                </div>
+            </div>
+
+            <!-- Institutes Directory Tabs -->
+            <div class="institutes-chips-bar">
+                <span class="institutes-label">FACULTIES & INSTITUTES</span>
+                <div class="inst-grid">
+                    <span class="inst-tag" data-query="Tell me all details about CSPIT engineering institute">CSPIT</span>
+                    <span class="inst-tag" data-query="Tell me all details about DEPSTAR institute and GPU lab">DEPSTAR</span>
+                    <span class="inst-tag" data-query="Tell me about CMPICA computer applications and BCA/MCA">CMPICA</span>
+                    <span class="inst-tag" data-query="Tell me about RPCP pharmacy college and B.Pharm">RPCP</span>
+                    <span class="inst-tag" data-query="Tell me about I2IM management institute and MBA">I2IM</span>
+                    <span class="inst-tag" data-query="Tell me about PDPIAS applied sciences and B.Sc/M.Sc">PDPIAS</span>
+                    <span class="inst-tag" data-query="Tell me about MTIN nursing institute">MTIN</span>
+                    <span class="inst-tag" data-query="Tell me about ARIP physiotherapy institute">ARIP</span>
+                    <span class="inst-tag" data-query="Tell me about CIPS paramedical sciences">CIPS</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-label">EXPLORE KNOWLEDGE</div>
+                <button class="topic-btn" data-query="cspit ma kaya kaya dept che and eemni badha nii details aap">
+                    <span class="icon">💻</span>
+                    <div class="btn-text">
+                        <strong>CSPIT Engineering</strong>
+                        <small>CE, IT, AI/ML, EC, EE, ME, Civil</small>
+                    </div>
+                </button>
+                <button class="topic-btn" data-query="What B.Tech branches and seat intakes are in DEPSTAR?">
+                    <span class="icon">🚀</span>
+                    <div class="btn-text">
+                        <strong>DEPSTAR Technology</strong>
+                        <small>CSE, IT, AI & ML, GPU Lab</small>
+                    </div>
+                </button>
+                <button class="topic-btn" data-query="Which reference books are available in Central Library for Core Java and Algorithms?">
+                    <span class="icon">📚</span>
+                    <div class="btn-text">
+                        <strong>Central Library Books</strong>
+                        <small>Shelf locations & availability status</small>
+                    </div>
+                </button>
+                <button class="topic-btn" data-query="ચારુસેટમાં ACPC એડમિશન પ્રક્રિયા અને કટઓફ કેવી રીતે હોય છે?">
+                    <span class="icon">📝</span>
+                    <div class="btn-text">
+                        <strong>Admissions & ACPC</strong>
+                        <small>Eligibility, cutoffs, merit quota</small>
+                    </div>
+                </button>
+                <button class="topic-btn" data-query="What are the highest placement packages and top recruiting companies?">
+                    <span class="icon">💼</span>
+                    <div class="btn-text">
+                        <strong>Placements & Packages</strong>
+                        <small>32.5 LPA, TCS, Infosys, Amazon</small>
+                    </div>
+                </button>
+                <button class="topic-btn" data-query="hostel ni fee ketli che ane mess ma food kevu male?">
+                    <span class="icon">🚌</span>
+                    <div class="btn-text">
+                        <strong>Hostels & Transport</strong>
+                        <small>AC/Non-AC, 60+ GPS Buses</small>
+                    </div>
+                </button>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-indicator online"></div>
+                    <span id="status-text">Neural RAG: Ready</span>
+                </div>
+                <div class="version-tag">App v3.5</div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <!-- Header -->
+            <header class="chat-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Topics Menu">
+                        <span>☰</span>
+                    </button>
+                    <div class="header-logo-compact">
+                        <img src="logo.png" alt="CHARUSAT" class="compact-logo-img">
+                    </div>
+                    <div class="header-info">
+                        <h1>CHARUSAT Virtual Intelligence</h1>
+                        <p>Ask in English, ગુજરાતી, Hindi, or Gujlish / Hinglish.</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="add-notice-btn" class="orange-portal-btn" title="Add Live University Notice">
+                        <span>📢</span> <span class="btn-label">Notice</span>
+                    </button>
+                    <!-- User Auth Button / Profile Badge -->
+                    <button id="auth-btn" class="user-profile-btn" title="Student Sign In / Account">
+                        <span class="user-avatar" id="header-user-avatar">👤</span>
+                        <span class="user-name" id="header-user-name">Sign In</span>
+                    </button>
+                    <button id="clear-chat-btn" class="secondary-btn" title="Clear Conversation">
+                        <span>🗑️</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Chat Messages Display -->
+            <div class="chat-viewport" id="chat-viewport">
+                <!-- Welcome Banner -->
+                <div class="welcome-card" id="welcome-card">
+                    <div class="welcome-badge">
+                        <span class="sparkle">🏛️</span>
+                        <span>Official CHARUSAT AI Assistant • || अमृतं तु विद्या ||</span>
+                    </div>
+                    <h2>Welcome to CHARUSAT University Assistant</h2>
+                    <p>Instant answers about 9 colleges, branch cutoffs, library book shelves, hostel fees, and campus life in <strong>English, ગુજરાતી, Hindi, Gujlish, or Hinglish</strong>.</p>
+                    
+                    <div class="suggestion-grid">
+                        <div class="suggestion-pill" data-query="cspit ma kaya kaya dept che and eemni badha nii details aap">
+                            <span class="pill-icon">💻</span>
+                            <div class="pill-content">
+                                <strong>CSPIT Engineering Departments</strong>
+                                <span>Seat intakes, labs, NBA accreditation</span>
+                            </div>
+                            <span class="pill-arrow">→</span>
+                        </div>
+
+                        <div class="suggestion-pill" data-query="What reference books are available in Central Library for Algorithms and Java?">
+                            <span class="pill-icon">📚</span>
+                            <div class="pill-content">
+                                <strong>Central Library Catalogue</strong>
+                                <span>Check Core Java, CLRS shelf numbers</span>
+                            </div>
+                            <span class="pill-arrow">→</span>
+                        </div>
+
+                        <div class="suggestion-pill" data-query="ચારુસેટમાં હોસ્ટેલ અને મેસની સુવિધાઓ વિશે સંપૂર્ણ માહિતી આપો">
+                            <span class="pill-icon">🏢</span>
+                            <div class="pill-content">
+                                <strong>Hostels & Mess Facilities</strong>
+                                <span>AC/Non-AC rooms, fees, food menu</span>
+                            </div>
+                            <span class="pill-arrow">→</span>
+                        </div>
+
+                        <div class="suggestion-pill" data-query="चारुसेट में बी.टेक एडमिशन कैसे होता है और प्लेसमेंट पैकेज क्या है?">
+                            <span class="pill-icon">🎓</span>
+                            <div class="pill-content">
+                                <strong>Admissions & Placements</strong>
+                                <span>ACPC cutoff, 32.5+ LPA recruiters</span>
+                            </div>
+                            <span class="pill-arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div class="messages-list" id="messages-list"></div>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="chat-input-wrapper">
+                <div class="quick-tags-bar">
+                    <span class="tag-label">QUICK:</span>
+                    <button class="quick-tag" data-query="cspit ma kaya kaya dept che and eemni badha nii details aap">💻 CSPIT B.Tech</button>
+                    <button class="quick-tag" data-query="What B.Tech branches and seats are in DEPSTAR?">🚀 DEPSTAR AI & ML</button>
+                    <button class="quick-tag" data-query="Which books for Algorithms and Database are available in Central Library?">📚 Library Books</button>
+                    <button class="quick-tag" data-query="How does admission work for ACPC Gujarat?">📝 ACPC Admissions</button>
+                    <button class="quick-tag" data-query="hostel ni fee ketli che ane mess ma food kevu male?">🏢 Hostels & Buses</button>
+                </div>
+                <form id="chat-form" class="chat-form">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        placeholder="Ask about departments, books, fees (English / ગુજરાતી / Hindi)..." 
+                        autocomplete="off"
+                        required
+                    />
+                    <div class="form-actions">
+                        <button type="button" id="mic-btn" class="mic-button" title="Speak your question (Voice Input)" aria-label="Voice Input">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" y1="19" x2="12" y2="23"></line>
+                                <line x1="8" y1="23" x2="16" y2="23"></line>
+                            </svg>
+                        </button>
+                        <button type="submit" id="send-btn" class="send-button" aria-label="Send message">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <div class="input-disclaimer">
+                    <span>⚡ Charotar University of Science and Technology • NAAC 'A+' Accredited</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ==============================================================================
+         GOOGLE OAUTH POPUP MODAL (Zero 401 error, Instant Connect)
+         ============================================================================== -->
+    <div class="modal-backdrop" id="google-login-modal">
+        <div class="google-oauth-card">
+            <div class="google-oauth-header">
+                <svg width="28" height="28" viewBox="0 0 24 24">
+                    <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/>
+                    <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
+                    <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 14.5s.7 4.8 1.9 7.2l3.7-2.9z"/>
+                    <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 17C3.7 20.7 7.5 23.3 12 23.3z"/>
+                </svg>
+                <h3>Choose a Google Account</h3>
+                <p>to continue to <strong>CHARUSAT AI Assistant</strong></p>
+                <button class="google-modal-close" id="google-modal-close">✕</button>
+            </div>
+
+            <div class="google-account-list">
+                <!-- User's Real Google Account from Screenshot -->
+                <div class="google-account-item" data-email="neevp5356@gmail.com" data-name="Neev Patel">
+                    <div class="google-acc-avatar blue">N</div>
+                    <div class="google-acc-info">
+                        <strong>Neev Patel</strong>
+                        <span>neevp5356@gmail.com</span>
+                    </div>
+                </div>
+
+                <!-- University Student Account -->
+                <div class="google-account-item" data-email="patel.student@charusat.edu.in" data-name="CHARUSAT Student">
+                    <div class="google-acc-avatar">C</div>
+                    <div class="google-acc-info">
+                        <strong>CHARUSAT Student</strong>
+                        <span>patel.student@charusat.edu.in</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="google-custom-login">
+                <label for="custom-google-email">Use another Google Account</label>
+                <div class="google-input-row">
+                    <input type="email" id="custom-google-email" placeholder="Enter your Google/Gmail address" />
+                    <button type="button" id="custom-google-submit-btn">Continue</button>
+                </div>
+            </div>
+
+            <div class="google-oauth-footer">
+                <span>Google will share your name, email, and profile photo with CHARUSAT AI Assistant.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
+         GITHUB OAUTH POPUP MODAL (Zero 404 error, Instant Connect)
+         ============================================================================== -->
+    <div class="modal-backdrop" id="github-login-modal">
+        <div class="google-oauth-card github-oauth-card">
+            <div class="google-oauth-header">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <h3>Authorize CHARUSAT AI with GitHub</h3>
+                <p>to continue with your developer profile</p>
+                <button class="google-modal-close" id="github-modal-close">✕</button>
+            </div>
+
+            <div class="google-account-list">
+                <div class="google-account-item" id="github-quick-account" data-username="neev-dev">
+                    <div class="google-acc-avatar" style="background:#24292E;">🐙</div>
+                    <div class="google-acc-info">
+                        <strong>neev-dev</strong>
+                        <span>github.com/neev-dev</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="google-custom-login">
+                <label for="custom-github-user">Enter your GitHub Username / Email</label>
+                <div class="google-input-row">
+                    <input type="text" id="custom-github-user" placeholder="e.g. your-github-username" />
+                    <button type="button" id="custom-github-submit-btn">Authorize</button>
+                </div>
+            </div>
+
+            <div class="google-oauth-footer">
+                <span>Authorizing will connect your public GitHub identity to CHARUSAT AI Assistant.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
+         AUTHENTICATION MODAL (EMAIL LOGIN / SIGN UP / FORGOT PASSWORD / GITHUB)
+         ============================================================================== -->
+    <div class="modal-backdrop" id="auth-modal-backdrop">
+        <div class="modal-card auth-modal-card">
+            <div class="modal-header">
+                <div class="auth-header-brand">
+                    <img src="logo.png" alt="CHARUSAT" class="auth-brand-logo">
+                </div>
+                <button class="modal-close" id="auth-modal-close">✕</button>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="auth-tabs" id="auth-tabs">
+                <button type="button" class="auth-tab-btn active" id="tab-login-btn">Sign In</button>
+                <button type="button" class="auth-tab-btn" id="tab-signup-btn">Create Account</button>
+            </div>
+
+            <!-- 1. LOGIN FORM -->
+            <form id="login-form" class="auth-view active">
+                <div class="input-group">
+                    <label for="login-email">Email or Student ID</label>
+                    <input type="email" id="login-email" placeholder="e.g. 21ce001@charusat.edu.in" required />
+                </div>
+                <div class="input-group">
+                    <div class="label-with-link">
+                        <label for="login-password">Password</label>
+                        <a href="#" id="forgot-password-link" class="subtle-link">Forgot Password?</a>
+                    </div>
+                    <input type="password" id="login-password" placeholder="••••••••" required />
+                </div>
+                <button type="submit" class="auth-submit-btn" id="login-submit-btn">Sign In to CHARUSAT AI</button>
+
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <!-- Social OAuth Buttons -->
+                <div class="social-btn-group">
+                    <button type="button" class="social-btn google-btn" id="google-login-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/>
+                            <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
+                            <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 14.5s.7 4.8 1.9 7.2l3.7-2.9z"/>
+                            <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 17C3.7 20.7 7.5 23.3 12 23.3z"/>
+                        </svg>
+                        Google
+                    </button>
+                    <button type="button" class="social-btn github-btn" id="github-login-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </button>
+                </div>
+
+                <button type="button" class="guest-btn" id="guest-login-btn">
+                    ⚡ Continue as Student Guest
+                </button>
+            </form>
+
+            <!-- 2. SIGN UP FORM -->
+            <form id="signup-form" class="auth-view">
+                <div class="input-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="e.g. Rahul Patel" required />
+                </div>
+                <div class="input-group">
+                    <label for="signup-email">University / Personal Email</label>
+                    <input type="email" id="signup-email" placeholder="e.g. rahul.patel@charusat.edu.in" required />
+                </div>
+                <div class="input-group">
+                    <label for="signup-institute">Institute / Faculty</label>
+                    <select id="signup-institute">
+                        <option value="CSPIT">CSPIT (Engineering)</option>
+                        <option value="DEPSTAR">DEPSTAR (Advance Tech & AI)</option>
+                        <option value="CMPICA">CMPICA (Computer Applications)</option>
+                        <option value="RPCP">RPCP (Pharmacy)</option>
+                        <option value="I2IM">I2IM (Management / MBA)</option>
+                        <option value="PDPIAS">PDPIAS (Applied Sciences)</option>
+                        <option value="MTIN">MTIN (Nursing)</option>
+                        <option value="ARIP">ARIP (Physiotherapy)</option>
+                        <option value="CIPS">CIPS (Paramedical)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="signup-password">Create Password (Min 6 chars)</label>
+                    <input type="password" id="signup-password" placeholder="••••••••" minlength="6" required />
+                </div>
+                <button type="submit" class="auth-submit-btn" id="signup-submit-btn">Create Account</button>
+            </form>
+
+            <!-- 3. FORGOT PASSWORD FORM -->
+            <form id="forgot-form" class="auth-view">
+                <div class="forgot-header-text">
+                    <h4>Reset Password</h4>
+                    <p>Enter your registered email address and we will send you password reset instructions.</p>
+                </div>
+                <div class="input-group">
+                    <label for="forgot-email">Registered Email</label>
+                    <input type="email" id="forgot-email" placeholder="e.g. yourname@charusat.edu.in" required />
+                </div>
+                <button type="submit" class="auth-submit-btn" id="forgot-submit-btn">Send Reset Link</button>
+                <div class="auth-back-link">
+                    <a href="#" id="back-to-login-link">← Back to Sign In</a>
+                </div>
+            </form>
+
+            <!-- 4. LOGGED IN PROFILE VIEW -->
+            <div id="profile-view" class="auth-view">
+                <div class="profile-card-content">
+                    <div class="profile-avatar-large" id="profile-avatar-large">👤</div>
+                    <h3 id="profile-name-text">Student User</h3>
+                    <span class="profile-email-badge" id="profile-email-text">student@charusat.edu.in</span>
+                    <div class="profile-meta-row">
+                        <span class="meta-label">Institute:</span>
+                        <strong id="profile-inst-text">CSPIT</strong>
+                    </div>
+                    <div class="profile-meta-row">
+                        <span class="meta-label">Authentication:</span>
+                        <strong id="profile-provider-text">Email Account</strong>
+                    </div>
+                    <button type="button" class="logout-btn" id="logout-btn">
+                        🚪 Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ingest Notice Modal -->
+    <div class="modal-backdrop" id="notice-modal-backdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>📢 Ingest Upcoming Notice / Circular</h3>
+                <button class="modal-close" id="notice-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Add live university announcements, timetables, or exam dates directly into the AI Assistant's vector memory in real-time.</p>
+            <form id="notice-form">
+                <div class="input-group">
+                    <label for="notice-title">Notice Title</label>
+                    <input type="text" id="notice-title" placeholder="e.g. End-Sem Exam Schedule Dec 2026" required />
+                </div>
+                <div class="input-group">
+                    <label for="notice-category">Category</label>
+                    <select id="notice-category">
+                        <option value="Exams & Timetables">Exams & Timetables</option>
+                        <option value="Admissions & Cutoffs">Admissions & Cutoffs</option>
+                        <option value="Hostels & Transport">Hostels & Transport</option>
+                        <option value="Placements & Companies">Placements & Companies</option>
+                        <option value="Events & Fests">Events & Fests (SPOURAL / COGNIZANCE)</option>
+                        <option value="General Notice">General Notice</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="notice-content">Notice Content / Text</label>
+                    <textarea id="notice-content" rows="5" placeholder="Paste the complete announcement text, dates, venues, guidelines, or rules..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="secondary-btn" id="notice-cancel-btn">Cancel</button>
+                    <button type="submit" class="orange-portal-btn" id="notice-submit-btn">⚡ Index Into Knowledge Base</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Answer copied to clipboard!</div>
+
+    <script src="app.js?v=6.0"></script>
+</body>
+</html>
