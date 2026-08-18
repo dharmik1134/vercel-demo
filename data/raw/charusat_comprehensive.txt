@@ -23,18 +23,35 @@
 ================================================================================
 
 1.1 Chandubhai S. Patel Institute of Technology (CSPIT) - Faculty of Technology & Engineering
-• Established: 2000 (First institute of CHARUSAT campus)
-• Approved by AICTE, NBA Accredited programs.
-• B.Tech Degrees Offered (4 Years / 8 Semesters):
-  1. Computer Engineering (CE) - Intake: 180 seats
-  2. Information Technology (IT) - Intake: 120 seats
-  3. Artificial Intelligence & Machine Learning (AI & ML) - Intake: 60 seats
-  4. Electronics & Communication Engineering (EC) - Intake: 60 seats
-  5. Electrical Engineering (EE) - Intake: 60 seats
-  6. Mechanical Engineering (ME) - Intake: 60 seats
-  7. Civil Engineering (CL) - Intake: 60 seats
+• Established: 2000 (First institute of CHARUSAT campus).
+• Principal: Dr. Trushit Upadhyaya | Approved by AICTE, NBA Accredited programs.
+• B.Tech Degrees Offered (4 Years / 8 Semesters) & Department Details:
+  1. Computer Engineering (U & P U. Patel Department of Computer Engineering):
+     - Intake: 180 seats | Email: hod.ce@charusat.ac.in | Phone: +91-2697-265353
+     - Key Labs: High Performance Computing Lab, Cloud Computing & Virtualization Lab, Advanced Software Engineering Lab, Algorithms & Database Systems Lab.
+     - Student Chapters: IEEE Computer Society, CSI Student Chapter, ACM, GDSC.
+  2. Information Technology (Smt. Kundanben Dinsha Patel Department of IT):
+     - Intake: 120 seats | Email: hod.it@charusat.ac.in | Phone: +91-2697-265131
+     - Key Labs: Network Security & Cryptography Lab, Web & Mobile Application Development Lab, Data Analytics Lab, Enterprise Computing Lab.
+     - Student Chapters: IEEE Student Branch, CSI, GDSC, AWS Cloud Club.
+  3. Artificial Intelligence & Machine Learning (AI & ML Department):
+     - Intake: 60 seats | Email: hod.aiml@charusat.ac.in | Faculty Coordinator: Dr. Nirav Bhatt
+     - Key Labs: AI & Deep Learning Studio (NVIDIA GPU Tensor Core workstation clusters), Machine Learning & Neural Networks Lab, Computer Vision & NLP Lab, Big Data Analytics Lab.
+     - Student Activities: AI & ML students actively participate in university-level technical chapters (IEEE, ACM, GDSC, AWS Cloud Club, Competitive Programming Club) and annual national hackathons (DUHacks, SIH, Odoo Hackathon). Note: There are no separate isolated departmental mini-clubs; all technical clubs operate at the institute/university level.
+  4. Electronics & Communication Engineering (EC Department):
+     - Intake: 60 seats | Email: hod.ec@charusat.ac.in
+     - Key Labs: VLSI Design & Simulation Lab, Embedded Systems & Microcontrollers Lab, Digital Signal Processing Lab, Microwave & Wireless Communication Lab.
+  5. Electrical Engineering (M & V Patel Department of Electrical Engineering):
+     - Intake: 60 seats | HOD: Dr. Pragnesh Bhatt | Email: hod.ee@charusat.ac.in
+     - Key Labs: Power Systems & Protection Lab, High Voltage Engineering Lab, Electrical Machines & Drives Lab, Control Systems & Renewable Energy Lab.
+  6. Mechanical Engineering (CHAMOS Matrusanstha Department of Mechanical Engineering):
+     - Intake: 60 seats | HOD: Dr. Vijaykumar Chaudhary | Email: hod.me@charusat.ac.in
+     - Key Labs: CNC & Robotics Automation Lab, CAD/CAM/CAE Simulation Lab, Thermal Engineering & I.C. Engine Lab, Fluid Mechanics & Hydraulic Machinery Lab, Material Testing & Metallurgy Lab.
+  7. Civil Engineering (Manubhai Shivabhai Patel Department of Civil Engineering):
+     - Intake: 60 seats | HOD: Dr. V. R. Panchal | Email: hod.civil@charusat.ac.in
+     - Key Labs: Concrete Technology Lab, Geotechnical & Soil Mechanics Lab, Environmental Engineering & Water Quality Lab, Transportation Engineering Lab, Advanced Surveying (GIS & Total Station) Lab.
 • M.Tech Degrees Offered (2 Years):
-  - Computer Engineering (Specialization in Cloud & Cyber Security)
+  - Computer Engineering (Cloud & Cyber Security)
   - Information Technology
   - Advanced Manufacturing / Thermal Engineering (Mechanical)
   - Structural Engineering (Civil)

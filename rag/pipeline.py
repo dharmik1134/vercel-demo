@@ -325,17 +325,36 @@ class RAGPipeline:
                     "• **ARIP (Physiotherapy)**: Dr. Dhruv Dave\n"
                     "• **CIPS / BDIAS (Paramedical)**: Dr. Dhara Patel"
                 )
+            if any(w in q_lower for w in ["ai & ml", "aiml", "artificial intelligence", "machine learning"]):
+                return (
+                    "### 🤖 CSPIT — Artificial Intelligence & Machine Learning (AI & ML) Department\n\n"
+                    "**1. Basic Department Overview:**\n"
+                    "• **Institute**: Chandubhai S. Patel Institute of Technology (CSPIT)\n"
+                    "• **Intake / Seats**: 60 Seats (Approved by AICTE)\n"
+                    "• **HOD / Faculty Coordinator**: **Dr. Nirav Bhatt** | Email: `hod.aiml@charusat.ac.in`\n"
+                    "• **Admission**: 50% ACPC Gujarat (GUJCET merit) + 50% Management/NRI/Vacant quota via CHARUSAT portal\n\n"
+                    "**2. State-of-the-Art Labs & Infrastructure:**\n"
+                    "• **AI & Deep Learning Studio**: NVIDIA GPU Tensor Core workstations for heavy deep learning neural model training.\n"
+                    "• **Machine Learning & Neural Networks Lab**: Python, PyTorch, TensorFlow, Scikit-Learn programming environment.\n"
+                    "• **Computer Vision & NLP Lab**: Real-time object detection (YOLO), image processing, and LLM fine-tuning workstations.\n"
+                    "• **Big Data & Analytics Lab**: High-throughput distributed data pipelines & Apache Spark clusters.\n\n"
+                    "**3. Student Chapters & Club Participation:**\n"
+                    "*(Nodh: AI & ML department ma koi alag isolated mini-clubs nathi; badha students central official chapters ma active che)*:\n"
+                    "• **IEEE Computer Society & Student Branch**, **ACM Chapter**, **Google Developer Student Clubs (GDSC)**, **AWS Cloud Club** ane **Competitive Programming Club**.\n"
+                    "• **National Hackathons**: AI & ML students actively participate in **DUHacks**, **Smart India Hackathon (SIH)**, and **Odoo Hackathon**."
+                )
+
             if any(w in q_lower for w in ["cspit", "spit", "dept", "department", "branch"]):
                 return (
                     "### 🏛️ CSPIT (Chandubhai S. Patel Institute of Technology) Departments & Details\n\n"
                     "CSPIT ma total **7 Engineering Departments** che, jeni badhi details aa mujab che:\n\n"
-                    "1. **Computer Engineering (CE)** — 180 Seats\n"
-                    "2. **Information Technology (IT)** — 120 Seats\n"
-                    "3. **Artificial Intelligence & Machine Learning (AI & ML)** — 60 Seats\n"
-                    "4. **Electronics & Communication Engineering (EC)** — 60 Seats\n"
-                    "5. **Electrical Engineering (EE)** — 60 Seats\n"
-                    "6. **Mechanical Engineering (ME)** — 60 Seats\n"
-                    "7. **Civil Engineering (CL)** — 60 Seats\n\n"
+                    "1. **Computer Engineering (CE)** — 180 Seats (HOD: Dr. Ritesh Patel / Dr. Parth Shah)\n"
+                    "2. **Information Technology (IT)** — 120 Seats (HOD: Dr. Parth Shah / Dr. Nilay Vaidya)\n"
+                    "3. **Artificial Intelligence & Machine Learning (AI & ML)** — 60 Seats (Faculty Head: Dr. Nirav Bhatt)\n"
+                    "4. **Electronics & Communication Engineering (EC)** — 60 Seats (Principal: Dr. Trushit Upadhyaya)\n"
+                    "5. **Electrical Engineering (EE)** — 60 Seats (HOD: Dr. Pragnesh Bhatt)\n"
+                    "6. **Mechanical Engineering (ME)** — 60 Seats (HOD: Dr. Vijaykumar Chaudhary)\n"
+                    "7. **Civil Engineering (CL)** — 60 Seats (HOD: Dr. V. R. Panchal)\n\n"
                     "• **Admission**: ACPC Gujarat & GUJCET / JEE Main merit par thaye che.\n"
                     "• **Placement**: Highest package 32.5+ LPA che ane TCS, Infosys, Amazon, Crest Data Systems recruit kare che."
                 )
@@ -429,20 +448,22 @@ class RAGPipeline:
 
             if any(w in q_lower for w in ["club", "clubs", "ieee", "acm", "csi", "gdsc", "astronomy", "nss", "ncc", "rotaract"]):
                 return (
-                    "### 🚀 CHARUSAT Student Clubs & Technical Chapters\n\n"
-                    "1. **Technical & Developer Clubs**:\n"
-                    "   • **IEEE Student Branch**: Technical conferences, workshops & WiE (Women in Engineering).\n"
-                    "   • **ACM Student Chapter**: Algorithms, competitive coding & research seminars.\n"
-                    "   • **CSI Student Chapter**: Software development & database bootcamps.\n"
-                    "   • **Google Developer Student Clubs (GDSC)**: Flutter, Android, Firebase & Google Cloud study jams.\n"
-                    "   • **AWS Cloud Club & Microsoft MLSA**: Cloud computing and DevOps.\n"
-                    "   • **Competitive Programming Club**: CodeChef / LeetCode contest prep.\n\n"
-                    "2. **Innovation & Maker Clubs**:\n"
-                    "   • **Charusat Robotics & IoT Club**: Arduino, ROS, Raspberry Pi maker lab.\n"
-                    "   • **Astronomy Club**: Space Observation, Stargazing telescope nights & ISRO space tech.\n\n"
-                    "3. **Social & Leadership Clubs**:\n"
-                    "   • **Rotaract Club of CHARUSAT**: Youth leadership & community service.\n"
-                    "   • **NSS (National Service Scheme)** & **NCC**: Blood donation, rural health camps & social welfare."
+                    "### 🚀 CHARUSAT Student Clubs & Technical Chapters (Official Directory)\n\n"
+                    "*(Mahatvapurna Nodh: CHARUSAT ma technical chapters ane clubs Institute ane University level par centrally run thay che. Koi pan department (jem ke AI & ML, CE, IT) mate alag isolated mini-clubs nathi, parantu badha j engineering departments na students aa central official chapters ma active lead le che.)*\n\n"
+                    "**1. Official Technical & Developer Chapters:**\n"
+                    "• **IEEE Student Branch (CHARUSAT IEEE)**: Technical conferences, AI/ML workshops & WiE (Women in Engineering).\n"
+                    "• **ACM Student Chapter**: Data Structures, Algorithm design & competitive programming.\n"
+                    "• **CSI Student Chapter (Computer Society of India)**: Software engineering & web application bootcamps.\n"
+                    "• **Google Developer Student Clubs (GDSC)**: Flutter, Android, Firebase & Google Cloud study jams.\n"
+                    "• **AWS Cloud Club & Microsoft MLSA**: Cloud computing, DevOps & Azure AI.\n"
+                    "• **Competitive Programming Club**: Weekly CodeChef / LeetCode contest prep.\n\n"
+                    "**2. Innovation, Maker & Space Chapters:**\n"
+                    "• **Charusat Robotics & IoT Maker Club**: Arduino, ROS, Raspberry Pi & sensor prototyping.\n"
+                    "• **Astronomy Club**: Night sky telescope observation & Space Centre (CSRTC) projects.\n"
+                    "• **E-Cell & CSIC**: Startup incubation, prototype grants (SSIP ₹2.5L-₹10L) & founder mentoring.\n\n"
+                    "**3. Social Outreach & Leadership:**\n"
+                    "• **Rotaract Club of CHARUSAT**: Youth leadership & blood donation drives.\n"
+                    "• **NSS & NCC Units**: Social service & village welfare camps."
                 )
 
             if any(w in q_lower for w in ["concert", "concerts", "pro night", "pronight", "spoural", "vrund", "fest", "garba"]):

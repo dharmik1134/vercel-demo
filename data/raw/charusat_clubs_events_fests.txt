@@ -42,8 +42,11 @@
   - Student-driven body organizing annual E-Summits, Startup Pitch Competitions (Shark Tank CHARUSAT edition), Venture Capitalist interactions, and Founder Fireside Chats.
 
 ================================================================================
-4. TECHNICAL CHAPTERS & STUDENT CLUBS DIRECTORY
+4. TECHNICAL CHAPTERS & STUDENT CLUBS DIRECTORY (INSTITUTE & UNIVERSITY LEVEL)
 ================================================================================
+IMPORTANT NOTE ON CLUB ARCHITECTURE:
+At CHARUSAT, student technical chapters and clubs operate centrally at the Institute (CSPIT / DEPSTAR / CMPICA) and University level. Individual departments (such as AI & ML, CE, IT, EC, EE, ME, Civil) do NOT maintain separate isolated mini-clubs. Instead, students and faculty coordinators from all engineering departments (including AI & ML) actively collaborate, lead, and organize activities through these official recognized chapters:
+
 • IEEE Student Branch (CHARUSAT IEEE): Active student chapter organizing IEEE conferences, national workshops, and Women in Engineering (WiE) initiatives.
 • ACM Student Chapter: Association for Computing Machinery student body focusing on theoretical computing, algorithm seminars, and coding bootcamps.
 • CSI Student Chapter (Computer Society of India): Organizes software development, app building, and database design workshops.
