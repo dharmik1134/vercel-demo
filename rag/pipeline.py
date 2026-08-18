@@ -270,7 +270,13 @@ class RAGPipeline:
             "   • ODD SEMESTER: Classes begin 1st week of July | Mid-Sem 1 in mid-Sept | Mid-Sem 2 in late Oct | End-Sem Regular Exams in late Nov - early Dec | Winter Vacation: late Nov to mid Dec | Remedial Exams in early Dec.\n"
             "   • EVEN SEMESTER: Classes begin mid-Dec (approx Dec 16) | Convocation in Jan/Feb | SPOURAL & VRUND Sports/Cultural Fest in mid-Feb | Mid-Sem 1 in mid-Feb | Mid-Sem 2 in late March | End-Sem Exams in late April - mid May | Summer Vacation in mid May - late June.\n"
             "   • OFFICIAL HOLIDAYS: Jan 14 (Makar Sankranti/Uttarayan), Jan 15 (Vasi Uttarayan), Jan 26 (Republic Day), Maha Shivratri (mid-Feb), March 4 (Dhuleti), March 21 (Ramzan Eid), March 26 (Ram Navami), April 14 (Dr. Ambedkar Jayanti), Aug 15 (Independence Day), Aug 28 (Raksha Bandhan), Sept 4 (Janmashtami), Sept 14 (Ganesh Chaturthi), Oct 2 (Gandhi Jayanti), Oct 20 (Dussehra), Oct 31 (Sardar Patel Jayanti), Nov 7-15 (Diwali Vacation Break - campus closed), Nov 24 (Guru Nanak Jayanti), Dec 25 (Christmas).\n"
-            "   Always cross-check the requested date and state whether it is an official holiday, teaching day, exam period, or vacation break in matching language."
+            "   Always cross-check the requested date and state whether it is an official holiday, teaching day, exam period, or vacation break in matching language.\n"
+            "10. STUDENT CLUBS, E-CELL, HACKATHONS, CZ TECHFEST & CONCERTS:\n"
+            "   • COGNIZANCE (CZ / COGNIZANCEX): Flagship National Annual Techfest of CHARUSAT. Features Code Pie (Competitive Programming), HackQuest Arena (CTF Cyber Security), AIdeaForge (AI Challenge), UI/UX Jam, SumoBots & RoboSoccer, Drone Race, and Valorant/BGMI E-Sports.\n"
+            "   • E-CELL & CSIC / EDIC: Headed by Dr. Jaimin Undavia. Provides incubation, prototype funding (SSIP ₹2.5L-₹10L grants), patent filing, E-Summits, and Shark Tank pitch days.\n"
+            "   • HACKATHONS: DUHacks (36hr national hackathon), Pythakon, Odoo x CHARUSAT, n8n Automation Hackathon, Smart India Hackathon (SIH), MSME Idea Hackathon.\n"
+            "   • STUDENT CLUBS: IEEE Student Branch, ACM Chapter, CSI Chapter, Google Developer Student Clubs (GDSC), AWS Cloud Club, Microsoft Learn Student Ambassadors (MLSA), Robotics & IoT Maker Club, Astronomy Club, Competitive Programming Club, Rotaract Club, NSS, NCC.\n"
+            "   • FESTS & CONCERTS: SPOURAL (Mega Sports & Cultural Fest in mid-Feb), VRUND (10,000+ student Navratri Garba night), Celebrity Pro-Nights (Live Bollywood/Gujarati celebrity singers, EDM DJ Nights on campus ground)."
         )
 
         history_section = ""
@@ -377,6 +383,81 @@ class RAGPipeline:
                     "• **7 - 15 Nov**: University Diwali Vacation Break\n"
                     "• **25 Dec**: Christmas"
                 )
+            if any(w in q_lower for w in ["cognizance", "cz", "techfest"]):
+                return (
+                    "### ⚡ COGNIZANCE (CZ / COGNIZANCEX) — CHARUSAT Annual National TechFest\n\n"
+                    "**COGNIZANCE (CZ)** e CHARUSAT no sabse moto National Level TechFest che, jema aakha India mathi students participate kare che!\n\n"
+                    "**🔥 Mukhya Categories ane Events:**\n"
+                    "1. **Coding & AI Challenges:**\n"
+                    "   • **Code Pie**: High-speed competitive algorithmic coding contest.\n"
+                    "   • **HackQuest Arena**: CTF (Capture The Flag) ethical hacking & cyber security.\n"
+                    "   • **AIdeaForge (Build the Future)**: Generative AI & ML solution hackathon.\n"
+                    "   • **UI/UX Design Jam**: Figma UI/UX prototyping battle.\n"
+                    "   • **Hacking & Hardening**: Web application security & penetration testing.\n\n"
+                    "2. **Robotics & Aerial Drones:**\n"
+                    "   • **SumoBots**: Heavy-metal robotic sumo wrestling arena.\n"
+                    "   • **ROBO Race**: High-speed obstacle track robot race.\n"
+                    "   • **RoboSoccer League**: Wireless RC robot football matches.\n"
+                    "   • **Drone Race**: FPV high-speed aerial obstacle drone flying.\n\n"
+                    "3. **Gaming & E-Sports Championship:**\n"
+                    "   • **Valorant, BGMI / PUBG Mobile & Free Fire** live streamed tournaments.\n"
+                    "   • **Logic Carnival, Shock & Block** circuit challenges."
+                )
+
+            if any(w in q_lower for w in ["ecell", "e-cell", "csic", "edic", "startup", "incubation"]):
+                return (
+                    "### 💡 CHARUSAT E-Cell & CSIC / EDIC (Startup & Innovation)\n\n"
+                    "• **Faculty Head & Coordinator**: **Dr. Jaimin Undavia** (Associate Professor & Innovation Head) ane university incubation officers.\n"
+                    "• **CSIC (Charusat Startup & Innovation Centre)**:\n"
+                    "   - Gujarat Government ni **SSIP 2.0** hethal **₹2.5 Lakh thi ₹10 Lakh sudhini prototype funding grants** aape che.\n"
+                    "   - Patent filing, IPR assistance, and free legal mentoring provide kare che.\n"
+                    "   - Campus par air-conditioned co-working space ane high-speed computing workstations aape che.\n"
+                    "• **Student E-Cell Activities**:\n"
+                    "   - Annual **E-Summit**, **Shark Tank CHARUSAT** pitch competitions, Angel Investor & VC networking sessions, and Founder Fireside chats aayojit kare che."
+                )
+
+            if any(w in q_lower for w in ["hackathon", "hackathons", "duhacks", "pythakon"]):
+                return (
+                    "### 💻 Hackathons at CHARUSAT\n\n"
+                    "CHARUSAT regular basis par national level hackathons host kare che:\n"
+                    "• **DUHacks / Pythakon**: 36-Hour non-stop national hackathon (500+ hackers, Web3, AI, IoT tracks).\n"
+                    "• **Odoo x CHARUSAT Hackathon**: Enterprise ERP & Python backend business problem solving.\n"
+                    "• **n8n Community Automation Hackathon**: AI Agents & workflow pipeline automation.\n"
+                    "• **Smart India Hackathon (SIH)**: CHARUSAT official nodal center che, jeni internal hackathon mathi select thaine teams National SIH ma top prizes jite che.\n"
+                    "• **MSME Idea Hackathon**: Government-funded startup challenge with substantial grant money."
+                )
+
+            if any(w in q_lower for w in ["club", "clubs", "ieee", "acm", "csi", "gdsc", "astronomy", "nss", "ncc", "rotaract"]):
+                return (
+                    "### 🚀 CHARUSAT Student Clubs & Technical Chapters\n\n"
+                    "1. **Technical & Developer Clubs**:\n"
+                    "   • **IEEE Student Branch**: Technical conferences, workshops & WiE (Women in Engineering).\n"
+                    "   • **ACM Student Chapter**: Algorithms, competitive coding & research seminars.\n"
+                    "   • **CSI Student Chapter**: Software development & database bootcamps.\n"
+                    "   • **Google Developer Student Clubs (GDSC)**: Flutter, Android, Firebase & Google Cloud study jams.\n"
+                    "   • **AWS Cloud Club & Microsoft MLSA**: Cloud computing and DevOps.\n"
+                    "   • **Competitive Programming Club**: CodeChef / LeetCode contest prep.\n\n"
+                    "2. **Innovation & Maker Clubs**:\n"
+                    "   • **Charusat Robotics & IoT Club**: Arduino, ROS, Raspberry Pi maker lab.\n"
+                    "   • **Astronomy Club**: Space Observation, Stargazing telescope nights & ISRO space tech.\n\n"
+                    "3. **Social & Leadership Clubs**:\n"
+                    "   • **Rotaract Club of CHARUSAT**: Youth leadership & community service.\n"
+                    "   • **NSS (National Service Scheme)** & **NCC**: Blood donation, rural health camps & social welfare."
+                )
+
+            if any(w in q_lower for w in ["concert", "concerts", "pro night", "pronight", "spoural", "vrund", "fest", "garba"]):
+                return (
+                    "### 🎉 Fests, Concerts & Cultural Life at CHARUSAT\n\n"
+                    "1. **SPOURAL (Annual Sports & Cultural Mega Fest — Mid February)**:\n"
+                    "   • Campus nu sabse moto annual festival!\n"
+                    "   • Inter-college sports (Football, Cricket, Basketball, Volleyball, Athletics).\n"
+                    "   • Cultural stages: Battle of the Bands, Group Dance, Drama, Fashion Show.\n"
+                    "   • **Celebrity Pro-Nights & Concerts**: Bollywood singers, Gujarati movie celebrities, famous music artists ane high-voltage EDM DJ Nights campus sports ground par thaye che!\n\n"
+                    "2. **VRUND (Grand Navratri Mahotsav)**:\n"
+                    "   • CHARUSAT no iconic 10,000+ students no Grand Garba Mahotsav.\n"
+                    "   • Traditional attire, live professional orchestra, and energetic Raas-Garba all night long!"
+                )
+
             if any(w in q_lower for w in ["fee", "fees", "hostel"]):
                 return (
                     "### 🏢 CHARUSAT Hostel & Fees Details\n\n"
