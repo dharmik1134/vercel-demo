@@ -775,7 +775,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 avatar.textContent = "👤";
             }
         } else {
-            avatar.textContent = "🏛️";
+            avatar.innerHTML = `<img src="logo.png" alt="CHARUSAT" style="width:100%;height:100%;object-fit:contain;padding:2px;">`;
         }
 
         const bubble = document.createElement("div");
@@ -1054,7 +1054,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         avatar.textContent = "👤";
                     }
                 } else {
-                    avatar.textContent = "🏛️";
+                    avatar.innerHTML = `<img src="logo.png" alt="CHARUSAT" style="width:100%;height:100%;object-fit:contain;padding:2px;">`;
                 }
 
                 const bubble = document.createElement("div");
@@ -1501,7 +1501,7 @@ document.addEventListener("DOMContentLoaded", () => {
         typingRow.className = "msg-row bot";
         typingRow.id = "typing-indicator";
         typingRow.innerHTML = `
-            <div class="msg-avatar">🏛️</div>
+            <div class="msg-avatar"><img src="logo.png" alt="CHARUSAT" style="width:100%;height:100%;object-fit:contain;padding:2px;"></div>
             <div class="msg-bubble typing-bubble">
                 <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 <span class="typing-text">${attachedImgCopy ? "Analyzing problem photo & deriving step-by-step solution..." : "Synthesizing university intelligence..."}</span>

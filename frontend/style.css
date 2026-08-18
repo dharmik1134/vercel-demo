@@ -1061,12 +1061,14 @@ body {
     font-size: 16px;
     flex-shrink: 0;
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
 }
 
 .msg-row.bot .msg-avatar {
-    background: var(--primary-gradient);
-    border-color: rgba(0, 163, 224, 0.5);
-    box-shadow: 0 4px 14px var(--shadow-blue-glow);
+    background: #003366;
+    border: 1.5px solid #0066B3;
+    box-shadow: 0 0 12px rgba(0, 102, 179, 0.4);
+    padding: 2px;
 }
 
 .msg-bubble {
