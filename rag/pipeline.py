@@ -264,7 +264,13 @@ class RAGPipeline:
             "   • PDPIAS Principal: Dr. Abhishek Dadhania\n"
             "   • MTIN Principal: Dr. Anil Sharma\n"
             "   • ARIP Principal: Dr. Dhruv Dave\n"
-            "   • CIPS / BDIAS Principal: Dr. Dhara Patel"
+            "   • CIPS / BDIAS Principal: Dr. Dhara Patel\n"
+            "9. CHARUSAT OFFICIAL ACADEMIC CALENDAR & HOLIDAYS LOOKUP:\n"
+            "   When asked about holidays, vacations, exam schedules, or specific dates:\n"
+            "   • ODD SEMESTER: Classes begin 1st week of July | Mid-Sem 1 in mid-Sept | Mid-Sem 2 in late Oct | End-Sem Regular Exams in late Nov - early Dec | Winter Vacation: late Nov to mid Dec | Remedial Exams in early Dec.\n"
+            "   • EVEN SEMESTER: Classes begin mid-Dec (approx Dec 16) | Convocation in Jan/Feb | SPOURAL & VRUND Sports/Cultural Fest in mid-Feb | Mid-Sem 1 in mid-Feb | Mid-Sem 2 in late March | End-Sem Exams in late April - mid May | Summer Vacation in mid May - late June.\n"
+            "   • OFFICIAL HOLIDAYS: Jan 14 (Makar Sankranti/Uttarayan), Jan 15 (Vasi Uttarayan), Jan 26 (Republic Day), Maha Shivratri (mid-Feb), March 4 (Dhuleti), March 21 (Ramzan Eid), March 26 (Ram Navami), April 14 (Dr. Ambedkar Jayanti), Aug 15 (Independence Day), Aug 28 (Raksha Bandhan), Sept 4 (Janmashtami), Sept 14 (Ganesh Chaturthi), Oct 2 (Gandhi Jayanti), Oct 20 (Dussehra), Oct 31 (Sardar Patel Jayanti), Nov 7-15 (Diwali Vacation Break - campus closed), Nov 24 (Guru Nanak Jayanti), Dec 25 (Christmas).\n"
+            "   Always cross-check the requested date and state whether it is an official holiday, teaching day, exam period, or vacation break in matching language."
         )
 
         history_section = ""
@@ -326,6 +332,50 @@ class RAGPipeline:
                     "7. **Civil Engineering (CL)** — 60 Seats\n\n"
                     "• **Admission**: ACPC Gujarat & GUJCET / JEE Main merit par thaye che.\n"
                     "• **Placement**: Highest package 32.5+ LPA che ane TCS, Infosys, Amazon, Crest Data Systems recruit kare che."
+                )
+            if any(w in q_lower for w in ["calender", "calendar", "holiday", "chutti", "ruti", "vacation", "diwali", "uttarayan", "sankranti", "republic", "independence", "dhuleti", "holi", "eid", "janmashtami", "ganesh", "dussehra", "christmas", "mid sem", "midsem", "exam date"]):
+                if any(w in q_lower for w in ["diwali", "dipawali"]):
+                    return (
+                        "### 🪔 CHARUSAT Diwali Vacation & Break\n\n"
+                        "CHARUSAT Official Academic Calendar mujab **Diwali Vacation 7 November thi 15 November** sudhi hoy che.\n"
+                        "• Aa darmyan university na badha j constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS) ane administrative offices bandh rahe che.\n"
+                        "• Diwali vacation pachi even semester classes schedule thaye che."
+                    )
+                if any(w in q_lower for w in ["uttarayan", "sankranti", "14 jan", "14 january", "15 jan"]):
+                    return (
+                        "### 🪁 CHARUSAT Makar Sankranti (Uttarayan) Holiday\n\n"
+                        "CHARUSAT Academic Calendar mujab **14 January (Makar Sankranti)** ane **15 January (Vasi Uttarayan)** e official university holiday hoy che ane campus bandh rahe che."
+                    )
+                if any(w in q_lower for w in ["15 aug", "15 august", "independence"]):
+                    return (
+                        "### 🇮🇳 CHARUSAT Independence Day (15 August)\n\n"
+                        "• **15 August (Independence Day)**: Official National Holiday che.\n"
+                        "• Campus par savare Flag Hoisting (Dhwaj Vandan) ceremony aayojit thay che, ane classes mate holiday rahe che."
+                    )
+                if any(w in q_lower for w in ["26 jan", "26 january", "republic"]):
+                    return (
+                        "### 🇮🇳 CHARUSAT Republic Day (26 January)\n\n"
+                        "• **26 January (Republic Day)**: Official National Holiday che.\n"
+                        "• University campus par Flag Hoisting ceremony thay che ane pachi classes mate chutti hoy che."
+                    )
+                return (
+                    "### 📅 CHARUSAT Official Academic Calendar & Key Holiday Dates\n\n"
+                    "**1. Semester Timelines:**\n"
+                    "• **Odd Sem Classes**: July na 1st week thi start thay che.\n"
+                    "• **Mid-Sem 1 Exams**: Mid September | **Mid-Sem 2 Exams**: Late October\n"
+                    "• **End Sem Regular Exams**: Late November thi Early December\n"
+                    "• **Even Sem Classes**: Mid December (Dec 16 aaspaas) thi start thay che.\n"
+                    "• **Spoural & Cultural Fest**: Mid February\n"
+                    "• **Even Sem Exams**: Late April thi Mid May | **Summer Vacation**: Mid May thi Late June\n\n"
+                    "**2. Official Public Holidays:**\n"
+                    "• **14-15 Jan**: Makar Sankranti & Vasi Uttarayan\n"
+                    "• **26 Jan**: Republic Day | **Maha Shivratri**: Mid Feb\n"
+                    "• **4 March**: Dhuleti | **21 March**: Ramzan Eid | **26 March**: Ram Navami\n"
+                    "• **14 April**: Dr. Ambedkar Jayanti | **15 Aug**: Independence Day\n"
+                    "• **28 Aug**: Raksha Bandhan | **4 Sept**: Janmashtami | **14 Sept**: Ganesh Chaturthi\n"
+                    "• **2 Oct**: Gandhi Jayanti | **20 Oct**: Dussehra | **31 Oct**: Sardar Patel Jayanti\n"
+                    "• **7 - 15 Nov**: University Diwali Vacation Break\n"
+                    "• **25 Dec**: Christmas"
                 )
             if any(w in q_lower for w in ["fee", "fees", "hostel"]):
                 return (
