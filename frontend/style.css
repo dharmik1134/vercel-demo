@@ -2815,5 +2815,396 @@ body {
     line-height: 1.4;
 }
 
+/* ==========================================================================
+   ChatGPT-Style Sidebar User Capsule & Floating Profile Menu
+   ========================================================================== */
+.sidebar-user-capsule {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+    user-select: none;
+    position: relative;
+}
+
+.sidebar-user-capsule:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.user-capsule-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    font-size: 12.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);
+}
+
+.user-capsule-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.user-capsule-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-capsule-plan {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.user-capsule-chevron {
+    font-size: 16px;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+}
+
+/* Floating ChatGPT Popover Menu */
+.chatgpt-profile-menu {
+    position: fixed;
+    bottom: 75px;
+    left: 16px;
+    width: 250px;
+    background: #212121;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 6px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    animation: menuPopUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes menuPopUp {
+    from { opacity: 0; transform: translateY(8px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.chatgpt-profile-menu.show {
+    display: flex;
+}
+
+.menu-user-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.menu-user-header:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.menu-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    font-size: 12.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.menu-user-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.menu-user-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu-user-plan {
+    font-size: 11.5px;
+    color: #9CA3AF;
+}
+
+.menu-chevron {
+    font-size: 16px;
+    color: #9CA3AF;
+}
+
+.menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4px 6px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    background: transparent;
+    border: none;
+    color: #ECECEC;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    text-align: left;
+    width: 100%;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+}
+
+.menu-item-icon {
+    font-size: 16px;
+    width: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-item-label {
+    flex: 1;
+}
+
+.menu-item-badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    background: rgba(243, 112, 33, 0.2);
+    color: var(--accent-orange);
+    border: 1px solid rgba(243, 112, 33, 0.4);
+    padding: 1px 7px;
+    border-radius: var(--radius-full);
+}
+
+.menu-item.danger {
+    color: #F87171;
+}
+
+.menu-item.danger:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+}
+
+/* Sub-Modals Styling */
+.personalization-card,
+.settings-card,
+.upgrade-plan-card,
+.help-card {
+    max-width: 580px;
+    width: 92%;
+}
+
+.settings-sections-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 16px 0;
+}
+
+.setting-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.setting-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.setting-item-info strong {
+    font-size: 13px;
+    color: #FFFFFF;
+}
+
+.setting-item-info span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.setting-select {
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    color: #FFFFFF;
+    font-size: 12px;
+    outline: none;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--primary-blue);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+}
+
+/* Upgrade Plan Features */
+.upgrade-features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+@media (max-width: 600px) {
+    .upgrade-features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.upgrade-feature-item {
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 12px;
+}
+
+.feat-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.upgrade-feature-item strong {
+    font-size: 12.5px;
+    color: #93C5FD;
+}
+
+.upgrade-feature-item p {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    line-height: 1.35;
+}
+
+.pro-status-banner {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    color: #6EE7B7;
+    font-size: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.pro-tag-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #FDBA74;
+    background: rgba(243, 112, 33, 0.2);
+    border: 1px solid rgba(243, 112, 33, 0.4);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+}
+
+/* Help Links */
+.help-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 14px 0;
+}
+
+.help-link-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+}
+
+.help-link-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #93C5FD;
+    margin-bottom: 4px;
+}
+
+.help-link-card p {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+
 
 

@@ -147,6 +147,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const wifiAutoConnectBtn = document.getElementById("wifi-auto-connect-btn");
     const wifiAuthForm = document.getElementById("wifi-auth-form");
 
+    // ChatGPT-Style User Profile Popover & Sub-Modal Elements
+    const sidebarUserBtn = document.getElementById("sidebar-user-btn");
+    const sidebarUserAvatar = document.getElementById("sidebar-user-avatar");
+    const sidebarUserName = document.getElementById("sidebar-user-name");
+    const sidebarUserPlan = document.getElementById("sidebar-user-plan");
+    const chatgptProfileMenu = document.getElementById("chatgpt-profile-menu");
+    const menuUserHeaderBtn = document.getElementById("menu-user-header-btn");
+    const menuUserAvatar = document.getElementById("menu-user-avatar");
+    const menuUserName = document.getElementById("menu-user-name");
+    const menuUserPlan = document.getElementById("menu-user-plan");
+    const menuUpgradeBtn = document.getElementById("menu-upgrade-btn");
+    const menuPersonalizeBtn = document.getElementById("menu-personalize-btn");
+    const menuProfileBtn = document.getElementById("menu-profile-btn");
+    const menuSettingsBtn = document.getElementById("menu-settings-btn");
+    const menuHelpBtn = document.getElementById("menu-help-btn");
+    const menuLogoutBtn = document.getElementById("menu-logout-btn");
+
+    const personalizationModalBackdrop = document.getElementById("personalization-modal-backdrop");
+    const personalizeModalClose = document.getElementById("personalize-modal-close");
+    const personalizeCancelBtn = document.getElementById("personalize-cancel-btn");
+    const personalizationForm = document.getElementById("personalization-form");
+    const prefDepartment = document.getElementById("pref-department");
+    const prefLanguage = document.getElementById("pref-language");
+    const prefCustomPrompt = document.getElementById("pref-custom-prompt");
+
+    const settingsModalBackdrop = document.getElementById("settings-modal-backdrop");
+    const settingsModalClose = document.getElementById("settings-modal-close");
+    const settingsModalCloseBtn = document.getElementById("settings-modal-close-btn");
+    const settingVoiceSpeed = document.getElementById("setting-voice-speed");
+    const settingSoundToggle = document.getElementById("setting-sound-toggle");
+    const settingThemeSelect = document.getElementById("setting-theme-select");
+    const settingClearCacheBtn = document.getElementById("setting-clear-cache-btn");
+
+    const upgradeModalBackdrop = document.getElementById("upgrade-modal-backdrop");
+    const upgradeModalClose = document.getElementById("upgrade-modal-close");
+    const upgradeModalCloseBtn = document.getElementById("upgrade-modal-close-btn");
+
+    const helpModalBackdrop = document.getElementById("help-modal-backdrop");
+    const helpModalClose = document.getElementById("help-modal-close");
+    const helpModalCloseBtn = document.getElementById("help-modal-close-btn");
+
     let chatHistory = [];
     let currentUser = null;
     let savedSessions = [];
@@ -223,7 +264,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function getInitials(name) {
+        if (!name) return "NP";
+        const parts = name.trim().split(" ");
+        if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+        return name.slice(0, 2).toUpperCase();
+    }
+
     function updateUIForUser(user) {
+        const defaultName = "Neev Patel";
+        const displayName = user ? user.name : defaultName;
+        const displayInitials = getInitials(displayName);
+        const displayPlan = user ? `${user.institute || "CHARUSAT"} • Pro` : "Free";
+
+        if (sidebarUserName) sidebarUserName.textContent = displayName;
+        if (sidebarUserAvatar) sidebarUserAvatar.textContent = displayInitials;
+        if (sidebarUserPlan) sidebarUserPlan.textContent = displayPlan;
+
+        if (menuUserName) menuUserName.textContent = displayName;
+        if (menuUserAvatar) menuUserAvatar.textContent = displayInitials;
+        if (menuUserPlan) menuUserPlan.textContent = displayPlan;
+
         if (user) {
             if (headerUserName) headerUserName.textContent = user.name.split(" ")[0];
             if (headerUserAvatar) {
@@ -556,6 +617,218 @@ document.addEventListener("DOMContentLoaded", () => {
             showToast("Signed out successfully.");
         });
     }
+
+    // --------------------------------------------------------------------------
+    // 6. ChatGPT-Style User Profile Popover & Personalization Hub
+    // --------------------------------------------------------------------------
+    const PERSONALIZATION_KEY = "charusat_user_personalization_v1";
+    const SETTINGS_KEY = "charusat_app_settings_v1";
+
+    function toggleProfileMenu() {
+        if (!chatgptProfileMenu) return;
+        const isShowing = chatgptProfileMenu.classList.contains("show");
+        if (isShowing) {
+            chatgptProfileMenu.classList.remove("show");
+        } else {
+            chatgptProfileMenu.classList.add("show");
+        }
+    }
+
+    function closeProfileMenu() {
+        if (chatgptProfileMenu) chatgptProfileMenu.classList.remove("show");
+    }
+
+    if (sidebarUserBtn) {
+        sidebarUserBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleProfileMenu();
+        });
+    }
+
+    // Close menu when clicking outside
+    window.addEventListener("click", (e) => {
+        if (chatgptProfileMenu && chatgptProfileMenu.classList.contains("show")) {
+            if (!chatgptProfileMenu.contains(e.target) && (!sidebarUserBtn || !sidebarUserBtn.contains(e.target))) {
+                closeProfileMenu();
+            }
+        }
+    });
+
+    // Menu Item Actions
+    if (menuUserHeaderBtn || menuProfileBtn) {
+        const openProfile = () => {
+            closeProfileMenu();
+            openAuthModal();
+        };
+        if (menuUserHeaderBtn) menuUserHeaderBtn.addEventListener("click", openProfile);
+        if (menuProfileBtn) menuProfileBtn.addEventListener("click", openProfile);
+    }
+
+    if (menuUpgradeBtn) {
+        menuUpgradeBtn.addEventListener("click", () => {
+            closeProfileMenu();
+            if (upgradeModalBackdrop) upgradeModalBackdrop.classList.add("show");
+        });
+    }
+
+    if (upgradeModalClose) upgradeModalClose.addEventListener("click", () => upgradeModalBackdrop.classList.remove("show"));
+    if (upgradeModalCloseBtn) upgradeModalCloseBtn.addEventListener("click", () => upgradeModalBackdrop.classList.remove("show"));
+    if (upgradeModalBackdrop) {
+        upgradeModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === upgradeModalBackdrop) upgradeModalBackdrop.classList.remove("show");
+        });
+    }
+
+    // Personalization Modal
+    function loadPersonalization() {
+        try {
+            const raw = localStorage.getItem(PERSONALIZATION_KEY);
+            if (raw) {
+                const data = JSON.parse(raw);
+                if (prefDepartment && data.department) prefDepartment.value = data.department;
+                if (prefLanguage && data.language) prefLanguage.value = data.language;
+                if (prefCustomPrompt && data.customPrompt) prefCustomPrompt.value = data.customPrompt;
+            }
+        } catch (e) {}
+    }
+
+    function savePersonalization() {
+        const data = {
+            department: prefDepartment ? prefDepartment.value : "CSPIT - AI & ML",
+            language: prefLanguage ? prefLanguage.value : "gujlish",
+            customPrompt: prefCustomPrompt ? prefCustomPrompt.value.trim() : ""
+        };
+        localStorage.setItem(PERSONALIZATION_KEY, JSON.stringify(data));
+        showToast("⚡ Personalization preferences saved!");
+    }
+
+    if (menuPersonalizeBtn) {
+        menuPersonalizeBtn.addEventListener("click", () => {
+            closeProfileMenu();
+            loadPersonalization();
+            if (personalizationModalBackdrop) personalizationModalBackdrop.classList.add("show");
+        });
+    }
+
+    if (personalizeModalClose) personalizeModalClose.addEventListener("click", () => personalizationModalBackdrop.classList.remove("show"));
+    if (personalizeCancelBtn) personalizeCancelBtn.addEventListener("click", () => personalizationModalBackdrop.classList.remove("show"));
+    if (personalizationModalBackdrop) {
+        personalizationModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === personalizationModalBackdrop) personalizationModalBackdrop.classList.remove("show");
+        });
+    }
+    if (personalizationForm) {
+        personalizationForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            savePersonalization();
+            personalizationModalBackdrop.classList.remove("show");
+        });
+    }
+
+    // Settings Modal
+    function loadSettings() {
+        try {
+            const raw = localStorage.getItem(SETTINGS_KEY);
+            if (raw) {
+                const data = JSON.parse(raw);
+                if (settingVoiceSpeed && data.voiceSpeed) settingVoiceSpeed.value = data.voiceSpeed;
+                if (settingSoundToggle) settingSoundToggle.checked = !!data.soundEnabled;
+                if (settingThemeSelect && data.theme) {
+                    settingThemeSelect.value = data.theme;
+                    applyTheme(data.theme);
+                }
+            }
+        } catch (e) {}
+    }
+
+    function saveSettings() {
+        const data = {
+            voiceSpeed: settingVoiceSpeed ? settingVoiceSpeed.value : "1.0",
+            soundEnabled: settingSoundToggle ? settingSoundToggle.checked : true,
+            theme: settingThemeSelect ? settingThemeSelect.value : "charusat-dark"
+        };
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(data));
+    }
+
+    function applyTheme(themeName) {
+        if (themeName === "midnight-black") {
+            document.documentElement.style.setProperty("--charusat-deep-navy", "#000000");
+            document.documentElement.style.setProperty("--charusat-sidebar-bg", "#09090b");
+            document.documentElement.style.setProperty("--charusat-chat-bg", "#000000");
+        } else if (themeName === "cyber-blue") {
+            document.documentElement.style.setProperty("--charusat-deep-navy", "#061826");
+            document.documentElement.style.setProperty("--charusat-sidebar-bg", "#0a2239");
+            document.documentElement.style.setProperty("--charusat-chat-bg", "#040f1a");
+        } else {
+            document.documentElement.style.removeProperty("--charusat-deep-navy");
+            document.documentElement.style.removeProperty("--charusat-sidebar-bg");
+            document.documentElement.style.removeProperty("--charusat-chat-bg");
+        }
+    }
+
+    if (settingThemeSelect) {
+        settingThemeSelect.addEventListener("change", (e) => {
+            applyTheme(e.target.value);
+            saveSettings();
+        });
+    }
+
+    if (settingVoiceSpeed) settingVoiceSpeed.addEventListener("change", saveSettings);
+    if (settingSoundToggle) settingSoundToggle.addEventListener("change", saveSettings);
+
+    if (settingClearCacheBtn) {
+        settingClearCacheBtn.addEventListener("click", () => {
+            if (confirm("Clear local cache, saved forms and offline drafts?")) {
+                localStorage.removeItem(WIFI_CREDS_KEY);
+                localStorage.removeItem(PERSONALIZATION_KEY);
+                showToast("🗑️ Local cache and temporary data cleared.");
+            }
+        });
+    }
+
+    if (menuSettingsBtn) {
+        menuSettingsBtn.addEventListener("click", () => {
+            closeProfileMenu();
+            loadSettings();
+            if (settingsModalBackdrop) settingsModalBackdrop.classList.add("show");
+        });
+    }
+
+    if (settingsModalClose) settingsModalClose.addEventListener("click", () => settingsModalBackdrop.classList.remove("show"));
+    if (settingsModalCloseBtn) settingsModalCloseBtn.addEventListener("click", () => settingsModalBackdrop.classList.remove("show"));
+    if (settingsModalBackdrop) {
+        settingsModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === settingsModalBackdrop) settingsModalBackdrop.classList.remove("show");
+        });
+    }
+
+    // Help Modal
+    if (menuHelpBtn) {
+        menuHelpBtn.addEventListener("click", () => {
+            closeProfileMenu();
+            if (helpModalBackdrop) helpModalBackdrop.classList.add("show");
+        });
+    }
+
+    if (helpModalClose) helpModalClose.addEventListener("click", () => helpModalBackdrop.classList.remove("show"));
+    if (helpModalCloseBtn) helpModalCloseBtn.addEventListener("click", () => helpModalBackdrop.classList.remove("show"));
+    if (helpModalBackdrop) {
+        helpModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === helpModalBackdrop) helpModalBackdrop.classList.remove("show");
+        });
+    }
+
+    // Logout from Popover
+    if (menuLogoutBtn) {
+        menuLogoutBtn.addEventListener("click", () => {
+            closeProfileMenu();
+            saveUserSession(null);
+            showToast("Signed out successfully.");
+        });
+    }
+
+    // Initialize saved settings
+    loadSettings();
 
     // --------------------------------------------------------------------------
     // 6. Mobile Drawer & Navigation

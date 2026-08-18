@@ -295,8 +295,68 @@
                 <div class="system-status">
                     <div class="status-indicator online"></div>
                     <span id="status-text">Neural RAG: Ready</span>
+                    <div class="version-tag">App v3.5</div>
                 </div>
-                <div class="version-tag">App v3.5</div>
+
+                <!-- ChatGPT-Style User Profile Capsule -->
+                <div class="sidebar-user-capsule" id="sidebar-user-btn" title="Account & Settings">
+                    <div class="user-capsule-avatar" id="sidebar-user-avatar">NP</div>
+                    <div class="user-capsule-info">
+                        <span class="user-capsule-name" id="sidebar-user-name">Neev Patel</span>
+                        <span class="user-capsule-plan" id="sidebar-user-plan">Free</span>
+                    </div>
+                    <span class="user-capsule-chevron">›</span>
+                </div>
+            </div>
+
+            <!-- ChatGPT Floating Profile Popover Menu -->
+            <div id="chatgpt-profile-menu" class="chatgpt-profile-menu">
+                <!-- User Account Summary Header -->
+                <div class="menu-user-header" id="menu-user-header-btn" title="View Profile">
+                    <div class="menu-user-avatar" id="menu-user-avatar">NP</div>
+                    <div class="menu-user-meta">
+                        <span class="menu-user-name" id="menu-user-name">Neev Patel</span>
+                        <span class="menu-user-plan" id="menu-user-plan">Free</span>
+                    </div>
+                    <span class="menu-chevron">›</span>
+                </div>
+
+                <div class="menu-divider"></div>
+
+                <!-- Navigation Action Items -->
+                <button class="menu-item" id="menu-upgrade-btn">
+                    <span class="menu-item-icon">✨</span>
+                    <span class="menu-item-label">Upgrade plan</span>
+                    <span class="menu-item-badge">Pro</span>
+                </button>
+
+                <button class="menu-item" id="menu-personalize-btn">
+                    <span class="menu-item-icon">⚡</span>
+                    <span class="menu-item-label">Personalization</span>
+                </button>
+
+                <button class="menu-item" id="menu-profile-btn">
+                    <span class="menu-item-icon">👤</span>
+                    <span class="menu-item-label">Profile</span>
+                </button>
+
+                <button class="menu-item" id="menu-settings-btn">
+                    <span class="menu-item-icon">⚙️</span>
+                    <span class="menu-item-label">Settings</span>
+                </button>
+
+                <div class="menu-divider"></div>
+
+                <button class="menu-item" id="menu-help-btn">
+                    <span class="menu-item-icon">🎯</span>
+                    <span class="menu-item-label">Help</span>
+                    <span class="menu-chevron">›</span>
+                </button>
+
+                <button class="menu-item danger" id="menu-logout-btn">
+                    <span class="menu-item-icon">🚪</span>
+                    <span class="menu-item-label">Log out</span>
+                </button>
             </div>
         </aside>
 
@@ -793,6 +853,234 @@
     </div>
 
     <!-- ==============================================================================
+         PERSONALIZATION MODAL (ChatGPT Style)
+         ============================================================================== -->
+    <div class="modal-backdrop" id="personalization-modal-backdrop">
+        <div class="modal-card personalization-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>⚡ Personalization</h3>
+                    <span class="wifi-chip-badge">AI Customization</span>
+                </div>
+                <button class="modal-close" id="personalize-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Customize how CHARUSAT AI responds to you, matches your academic department, and delivers solutions.</p>
+
+            <form id="personalization-form">
+                <div class="input-group">
+                    <label for="pref-department">Your Faculty / Department</label>
+                    <select id="pref-department">
+                        <option value="CSPIT - AI & ML">CSPIT - Artificial Intelligence & Machine Learning (AI & ML)</option>
+                        <option value="CSPIT - Computer">CSPIT - Computer Engineering (CE)</option>
+                        <option value="CSPIT - IT">CSPIT - Information Technology (IT)</option>
+                        <option value="DEPSTAR - CSE">DEPSTAR - Computer Science & Engineering (CSE)</option>
+                        <option value="DEPSTAR - IT">DEPSTAR - Information Technology (IT)</option>
+                        <option value="CMPICA">CMPICA - Computer Applications (BCA / MCA)</option>
+                        <option value="RPCP">RPCP - Pharmacy (B.Pharm / M.Pharm)</option>
+                        <option value="I2IM">I2IM - Management Studies (BBA / MBA)</option>
+                        <option value="CSPIT - EC/EE">CSPIT - EC & Electrical Engineering</option>
+                        <option value="CSPIT - ME/CL">CSPIT - Mechanical & Civil Engineering</option>
+                        <option value="PDPIAS">PDPIAS - Applied Sciences</option>
+                        <option value="General">General / All Institutes</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="pref-language">Default Response Language & Tone</label>
+                    <select id="pref-language">
+                        <option value="gujlish">Romanized Gujarati (Gujlish) — (e.g. 'CSPIT ma 7 departments che...')</option>
+                        <option value="english">English (Professional & Academic)</option>
+                        <option value="gujarati_script">Pure Gujarati Script (ગુજરાતી)</option>
+                        <option value="hinglish">Romanized Hindi (Hinglish)</option>
+                        <option value="code_heavy">Code & Technical First (Python/C++/Latex)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="pref-custom-prompt">Custom Instructions for AI</label>
+                    <textarea id="pref-custom-prompt" rows="4" placeholder="e.g. Always provide time complexity for coding questions, explain math steps in detail, highlight exam important points..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="secondary-btn" id="personalize-cancel-btn">Cancel</button>
+                    <button type="submit" class="orange-portal-btn">Save Preferences</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
+         SETTINGS MODAL (ChatGPT Style)
+         ============================================================================== -->
+    <div class="modal-backdrop" id="settings-modal-backdrop">
+        <div class="modal-card settings-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>⚙️ Settings</h3>
+                    <span class="history-chip-badge">App Preferences</span>
+                </div>
+                <button class="modal-close" id="settings-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Manage themes, speech speed, audio responses, and cached data.</p>
+
+            <div class="settings-sections-list">
+                <div class="setting-item-row">
+                    <div class="setting-item-info">
+                        <strong>Speech Voice Speed</strong>
+                        <span>Control the speech playback rate for read-aloud responses</span>
+                    </div>
+                    <select id="setting-voice-speed" class="setting-select">
+                        <option value="0.9">0.9x (Slow)</option>
+                        <option value="1.0" selected>1.0x (Normal)</option>
+                        <option value="1.15">1.15x (Fast)</option>
+                    </select>
+                </div>
+
+                <div class="setting-item-row">
+                    <div class="setting-item-info">
+                        <strong>Audio Sound Feedback</strong>
+                        <span>Play subtle audio clicks when sending messages and receiving solutions</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="setting-sound-toggle" checked />
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item-row">
+                    <div class="setting-item-info">
+                        <strong>Theme Accent</strong>
+                        <span>Select UI accent theme</span>
+                    </div>
+                    <select id="setting-theme-select" class="setting-select">
+                        <option value="charusat-dark" selected>CHARUSAT Deep Navy (Default)</option>
+                        <option value="midnight-black">Midnight OLED Black</option>
+                        <option value="cyber-blue">Cyberroam Electric Blue</option>
+                    </select>
+                </div>
+
+                <div class="setting-item-row">
+                    <div class="setting-item-info">
+                        <strong>Clear Local Storage & Cache</strong>
+                        <span>Reset offline cache, temporary drafts, and credentials</span>
+                    </div>
+                    <button type="button" class="danger-outline-btn" id="setting-clear-cache-btn">Clear App Cache</button>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="settings-modal-close-btn">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
+         UPGRADE PLAN / PRO MODAL
+         ============================================================================== -->
+    <div class="modal-backdrop" id="upgrade-modal-backdrop">
+        <div class="modal-card upgrade-plan-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>✨ CHARUSAT Scholar Pro</h3>
+                    <span class="pro-tag-badge">Free for CHARUSAT Students</span>
+                </div>
+                <button class="modal-close" id="upgrade-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">All university students, faculty, and research scholars receive automatic full Pro access!</p>
+
+            <div class="upgrade-features-grid">
+                <div class="upgrade-feature-item">
+                    <span class="feat-icon">📷</span>
+                    <div>
+                        <strong>Unlimited Multimodal Vision Solver</strong>
+                        <p>Snap photo of any homework assignment, math derivation, or exam question for instant solution.</p>
+                    </div>
+                </div>
+                <div class="upgrade-feature-item">
+                    <span class="feat-icon">⚡</span>
+                    <div>
+                        <strong>Zero-Latency Neural RAG</strong>
+                        <p>Real-time vector search across 8 official CHARUSAT knowledge bases and syllabi.</p>
+                    </div>
+                </div>
+                <div class="upgrade-feature-item">
+                    <span class="feat-icon">📶</span>
+                    <div>
+                        <strong>1-Click Campus Wi-Fi Captive Connect</strong>
+                        <p>Instant fast authentication to 172.16.0.1 without searching IP addresses.</p>
+                    </div>
+                </div>
+                <div class="upgrade-feature-item">
+                    <span class="feat-icon">📚</span>
+                    <div>
+                        <strong>Central Library & Core Books Hub</strong>
+                        <p>Direct shelf availability, copy counts, and verified textbook references.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pro-status-banner">
+                <span>✅ Your Account Status: <strong>CHARUSAT Verified Scholar (Active Pro)</strong></span>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="orange-portal-btn" id="upgrade-modal-close-btn">Awesome, Let's Learn!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
+         HELP & UNIVERSITY SUPPORT MODAL
+         ============================================================================== -->
+    <div class="modal-backdrop" id="help-modal-backdrop">
+        <div class="modal-card help-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>🎯 Help & University Support</h3>
+                    <span class="history-chip-badge">Official Helpdesk</span>
+                </div>
+                <button class="modal-close" id="help-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Direct emergency and academic contacts across the CHARUSAT campus.</p>
+
+            <div class="help-links-list">
+                <div class="help-link-card">
+                    <div class="help-link-top">
+                        <span class="help-link-icon">📶</span>
+                        <strong>WINCell Data Center & Wi-Fi Support</strong>
+                    </div>
+                    <p>Mr. Ritesh Bhatt (Head, Datacenter) • Internal Ext: <strong>5106 / 5107</strong> • Email: info@charusat.ac.in</p>
+                </div>
+                <div class="help-link-card">
+                    <div class="help-link-top">
+                        <span class="help-link-icon">📚</span>
+                        <strong>Central Library (Dr. K. C. Patel Resource Centre)</strong>
+                    </div>
+                    <p>105,000+ Books, IEEE Xplore, ScienceDirect access • Timings: 8:30 AM - 8:30 PM (24/7 during exams)</p>
+                </div>
+                <div class="help-link-card">
+                    <div class="help-link-top">
+                        <span class="help-link-icon">🏢</span>
+                        <strong>Examination Section & Academic Registrar</strong>
+                    </div>
+                    <p>Dr. Binit Patel (Registrar) • Academic Transcripts, Grade Cards & Bonafide Certificates • Ext: 5003 / 5004</p>
+                </div>
+                <div class="help-link-card">
+                    <div class="help-link-top">
+                        <span class="help-link-icon">🚑</span>
+                        <strong>CHARUSAT Hospital (CHRF) & Medical Emergency</strong>
+                    </div>
+                    <p>24/7 Emergency Medical Care, Ambulance & Pharmacy on Campus • Phone: +91-2697-265000</p>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="help-modal-close-btn">Close Help</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
          STUDY HUB & CURRICULUM REFERENCE MODAL
          ============================================================================== -->
     <div class="modal-backdrop" id="materials-modal-backdrop">
@@ -899,6 +1187,6 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast">Answer copied to clipboard!</div>
 
-    <script src="app.js?v=12.0"></script>
+    <script src="app.js?v=13.0"></script>
 </body>
 </html>
