@@ -377,6 +377,15 @@
                     </div>
                 </div>
                 <div class="header-actions">
+                    <button id="voice-live-btn" class="header-voice-btn" title="Start Live Conversational Voice Mode">
+                        <span>🎙️</span> <span class="btn-label">Voice Live</span>
+                    </button>
+                    <button id="cgpa-calc-btn" class="header-cgpa-btn" title="Interactive SGPA / CGPA University Grade Calculator">
+                        <span>📊</span> <span class="btn-label">CGPA Calc</span>
+                    </button>
+                    <button id="campus-map-btn" class="header-map-btn" title="120-Acre Interactive Campus Map & Building Navigator">
+                        <span>🗺️</span> <span class="btn-label">Campus Map</span>
+                    </button>
                     <button id="wifi-portal-btn" class="header-wifi-btn" title="CHARUSAT Campus Wi-Fi 1-Click Fast Gateway Login">
                         <span>📶</span> <span class="btn-label">Wi-Fi Portal</span>
                     </button>
@@ -471,13 +480,15 @@
 
                 <div class="quick-tags-bar">
                     <span class="tag-label">QUICK:</span>
+                    <button class="quick-tag" id="quick-voice-btn">🎙️ Voice Live</button>
+                    <button class="quick-tag" id="quick-cgpa-btn">📊 CGPA Calc</button>
+                    <button class="quick-tag" id="quick-map-btn">🗺️ Campus Map</button>
                     <button class="quick-tag" id="quick-wifi-btn">📶 Wi-Fi Login</button>
                     <button class="quick-tag" id="quick-snap-btn">📷 Snap Assignment</button>
                     <button class="quick-tag" id="quick-study-hub-btn">📚 Core Books & Syllabus</button>
                     <button class="quick-tag" data-query="cspit ma kaya kaya dept che and eemni badha nii details aap">💻 CSPIT B.Tech</button>
                     <button class="quick-tag" data-query="What B.Tech branches and seats are in DEPSTAR?">🚀 DEPSTAR (CSE & IT)</button>
                     <button class="quick-tag" data-query="Which books for Algorithms and Database are available in Central Library?">📚 Library Books</button>
-                    <button class="quick-tag" data-query="hostel ni fee ketli che ane mess ma food kevu male?">🏢 Hostels & Buses</button>
                 </div>
                 <form id="chat-form" class="chat-form">
                     <!-- Hidden File Input for Camera / Image Upload -->
@@ -495,6 +506,9 @@
                         required
                     />
                     <div class="form-actions">
+                        <button type="button" id="enhance-query-btn" class="enhance-query-button" title="Enhance & Polish Prompt for Better AI Solutions" aria-label="Enhance Prompt">
+                            <span>✨</span>
+                        </button>
                         <button type="button" id="mic-btn" class="mic-button" title="Speak your question (Voice Input)" aria-label="Voice Input">
                             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
@@ -1081,6 +1095,195 @@
     </div>
 
     <!-- ==============================================================================
+         CGPA & SGPA UNIVERSITY GRADE CALCULATOR MODAL
+         ============================================================================== -->
+    <div class="modal-backdrop" id="cgpa-modal-backdrop">
+        <div class="modal-card cgpa-calculator-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>📊 CHARUSAT SGPA / CGPA University Grade Calculator</h3>
+                    <span class="wifi-chip-badge">10-Point Scale</span>
+                </div>
+                <button class="modal-close" id="cgpa-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Calculate your semester SGPA and cumulative CGPA according to official CHARUSAT university examination regulations.</p>
+
+            <!-- CGPA Calculation Toolbar -->
+            <div class="cgpa-calculator-box">
+                <div class="cgpa-score-display">
+                    <div class="score-item">
+                        <span class="score-label">Estimated SGPA</span>
+                        <strong id="cgpa-result-sgpa" class="score-value">8.50</strong>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">Equivalent Percentage</span>
+                        <strong id="cgpa-result-percent" class="score-value percent">80.0%</strong>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">Total Credits</span>
+                        <strong id="cgpa-result-credits" class="score-value credits">20</strong>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">Academic Class</span>
+                        <strong id="cgpa-result-class" class="score-value class-dist">Distinction (A+)</strong>
+                    </div>
+                </div>
+
+                <!-- Subjects Input Table -->
+                <div class="cgpa-table-wrapper">
+                    <table class="cgpa-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Name / Code</th>
+                                <th style="width: 100px;">Credits</th>
+                                <th style="width: 150px;">Grade Obtained</th>
+                                <th style="width: 40px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cgpa-subjects-body">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cgpa-table-actions">
+                    <button type="button" id="cgpa-add-subject-btn" class="secondary-btn compact">
+                        <span>➕</span> Add Subject
+                    </button>
+                    <button type="button" id="cgpa-reset-btn" class="danger-outline-btn compact">
+                        <span>🔄</span> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grade Points Legend & Target Planner -->
+            <div class="cgpa-legend-box">
+                <h4>🎯 CHARUSAT Grade Points Reference</h4>
+                <div class="legend-badges-grid">
+                    <span class="legend-badge"><strong>O</strong> (90-100%) = 10 Pt</span>
+                    <span class="legend-badge"><strong>A+</strong> (80-89%) = 9 Pt</span>
+                    <span class="legend-badge"><strong>A</strong> (70-79%) = 8 Pt</span>
+                    <span class="legend-badge"><strong>B+</strong> (60-69%) = 7 Pt</span>
+                    <span class="legend-badge"><strong>B</strong> (50-59%) = 6 Pt</span>
+                    <span class="legend-badge"><strong>C</strong> (45-49%) = 5 Pt</span>
+                    <span class="legend-badge"><strong>P</strong> (40-44%) = 4 Pt</span>
+                    <span class="legend-badge fail"><strong>F</strong> (&lt;40%) = 0 Pt</span>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="cgpa-modal-close-btn">Close Calculator</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
+         120-ACRE INTERACTIVE CAMPUS MAP & NAVIGATOR MODAL
+         ============================================================================== -->
+    <div class="modal-backdrop" id="map-modal-backdrop">
+        <div class="modal-card campus-map-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>🗺️ CHARUSAT 120-Acre Campus Map & Navigator</h3>
+                    <span class="wifi-chip-badge">Interactive Directory</span>
+                </div>
+                <button class="modal-close" id="map-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Explore institutes, laboratories, canteens, sports complexes, and walking navigation across the Changa campus.</p>
+
+            <!-- Route Finder Bar -->
+            <div class="map-route-bar">
+                <div class="route-select-group">
+                    <label>From:</label>
+                    <select id="route-from-select" class="map-select">
+                        <option value="gate1">Gate No. 1 (Main Changa Highway)</option>
+                        <option value="cspit">CSPIT Engineering Complex</option>
+                        <option value="depstar">DEPSTAR Building</option>
+                        <option value="library">Central Library (KRC)</option>
+                        <option value="cmpica">CMPICA (BCA/MCA)</option>
+                        <option value="canteen">Shreeji Central Canteen</option>
+                        <option value="hostels">Hostels Zone</option>
+                    </select>
+                </div>
+                <div class="route-select-group">
+                    <label>To:</label>
+                    <select id="route-to-select" class="map-select">
+                        <option value="canteen">Shreeji Central Canteen</option>
+                        <option value="cspit">CSPIT Engineering Complex</option>
+                        <option value="depstar">DEPSTAR Building</option>
+                        <option value="library">Central Library (KRC)</option>
+                        <option value="cmpica">CMPICA (BCA/MCA)</option>
+                        <option value="lotus">Lotus Complex & Tea Post</option>
+                        <option value="hospital">CHARUSAT Hospital (Gate 2)</option>
+                    </select>
+                </div>
+                <button type="button" id="map-find-route-btn" class="orange-portal-btn compact">
+                    🚶 Get Directions
+                </button>
+            </div>
+
+            <!-- Route Directions Box -->
+            <div id="map-directions-box" class="map-directions-box" style="display: none;">
+                <div class="directions-header">
+                    <span class="route-icon">🧭</span>
+                    <strong id="directions-summary-text">Walking route: 2 mins (180 meters)</strong>
+                </div>
+                <p id="directions-desc-text" class="directions-desc">Walk straight past the Central Administrative fountain lawn towards the sports ground.</p>
+            </div>
+
+            <!-- Interactive Campus Building Nodes Grid -->
+            <div class="campus-buildings-grid" id="campus-buildings-grid">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="map-modal-close-btn">Close Map</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
+         LIVE VOICE MODE INTERACTIVE ORB (ChatGPT / Gemini Live Style)
+         ============================================================================== -->
+    <div class="modal-backdrop" id="voice-overlay-backdrop">
+        <div class="voice-live-container">
+            <button class="voice-close-btn" id="voice-close-btn" title="Exit Voice Mode">✕</button>
+            
+            <div class="voice-header-info">
+                <span class="live-pulse-badge">🔴 LIVE SPEECH</span>
+                <h2>CHARUSAT Voice Intelligence</h2>
+                <p id="voice-status-text">Listening... Speak in English, ગુજરાતી, or Gujlish</p>
+            </div>
+
+            <!-- Glowing Visualizer Orb -->
+            <div class="voice-orb-wrapper">
+                <div class="voice-orb-halo"></div>
+                <div class="voice-orb" id="voice-orb">
+                    <div class="orb-core"></div>
+                </div>
+            </div>
+
+            <!-- Realtime Live Speech Captions -->
+            <div class="voice-caption-box">
+                <p id="voice-transcript-text">"Ask me anything about CHARUSAT admissions, syllabus, exams, or canteens..."</p>
+            </div>
+
+            <!-- Voice Control Actions -->
+            <div class="voice-control-actions">
+                <button type="button" id="voice-toggle-mic-btn" class="voice-action-btn active" title="Mute / Unmute Mic">
+                    <span>🎙️</span>
+                </button>
+                <button type="button" id="voice-stop-speech-btn" class="voice-action-btn" title="Stop Audio Response">
+                    <span>⏹️</span>
+                </button>
+                <button type="button" id="voice-end-call-btn" class="voice-action-btn danger" title="End Voice Session">
+                    <span>📞</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
          STUDY HUB & CURRICULUM REFERENCE MODAL
          ============================================================================== -->
     <div class="modal-backdrop" id="materials-modal-backdrop">
@@ -1187,6 +1390,6 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast">Answer copied to clipboard!</div>
 
-    <script src="app.js?v=13.0"></script>
+    <script src="app.js?v=14.0"></script>
 </body>
 </html>

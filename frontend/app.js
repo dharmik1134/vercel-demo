@@ -188,6 +188,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const helpModalClose = document.getElementById("help-modal-close");
     const helpModalCloseBtn = document.getElementById("help-modal-close-btn");
 
+    // CGPA & SGPA Calculator Elements
+    const cgpaCalcBtn = document.getElementById("cgpa-calc-btn");
+    const quickCgpaBtn = document.getElementById("quick-cgpa-btn");
+    const cgpaModalBackdrop = document.getElementById("cgpa-modal-backdrop");
+    const cgpaModalClose = document.getElementById("cgpa-modal-close");
+    const cgpaModalCloseBtn = document.getElementById("cgpa-modal-close-btn");
+    const cgpaAddSubjectBtn = document.getElementById("cgpa-add-subject-btn");
+    const cgpaResetBtn = document.getElementById("cgpa-reset-btn");
+    const cgpaSubjectsBody = document.getElementById("cgpa-subjects-body");
+    const cgpaResultSgpa = document.getElementById("cgpa-result-sgpa");
+    const cgpaResultPercent = document.getElementById("cgpa-result-percent");
+    const cgpaResultCredits = document.getElementById("cgpa-result-credits");
+    const cgpaResultClass = document.getElementById("cgpa-result-class");
+
+    // Campus Map & Navigator Elements
+    const campusMapBtn = document.getElementById("campus-map-btn");
+    const quickMapBtn = document.getElementById("quick-map-btn");
+    const mapModalBackdrop = document.getElementById("map-modal-backdrop");
+    const mapModalClose = document.getElementById("map-modal-close");
+    const mapModalCloseBtn = document.getElementById("map-modal-close-btn");
+    const campusBuildingsGrid = document.getElementById("campus-buildings-grid");
+    const routeFromSelect = document.getElementById("route-from-select");
+    const routeToSelect = document.getElementById("route-to-select");
+    const mapFindRouteBtn = document.getElementById("map-find-route-btn");
+    const mapDirectionsBox = document.getElementById("map-directions-box");
+    const directionsSummaryText = document.getElementById("directions-summary-text");
+    const directionsDescText = document.getElementById("directions-desc-text");
+
+    // Live Voice Mode Elements
+    const voiceLiveBtn = document.getElementById("voice-live-btn");
+    const quickVoiceBtn = document.getElementById("quick-voice-btn");
+    const voiceOverlayBackdrop = document.getElementById("voice-overlay-backdrop");
+    const voiceCloseBtn = document.getElementById("voice-close-btn");
+    const voiceEndCallBtn = document.getElementById("voice-end-call-btn");
+    const voiceOrb = document.getElementById("voice-orb");
+    const voiceStatusText = document.getElementById("voice-status-text");
+    const voiceTranscriptText = document.getElementById("voice-transcript-text");
+    const voiceToggleMicBtn = document.getElementById("voice-toggle-mic-btn");
+    const voiceStopSpeechBtn = document.getElementById("voice-stop-speech-btn");
+
+    // Prompt Enhancer
+    const enhanceQueryBtn = document.getElementById("enhance-query-btn");
+
     let chatHistory = [];
     let currentUser = null;
     let savedSessions = [];
@@ -1112,6 +1155,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             btnGroup.appendChild(speakBtn);
 
+            const pdfBtn = document.createElement("button");
+            pdfBtn.className = "action-icon-btn";
+            pdfBtn.title = "Export solution as PDF / Study Notes";
+            pdfBtn.innerHTML = `<span>📄</span> PDF Notes`;
+            pdfBtn.addEventListener("click", () => {
+                exportToPdf(text);
+            });
+            btnGroup.appendChild(pdfBtn);
+
             footer.appendChild(btnGroup);
             bubble.appendChild(footer);
         }
@@ -1384,6 +1436,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     speakBtn.innerHTML = `<span>🔊</span> Listen`;
                     speakBtn.addEventListener("click", () => speakText(msg.text));
                     btnGroup.appendChild(speakBtn);
+
+                    const pdfBtn = document.createElement("button");
+                    pdfBtn.className = "action-icon-btn";
+                    pdfBtn.title = "Export solution as PDF / Study Notes";
+                    pdfBtn.innerHTML = `<span>📄</span> PDF Notes`;
+                    pdfBtn.addEventListener("click", () => exportToPdf(msg.text));
+                    btnGroup.appendChild(pdfBtn);
 
                     footer.appendChild(btnGroup);
                     bubble.appendChild(footer);
@@ -1928,6 +1987,584 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // --------------------------------------------------------------------------
+    // 11. PDF Notes Exporter & Document Generator
+    // --------------------------------------------------------------------------
+    function exportToPdf(rawMarkdown) {
+        const titleMatch = rawMarkdown.match(/^###?\s*(.+)$/m);
+        const docTitle = titleMatch ? titleMatch[1].replace(/[*_#]/g, "").trim() : "CHARUSAT Academic Study Notes";
+        const cleanHtml = parseMarkdown(rawMarkdown);
+
+        const printWindow = window.open("", "_blank");
+        printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>${escapeHtml(docTitle)} - CHARUSAT</title>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+                    body {
+                        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+                        color: #1e293b;
+                        background: #ffffff;
+                        padding: 40px;
+                        line-height: 1.6;
+                        max-width: 800px;
+                        margin: 0 auto;
+                    }
+                    .header {
+                        border-bottom: 2px solid #0066B3;
+                        padding-bottom: 15px;
+                        margin-bottom: 25px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    .header-title h1 {
+                        font-size: 20px;
+                        color: #0066B3;
+                        margin: 0;
+                        font-weight: 800;
+                    }
+                    .header-title p {
+                        font-size: 11px;
+                        color: #64748b;
+                        margin: 2px 0 0;
+                    }
+                    .badge {
+                        background: #f8fafc;
+                        border: 1px solid #cbd5e1;
+                        padding: 4px 10px;
+                        border-radius: 6px;
+                        font-size: 11px;
+                        font-weight: 600;
+                        color: #0066B3;
+                    }
+                    .content {
+                        font-size: 13.5px;
+                    }
+                    h1, h2, h3, h4 {
+                        color: #0f172a;
+                        margin-top: 20px;
+                        margin-bottom: 8px;
+                    }
+                    code {
+                        font-family: 'JetBrains Mono', monospace;
+                        background: #f1f5f9;
+                        padding: 2px 5px;
+                        border-radius: 4px;
+                        font-size: 12px;
+                    }
+                    pre {
+                        background: #0f172a;
+                        color: #f8fafc;
+                        padding: 14px;
+                        border-radius: 8px;
+                        overflow-x: auto;
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 12px;
+                    }
+                    pre code {
+                        background: transparent;
+                        color: inherit;
+                        padding: 0;
+                    }
+                    ul, ol {
+                        padding-left: 20px;
+                        margin: 8px 0;
+                    }
+                    li {
+                        margin-bottom: 4px;
+                    }
+                    .footer {
+                        margin-top: 40px;
+                        border-top: 1px solid #e2e8f0;
+                        padding-top: 15px;
+                        font-size: 11px;
+                        color: #94a3b8;
+                        text-align: center;
+                    }
+                    @media print {
+                        body { padding: 20px; }
+                        button { display: none; }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <div class="header-title">
+                        <h1>CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY</h1>
+                        <p>CHARUSAT Virtual Intelligence • Academic Verification System</p>
+                    </div>
+                    <div class="badge">Official Study Notes</div>
+                </div>
+                <div class="content">
+                    ${cleanHtml}
+                </div>
+                <div class="footer">
+                    Generated via CHARUSAT Virtual Intelligence AI Assistant • ${new Date().toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })} • Changa, Gujarat
+                </div>
+                <script>
+                    window.onload = function() {
+                        setTimeout(function() { window.print(); }, 500);
+                    };
+                </script>
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
+        showToast("📄 Generating printable PDF study notes...");
+    }
+
+    // --------------------------------------------------------------------------
+    // 12. Smart Prompt Enhancer & Polisher
+    // --------------------------------------------------------------------------
+    function enhanceCurrentPrompt() {
+        if (!userInput) return;
+        const query = userInput.value.trim();
+        if (!query) {
+            userInput.value = "Explain the core syllabus, reference textbooks, and lab experiments in detail.";
+            userInput.focus();
+            showToast("✨ Sample academic prompt added!");
+            return;
+        }
+
+        const qLower = query.toLowerCase();
+        let enhanced = query;
+
+        if (qLower.includes("aiml") || qLower.includes("ai & ml") || qLower.includes("machine learning")) {
+            enhanced = "Please provide the complete, detailed semester-wise core curriculum, reference textbooks (Bishop, Goodfellow), and NVIDIA GPU lab experiments for CSPIT AI & ML department.";
+        } else if (qLower.includes("dsa") || qLower.includes("data structure") || qLower.includes("algorithm")) {
+            enhanced = "Explain Data Structures & Algorithms concepts with step-by-step logic, CLRS reference chapters, C++/Python implementation, and Time/Space complexity analysis.";
+        } else if (qLower.includes("canteen") || qLower.includes("food")) {
+            enhanced = "List all on-campus canteens (Shreeji), Nescafe kiosks, Amul parlour, and newly opened student food hubs around CHARUSAT with menu highlights and timings.";
+        } else if (qLower.includes("wifi") || qLower.includes("internet")) {
+            enhanced = "Provide direct 1-click captive portal login URLs (172.16.0.1:8090), credentials format, and troubleshooting steps for CHARUSAT campus Wi-Fi.";
+        } else if (qLower.includes("cgpa") || qLower.includes("sgpa") || qLower.includes("grade")) {
+            enhanced = "Explain CHARUSAT 10-point academic grading scale, SGPA/CGPA calculation formulas, and passing criteria according to university examination rules.";
+        } else {
+            enhanced = `Please provide a detailed, verified, and exam-ready explanation regarding: "${query}". Include key concepts, examples, and relevant CHARUSAT academic context.`;
+        }
+
+        userInput.value = enhanced;
+        userInput.focus();
+        showToast("✨ Prompt polished for high-yield AI solution!");
+    }
+
+    if (enhanceQueryBtn) {
+        enhanceQueryBtn.addEventListener("click", enhanceCurrentPrompt);
+    }
+
+    // --------------------------------------------------------------------------
+    // 13. Interactive CGPA / SGPA University Calculator
+    // --------------------------------------------------------------------------
+    const DEFAULT_SUBJECTS = [
+        { name: "Design & Analysis of Algorithms", credits: 4, grade: 9 }, // A+
+        { name: "Database Management Systems", credits: 4, grade: 8 }, // A
+        { name: "Operating Systems", credits: 4, grade: 9 }, // A+
+        { name: "Computer Networks", credits: 4, grade: 8 }, // A
+        { name: "University Elective / Python Lab", credits: 4, grade: 10 } // O
+    ];
+
+    let currentSubjects = [...DEFAULT_SUBJECTS];
+
+    function calculateCgpa() {
+        let totalCredits = 0;
+        let totalPoints = 0;
+
+        const rows = cgpaSubjectsBody ? cgpaSubjectsBody.querySelectorAll("tr") : [];
+        rows.forEach(row => {
+            const credInput = row.querySelector(".cgpa-cred-input");
+            const gradeSelect = row.querySelector(".cgpa-grade-select");
+            if (credInput && gradeSelect) {
+                const cred = parseFloat(credInput.value) || 0;
+                const gp = parseFloat(gradeSelect.value) || 0;
+                totalCredits += cred;
+                totalPoints += (cred * gp);
+            }
+        });
+
+        const sgpa = totalCredits > 0 ? (totalPoints / totalCredits) : 0;
+        const percent = sgpa > 0 ? ((sgpa - 0.5) * 10) : 0;
+
+        let classDist = "Pass Class (P)";
+        if (sgpa >= 8.5) classDist = "Distinction (O / A+)";
+        else if (sgpa >= 7.5) classDist = "First Class with Distinction";
+        else if (sgpa >= 6.5) classDist = "First Class (A / B+)";
+        else if (sgpa >= 5.5) classDist = "Higher Second Class (B)";
+        else if (sgpa >= 4.5) classDist = "Second Class (C)";
+
+        if (cgpaResultSgpa) cgpaResultSgpa.textContent = sgpa.toFixed(2);
+        if (cgpaResultPercent) cgpaResultPercent.textContent = percent.toFixed(1) + "%";
+        if (cgpaResultCredits) cgpaResultCredits.textContent = totalCredits;
+        if (cgpaResultClass) cgpaResultClass.textContent = classDist;
+    }
+
+    function renderCgpaRows() {
+        if (!cgpaSubjectsBody) return;
+        cgpaSubjectsBody.innerHTML = currentSubjects.map((s, idx) => `
+            <tr>
+                <td>
+                    <input type="text" class="cgpa-input cgpa-name-input" value="${escapeHtml(s.name)}" placeholder="Subject Name" />
+                </td>
+                <td>
+                    <input type="number" min="1" max="8" class="cgpa-input cgpa-cred-input" value="${s.credits}" />
+                </td>
+                <td>
+                    <select class="cgpa-input cgpa-grade-select">
+                        <option value="10" ${s.grade === 10 ? "selected" : ""}>O (90-100%) - 10 Pt</option>
+                        <option value="9" ${s.grade === 9 ? "selected" : ""}>A+ (80-89%) - 9 Pt</option>
+                        <option value="8" ${s.grade === 8 ? "selected" : ""}>A (70-79%) - 8 Pt</option>
+                        <option value="7" ${s.grade === 7 ? "selected" : ""}>B+ (60-69%) - 7 Pt</option>
+                        <option value="6" ${s.grade === 6 ? "selected" : ""}>B (50-59%) - 6 Pt</option>
+                        <option value="5" ${s.grade === 5 ? "selected" : ""}>C (45-49%) - 5 Pt</option>
+                        <option value="4" ${s.grade === 4 ? "selected" : ""}>P (40-44%) - 4 Pt</option>
+                        <option value="0" ${s.grade === 0 ? "selected" : ""}>F (&lt;40%) - 0 Pt</option>
+                    </select>
+                </td>
+                <td>
+                    <button type="button" class="cgpa-del-btn" data-idx="${idx}" title="Delete Row">✕</button>
+                </td>
+            </tr>
+        `).join("");
+
+        cgpaSubjectsBody.querySelectorAll(".cgpa-cred-input, .cgpa-grade-select").forEach(el => {
+            el.addEventListener("input", calculateCgpa);
+        });
+
+        cgpaSubjectsBody.querySelectorAll(".cgpa-del-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const idx = parseInt(btn.dataset.idx);
+                currentSubjects.splice(idx, 1);
+                renderCgpaRows();
+            });
+        });
+
+        calculateCgpa();
+    }
+
+    if (cgpaAddSubjectBtn) {
+        cgpaAddSubjectBtn.addEventListener("click", () => {
+            currentSubjects.push({ name: `Subject ${currentSubjects.length + 1}`, credits: 4, grade: 8 });
+            renderCgpaRows();
+        });
+    }
+
+    if (cgpaResetBtn) {
+        cgpaResetBtn.addEventListener("click", () => {
+            currentSubjects = [...DEFAULT_SUBJECTS];
+            renderCgpaRows();
+            showToast("🔄 Calculator reset to defaults.");
+        });
+    }
+
+    function openCgpaModal() {
+        if (cgpaModalBackdrop) cgpaModalBackdrop.classList.add("show");
+        renderCgpaRows();
+    }
+
+    function closeCgpaModal() {
+        if (cgpaModalBackdrop) cgpaModalBackdrop.classList.remove("show");
+    }
+
+    if (cgpaCalcBtn) cgpaCalcBtn.addEventListener("click", openCgpaModal);
+    if (quickCgpaBtn) quickCgpaBtn.addEventListener("click", openCgpaModal);
+    if (cgpaModalClose) cgpaModalClose.addEventListener("click", closeCgpaModal);
+    if (cgpaModalCloseBtn) cgpaModalCloseBtn.addEventListener("click", closeCgpaModal);
+    if (cgpaModalBackdrop) {
+        cgpaModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === cgpaModalBackdrop) closeCgpaModal();
+        });
+    }
+
+    // --------------------------------------------------------------------------
+    // 14. Interactive 120-Acre Campus Map & Location Navigator
+    // --------------------------------------------------------------------------
+    const CAMPUS_BUILDINGS = [
+        {
+            id: "cspit",
+            name: "CSPIT Engineering Complex",
+            icon: "💻",
+            desc: "7 Departments (CE, IT, AI&ML, EC, EE, ME, Civil), NVIDIA GPU Cluster, Robotics Lab, Mechanical Workshops.",
+            loc: "Blocks 1-4, Central Academic Zone",
+            query: "Tell me all departments, laboratories, and facilities inside CSPIT Engineering Complex"
+        },
+        {
+            id: "depstar",
+            name: "DEPSTAR Building",
+            icon: "🚀",
+            desc: "Devang Patel Institute: CSE & IT, Apple iOS Swift Development Lab, Cloud Computing & AI Centers.",
+            loc: "East Academic Wing",
+            query: "What facilities, Apple lab, and programs are located in DEPSTAR?"
+        },
+        {
+            id: "library",
+            name: "Dr. K. C. Patel Central Library (KRC)",
+            icon: "📚",
+            desc: "105,000+ books, IEEE Xplore, ScienceDirect digital lab, and 24/7 exam reading hall.",
+            loc: "Opposite CSPIT Admin Plaza",
+            query: "Which books, digital resources and timings are available at Central Library?"
+        },
+        {
+            id: "cmpica",
+            name: "CMPICA (Computer Applications)",
+            icon: "🖥️",
+            desc: "BCA, MCA, M.Sc IT, Full-Stack Web Innovation Labs, Mobile App Prototyping.",
+            loc: "Adjacent to Central Library",
+            query: "What courses and labs are inside CMPICA building?"
+        },
+        {
+            id: "rpcp",
+            name: "RPCP (Pharmacy College)",
+            icon: "💊",
+            desc: "B.Pharm, M.Pharm, Medicinal Chemistry, Pharmacology & Formulation R&D Labs.",
+            loc: "South Campus Wing",
+            query: "Explain pharmacy laboratories and research facilities in RPCP"
+        },
+        {
+            id: "i2im",
+            name: "I2IM (Management Studies)",
+            icon: "📈",
+            desc: "BBA, MBA, Financial Simulation Lab, Live Case Study Amphitheater, Executive Boardroom.",
+            loc: "South-West Wing",
+            query: "What MBA specializations and simulation labs are in I2IM?"
+        },
+        {
+            id: "canteen",
+            name: "Shreeji Central Canteen & Food Court",
+            icon: "🍔",
+            desc: "Main university cafeteria (Punjabi, Chinese, South Indian, Sandwiches, Puffs, Chai-Coffee).",
+            loc: "Central Sports Plaza",
+            query: "What food items, timings, and prices are available at Shreeji Canteen?"
+        },
+        {
+            id: "hospital",
+            name: "CHARUSAT Hospital (CHRF) & Medical Wing",
+            icon: "🏥",
+            desc: "24/7 Emergency Medical Care, Ambulance, MTIN Nursing, ARIP Physiotherapy, CIPS.",
+            loc: "Gate No. 2, Changa Road",
+            query: "What medical facilities and nursing colleges are near CHARUSAT Hospital?"
+        },
+        {
+            id: "lotus",
+            name: "Lotus Complex & Ramdev Hub",
+            icon: "☕",
+            desc: "Tea Post (The Desi Cafe), Hot N Spicy (Famous Puffs & Frankies), Kingsman Eatery.",
+            loc: "Directly Outside Gate No. 2",
+            query: "What cafes, Tea Post and food spots are in Lotus Complex outside campus?"
+        },
+        {
+            id: "hostels",
+            name: "University Hostels & Sports Ground",
+            icon: "🏢",
+            desc: "AC & Non-AC Boys/Girls Hostels, Mess Dining Hall, Cricket Ground, Basketball Courts.",
+            loc: "North Campus Residential Zone",
+            query: "Tell me about hostel rooms, mess food, and sports facilities at CHARUSAT"
+        }
+    ];
+
+    const CAMPUS_ROUTES = {
+        "gate1-cspit": "Enter Gate 1 -> Walk straight past the central fountain and administrative lawn -> CSPIT Building is right in front (1 min, 90m).",
+        "cspit-canteen": "Exit CSPIT Block 2 -> Head South past the open auditorium -> Shreeji Canteen is adjacent to the sports ground (2 mins, 150m).",
+        "cspit-library": "Exit CSPIT Main Entrance -> Cross the central plaza -> Central Library (KRC) is directly opposite (1 min, 60m).",
+        "cspit-depstar": "Walk East along the main academic boulevard -> DEPSTAR building is situated on the left wing (2 mins, 180m).",
+        "gate1-canteen": "Enter Gate 1 -> Walk straight along the main tree-lined road past CSPIT -> Reach Shreeji Canteen & Sports Plaza (3 mins, 240m).",
+        "canteen-lotus": "Walk South from sports ground towards Gate 2 -> Exit Gate 2 -> Lotus Complex & Tea Post is immediately opposite (4 mins, 300m).",
+        "hostels-cspit": "Head South from the residential blocks along the paved walkway -> Arrive at CSPIT Academic Complex (4 mins, 350m)."
+    };
+
+    function renderCampusMap() {
+        if (!campusBuildingsGrid) return;
+        campusBuildingsGrid.innerHTML = CAMPUS_BUILDINGS.map(b => `
+            <div class="building-node-card" data-query="${escapeHtml(b.query)}">
+                <div class="node-header">
+                    <span class="node-icon">${b.icon}</span>
+                    <span class="node-title">${b.name}</span>
+                </div>
+                <span class="node-desc">${b.desc}</span>
+                <div class="node-action">📍 ${b.loc} • 💬 Ask AI →</div>
+            </div>
+        `).join("");
+
+        campusBuildingsGrid.querySelectorAll(".building-node-card").forEach(card => {
+            card.addEventListener("click", () => {
+                closeMapModal();
+                handleSendMessage(card.dataset.query);
+            });
+        });
+    }
+
+    if (mapFindRouteBtn) {
+        mapFindRouteBtn.addEventListener("click", () => {
+            const from = routeFromSelect.value;
+            const to = routeToSelect.value;
+
+            if (from === to) {
+                if (directionsSummaryText) directionsSummaryText.textContent = "You are already at this location!";
+                if (directionsDescText) directionsDescText.textContent = "Selected source and destination are the same building.";
+                if (mapDirectionsBox) mapDirectionsBox.style.display = "block";
+                return;
+            }
+
+            const routeKey1 = `${from}-${to}`;
+            const routeKey2 = `${to}-${from}`;
+            const routeDesc = CAMPUS_ROUTES[routeKey1] || CAMPUS_ROUTES[routeKey2] || 
+                `Follow the central paved boulevard from ${routeFromSelect.options[routeFromSelect.selectedIndex].text} towards ${routeToSelect.options[routeToSelect.selectedIndex].text}. Walking distance is approximately 2 to 4 minutes (150-300m) with campus directional signboards.`;
+
+            if (directionsSummaryText) directionsSummaryText.textContent = `Route: ${routeFromSelect.options[routeFromSelect.selectedIndex].text} ➔ ${routeToSelect.options[routeToSelect.selectedIndex].text}`;
+            if (directionsDescText) directionsDescText.textContent = routeDesc;
+            if (mapDirectionsBox) mapDirectionsBox.style.display = "block";
+        });
+    }
+
+    function openMapModal() {
+        if (mapModalBackdrop) mapModalBackdrop.classList.add("show");
+        renderCampusMap();
+    }
+
+    function closeMapModal() {
+        if (mapModalBackdrop) mapModalBackdrop.classList.remove("show");
+    }
+
+    if (campusMapBtn) campusMapBtn.addEventListener("click", openMapModal);
+    if (quickMapBtn) quickMapBtn.addEventListener("click", openMapModal);
+    if (mapModalClose) mapModalClose.addEventListener("click", closeMapModal);
+    if (mapModalCloseBtn) mapModalCloseBtn.addEventListener("click", closeMapModal);
+    if (mapModalBackdrop) {
+        mapModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === mapModalBackdrop) closeMapModal();
+        });
+    }
+
+    // --------------------------------------------------------------------------
+    // 15. ChatGPT / Gemini Live Voice Mode Controller
+    // --------------------------------------------------------------------------
+    let voiceRecognition = null;
+    let isVoiceActive = false;
+
+    function initVoiceRecognition() {
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRec) {
+            showToast("⚠️ Speech Recognition is supported in Chrome, Edge, and Safari.");
+            return null;
+        }
+
+        const rec = new SpeechRec();
+        rec.continuous = false;
+        rec.interimResults = true;
+        rec.lang = "en-US";
+
+        rec.onstart = () => {
+            if (voiceStatusText) voiceStatusText.textContent = "Listening... Speak your query";
+            if (voiceOrb) voiceOrb.classList.remove("speaking");
+        };
+
+        rec.onresult = (e) => {
+            const transcript = Array.from(e.results).map(r => r[0].transcript).join("");
+            if (voiceTranscriptText) voiceTranscriptText.textContent = `"${transcript}"`;
+            if (e.results[0].isFinal) {
+                processVoiceQuery(transcript);
+            }
+        };
+
+        rec.onerror = () => {
+            if (voiceStatusText) voiceStatusText.textContent = "Paused. Tap mic to speak again.";
+        };
+
+        rec.onend = () => {
+            if (isVoiceActive && !window.speechSynthesis.speaking) {
+                try { rec.start(); } catch (e) {}
+            }
+        };
+
+        return rec;
+    }
+
+    async function processVoiceQuery(queryText) {
+        if (!queryText || !queryText.trim()) return;
+        if (voiceStatusText) voiceStatusText.textContent = "Thinking & synthesizing...";
+        if (voiceOrb) voiceOrb.classList.add("speaking");
+
+        try {
+            const res = await fetch(CHAT_API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    query: queryText,
+                    chat_history: chatHistory.slice(-4),
+                    user_email: currentUser ? currentUser.email : "guest"
+                })
+            });
+
+            const data = await res.json();
+            const answer = data.answer || "I found verified information in the CHARUSAT knowledge base.";
+            
+            if (voiceTranscriptText) voiceTranscriptText.textContent = `"${answer.replace(/[*_#`]/g, "").slice(0, 180)}..."`;
+            if (voiceStatusText) voiceStatusText.textContent = "Speaking response...";
+
+            appendMessage("user", queryText);
+            appendMessage("bot", answer, data.sources, data.latency_seconds);
+
+            speakText(answer, () => {
+                if (voiceOrb) voiceOrb.classList.remove("speaking");
+                if (voiceStatusText) voiceStatusText.textContent = "Listening... Speak next question";
+                if (isVoiceActive && voiceRecognition) {
+                    try { voiceRecognition.start(); } catch (e) {}
+                }
+            });
+        } catch (e) {
+            if (voiceStatusText) voiceStatusText.textContent = "Could not connect to AI engine.";
+            if (voiceOrb) voiceOrb.classList.remove("speaking");
+        }
+    }
+
+    function openVoiceMode() {
+        isVoiceActive = true;
+        if (voiceOverlayBackdrop) voiceOverlayBackdrop.classList.add("show");
+        if (!voiceRecognition) voiceRecognition = initVoiceRecognition();
+        if (voiceRecognition) {
+            try { voiceRecognition.start(); } catch (e) {}
+        }
+    }
+
+    function closeVoiceMode() {
+        isVoiceActive = false;
+        if (voiceOverlayBackdrop) voiceOverlayBackdrop.classList.remove("show");
+        if (voiceRecognition) {
+            try { voiceRecognition.stop(); } catch (e) {}
+        }
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    if (voiceLiveBtn) voiceLiveBtn.addEventListener("click", openVoiceMode);
+    if (quickVoiceBtn) quickVoiceBtn.addEventListener("click", openVoiceMode);
+    if (voiceCloseBtn) voiceCloseBtn.addEventListener("click", closeVoiceMode);
+    if (voiceEndCallBtn) voiceEndCallBtn.addEventListener("click", closeVoiceMode);
+    if (voiceStopSpeechBtn) {
+        voiceStopSpeechBtn.addEventListener("click", () => {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            if (voiceOrb) voiceOrb.classList.remove("speaking");
+            if (voiceStatusText) voiceStatusText.textContent = "Audio stopped. Tap mic to speak.";
+        });
+    }
+
+    if (voiceToggleMicBtn) {
+        voiceToggleMicBtn.addEventListener("click", () => {
+            if (voiceRecognition) {
+                try {
+                    voiceRecognition.start();
+                    voiceToggleMicBtn.classList.add("active");
+                } catch (e) {
+                    voiceRecognition.stop();
+                    voiceToggleMicBtn.classList.remove("active");
+                }
+            }
+        });
+    }
+
+    // --------------------------------------------------------------------------
+    // 16. Regular Event Handlers
+    // --------------------------------------------------------------------------
     chatForm.addEventListener("submit", (e) => {
         e.preventDefault();
         handleSendMessage(userInput.value);
@@ -1964,5 +2601,6 @@ document.addEventListener("DOMContentLoaded", () => {
         createNewSession();
     });
 });
+
 
 
