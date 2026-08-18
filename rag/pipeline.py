@@ -252,11 +252,18 @@ class RAGPipeline:
             "   • If the user asks about ANY OTHER college, institute, or university (e.g. Nirma, DAIICT, Parul, GTU, IIT, MSU, DDU, BVM, PDPU/PDEU, Marwadi, Silver Oak, LJ, Indus, Ganpat, etc.), you MUST STRICTLY DECLINE to answer about other colleges.\n"
             "   • State clearly that you are exclusively built for CHARUSAT University and invite them to ask about CHARUSAT's constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS), admissions, fees, syllabus, library, or hostels.\n"
             "   • If the user asks general non-academic trivia or random facts outside CHARUSAT, politely decline and steer them back to CHARUSAT.\n"
-            "8. OFFICIAL UNIVERSITY LEADERSHIP DIRECTORY (CURRENT & VERIFIED):\n"
+            "8. OFFICIAL UNIVERSITY LEADERSHIP & DEPARTMENT HODs (CURRENT & VERIFIED):\n"
             "   • President: Shri Surendra M. Patel\n"
             "   • Provost (Vice-Chancellor): Dr. Atul M. Patel\n"
             "   • Registrar: Dr. Binit Patel (Chief Administrative Officer & Head of University Administration)\n"
             "   • CSPIT Principal: Dr. Trushit Upadhyaya\n"
+            "   • CSPIT AI & ML Department Head / Coordinator: Dr. Nirav Bhatt (Email: hod.aiml@charusat.ac.in)\n"
+            "   • CSPIT Computer Engineering (CE) Department Head: Dr. Ritesh Patel / Dr. Parth Shah (Email: hod.ce@charusat.ac.in)\n"
+            "   • CSPIT Information Technology (IT) Department Head: Dr. Parth Shah / Dr. Nilay Vaidya (Email: hod.it@charusat.ac.in)\n"
+            "   • CSPIT Mechanical Engineering Department Head: Dr. Vijaykumar Chaudhary (Email: hod.me@charusat.ac.in)\n"
+            "   • CSPIT Electrical Engineering Department Head: Dr. Pragnesh Bhatt (Email: hod.ee@charusat.ac.in)\n"
+            "   • CSPIT Civil Engineering Department Head: Dr. V. R. Panchal (Email: hod.civil@charusat.ac.in)\n"
+            "   • CSPIT Electronics & Communication (EC) Head: Dr. Trushit Upadhyaya (Email: hod.ec@charusat.ac.in)\n"
             "   • DEPSTAR Principal: Dr. Bankim Patel\n"
             "   • CMPICA Principal: Dr. Dharmendra Patel\n"
             "   • RPCP Principal: Dr. Manan Raval\n"
@@ -308,7 +315,56 @@ class RAGPipeline:
         is_hinglish = any(w in q_lower.split() for w in ["hai", "kya", "kaun", "kitni", "kaise", "batao", "hoga", "bataiye", "aur"])
 
         if is_gujlish:
-            if any(w in q_lower for w in ["registrar", "register", "provost", "vice chancellor", "vc", "president", "principal", "hod", "leadership", "officials"]):
+            # Specific Department HOD Inquiries
+            if any(w in q_lower for w in ["hod", "head"]):
+                if any(w in q_lower for w in ["aiml", "ai & ml", "ai", "artificial intelligence"]):
+                    return (
+                        "### 🤖 CSPIT — AI & ML Department Head\n\n"
+                        "• **Head of Department (HOD) / Coordinator**: **Dr. Nirav Bhatt**\n"
+                        "• **Department**: Artificial Intelligence & Machine Learning (CSPIT)\n"
+                        "• **Email**: `hod.aiml@charusat.ac.in`\n"
+                        "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**"
+                    )
+                if any(w in q_lower for w in ["ce", "computer"]):
+                    return (
+                        "### 💻 CSPIT — Computer Engineering (CE) Department Head\n\n"
+                        "• **Head of Department (HOD)**: **Dr. Ritesh Patel / Dr. Parth Shah**\n"
+                        "• **Department**: Computer Engineering (CSPIT)\n"
+                        "• **Email**: `hod.ce@charusat.ac.in`\n"
+                        "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**"
+                    )
+                if any(w in q_lower for w in ["it", "information technology"]):
+                    return (
+                        "### 🌐 CSPIT — Information Technology (IT) Department Head\n\n"
+                        "• **Head of Department (HOD)**: **Dr. Parth Shah / Dr. Nilay Vaidya**\n"
+                        "• **Department**: Information Technology (CSPIT)\n"
+                        "• **Email**: `hod.it@charusat.ac.in`\n"
+                        "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**"
+                    )
+                if any(w in q_lower for w in ["me", "mechanical"]):
+                    return (
+                        "### ⚙️ CSPIT — Mechanical Engineering Department Head\n\n"
+                        "• **Head of Department (HOD)**: **Dr. Vijaykumar Chaudhary**\n"
+                        "• **Department**: Mechanical Engineering (CSPIT)\n"
+                        "• **Email**: `hod.me@charusat.ac.in`"
+                    )
+                if any(w in q_lower for w in ["ee", "electrical"]):
+                    return (
+                        "### ⚡ CSPIT — Electrical Engineering Department Head\n\n"
+                        "• **Head of Department (HOD)**: **Dr. Pragnesh Bhatt**\n"
+                        "• **Department**: Electrical Engineering (CSPIT)\n"
+                        "• **Email**: `hod.ee@charusat.ac.in`"
+                    )
+                if any(w in q_lower for w in ["civil", "cl"]):
+                    return (
+                        "### 🏗️ CSPIT — Civil Engineering Department Head\n\n"
+                        "• **Head of Department (HOD)**: **Dr. V. R. Panchal**\n"
+                        "• **Department**: Civil Engineering (CSPIT)\n"
+                        "• **Email**: `hod.civil@charusat.ac.in`"
+                    )
+
+            # General University Leadership
+            if any(w in q_lower for w in ["registrar", "register", "provost", "vice chancellor", "vc", "president", "principal", "leadership", "officials"]):
                 return (
                     "### 🏛️ CHARUSAT Official University Leadership (Current & Up-to-Date)\n\n"
                     "• **Registrar**: **Dr. Binit Patel** *(Head of University Administration & Official Records)*\n"
