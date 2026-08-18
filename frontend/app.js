@@ -753,10 +753,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------------------------
-    // 12. Chat Message Handling
-    // --------------------------------------------------------------------------
-    function appendMessage(role, text, sources = [], latency = null) {
-    // --------------------------------------------------------------------------
     // 5. Message Rendering & Append Logic (with Multimodal Image Support)
     // --------------------------------------------------------------------------
     function appendMessage(role, text, sources = null, latency = null, imageDataUrl = null) {
