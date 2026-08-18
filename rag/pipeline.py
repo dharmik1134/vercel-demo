@@ -251,7 +251,20 @@ class RAGPipeline:
             "   You are EXCLUSIVELY the AI Assistant for CHARUSAT University.\n"
             "   • If the user asks about ANY OTHER college, institute, or university (e.g. Nirma, DAIICT, Parul, GTU, IIT, MSU, DDU, BVM, PDPU/PDEU, Marwadi, Silver Oak, LJ, Indus, Ganpat, etc.), you MUST STRICTLY DECLINE to answer about other colleges.\n"
             "   • State clearly that you are exclusively built for CHARUSAT University and invite them to ask about CHARUSAT's constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS), admissions, fees, syllabus, library, or hostels.\n"
-            "   • If the user asks general non-academic trivia or random facts outside CHARUSAT, politely decline and steer them back to CHARUSAT."
+            "   • If the user asks general non-academic trivia or random facts outside CHARUSAT, politely decline and steer them back to CHARUSAT.\n"
+            "8. OFFICIAL UNIVERSITY LEADERSHIP DIRECTORY (CURRENT & VERIFIED):\n"
+            "   • President: Shri Surendra M. Patel\n"
+            "   • Provost (Vice-Chancellor): Dr. Atul M. Patel\n"
+            "   • Registrar: Dr. Binit Patel (Chief Administrative Officer & Head of University Administration)\n"
+            "   • CSPIT Principal: Dr. Trushit Upadhyaya\n"
+            "   • DEPSTAR Principal: Dr. Bankim Patel\n"
+            "   • CMPICA Principal: Dr. Dharmendra Patel\n"
+            "   • RPCP Principal: Dr. Manan Raval\n"
+            "   • I2IM Principal: Dr. Reshma Sable\n"
+            "   • PDPIAS Principal: Dr. Abhishek Dadhania\n"
+            "   • MTIN Principal: Dr. Anil Sharma\n"
+            "   • ARIP Principal: Dr. Dhruv Dave\n"
+            "   • CIPS / BDIAS Principal: Dr. Dhara Patel"
         )
 
         history_section = ""
@@ -283,6 +296,23 @@ class RAGPipeline:
         is_hinglish = any(w in q_lower.split() for w in ["hai", "kya", "kaun", "kitni", "kaise", "batao", "hoga", "bataiye", "aur"])
 
         if is_gujlish:
+            if any(w in q_lower for w in ["registrar", "register", "provost", "vice chancellor", "vc", "president", "principal", "hod", "leadership", "officials"]):
+                return (
+                    "### 🏛️ CHARUSAT Official University Leadership (Current & Up-to-Date)\n\n"
+                    "• **Registrar**: **Dr. Binit Patel** *(Head of University Administration & Official Records)*\n"
+                    "• **Provost (Vice-Chancellor)**: **Dr. Atul M. Patel**\n"
+                    "• **President**: **Shri Surendra M. Patel**\n\n"
+                    "**Constituent Institutes Principals:**\n"
+                    "• **CSPIT (Engineering)**: Dr. Trushit Upadhyaya\n"
+                    "• **DEPSTAR (CSE & IT)**: Dr. Bankim Patel\n"
+                    "• **CMPICA (Computer Applications)**: Dr. Dharmendra Patel\n"
+                    "• **RPCP (Pharmacy)**: Dr. Manan Raval\n"
+                    "• **I2IM (Management)**: Dr. Reshma Sable\n"
+                    "• **PDPIAS (Applied Sciences)**: Dr. Abhishek Dadhania\n"
+                    "• **MTIN (Nursing)**: Dr. Anil Sharma\n"
+                    "• **ARIP (Physiotherapy)**: Dr. Dhruv Dave\n"
+                    "• **CIPS / BDIAS (Paramedical)**: Dr. Dhara Patel"
+                )
             if any(w in q_lower for w in ["cspit", "spit", "dept", "department", "branch"]):
                 return (
                     "### 🏛️ CSPIT (Chandubhai S. Patel Institute of Technology) Departments & Details\n\n"
