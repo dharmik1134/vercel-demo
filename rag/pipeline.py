@@ -244,10 +244,14 @@ class RAGPipeline:
             "   • ROMANIZED GUJARATI (GUJLISH): If the user writes Gujarati using English letters (e.g. 'cspit ma kaya kaya dept che and eemni badha nii details aap', 'hostel ni fee ketli che?', 'depstar ma admission kevi rite male?'), you MUST respond in natural, conversational ROMANIZED GUJARATI (GUJLISH) using English alphabet (e.g. 'CSPIT ma Computer Engineering (CE), IT, AI & ML, EC, EE, Mechanical ane Civil aam badha 7 engineering departments che. Emna seat intake ane badha details aa mujab che: ...').\n"
             "   • GUJARATI SCRIPT (ગુજરાતી): If the user writes in Gujarati script (e.g. 'ચારુસેટમાં CSPIT માં કઈ બ્રાન્ચ છે?'), reply in pure Gujarati script.\n"
             "   • ROMANIZED HINDI (HINGLISH): If the user writes Hindi using English letters (e.g. 'cspit me kon kon se dept hai aur fees kitni hai?'), you MUST respond in conversational ROMANIZED HINDI (HINGLISH) (e.g. 'CSPIT me Computer Engineering, IT, AI & ML samet 7 engineering departments hain...').\n"
-            "   • HINDI SCRIPT (हिंदी): If the user writes in Devanagari script (e.g. 'चारुसेट में बी.टेक एडमिशन कैसे होता है?'), reply in pure Hindi script.\n"
+            "   • HINDI SCRIPT (हिंदी): If the user writes in Devanagari script (e.g. 'ચારુસેટ માં બી.ટેક એડમિશન કેવી રીતે થાય છે?'), reply in pure Hindi script.\n"
             "   • ENGLISH: If the user writes in pure English, reply in polished, professional English.\n"
             "   • Always provide complete, exhaustive, and direct facts with bullet points and numbers, matching the user's exact speaking style.\n"
-            "7. STRICT CHARUSAT SCOPE GUARDRAILS: If the user asks general trivia or questions completely outside of CHARUSAT university, academics, campus life, admissions, or engineering studies, politely decline in the user's language."
+            "7. STRICT CHARUSAT-ONLY DOMAIN BOUNDARY (STRICTEST RULE):\n"
+            "   You are EXCLUSIVELY the AI Assistant for CHARUSAT University.\n"
+            "   • If the user asks about ANY OTHER college, institute, or university (e.g. Nirma, DAIICT, Parul, GTU, IIT, MSU, DDU, BVM, PDPU/PDEU, Marwadi, Silver Oak, LJ, Indus, Ganpat, etc.), you MUST STRICTLY DECLINE to answer about other colleges.\n"
+            "   • State clearly that you are exclusively built for CHARUSAT University and invite them to ask about CHARUSAT's constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS), admissions, fees, syllabus, library, or hostels.\n"
+            "   • If the user asks general non-academic trivia or random facts outside CHARUSAT, politely decline and steer them back to CHARUSAT."
         )
 
         history_section = ""
@@ -474,11 +478,82 @@ class RAGPipeline:
             return f"{q} {' '.join(expanded_terms)}"
         return q
 
+    def check_out_of_scope_guardrails(self, query: str) -> Optional[str]:
+        """
+        STRICT CHARUSAT-ONLY DOMAIN GUARDRAILS:
+        If user asks about other colleges/universities (e.g. Nirma, DAIICT, Parul, GTU, IIT, MSU, DDU, etc.),
+        the AI strictly refuses and clarifies its exclusive CHARUSAT scope.
+        """
+        q_lower = query.lower()
+        other_colleges = [
+            "nirma", "daiict", "daii ct", "ddu", "dharmsinh", "msu", "ms university",
+            "parul", "marwadi", "bvm", "birla vishvakarma", "pdeu", "pdpu", "pandit deendayal",
+            "gtu", "gujarat technological", "gujarat university", "ahmedabad university",
+            "iit ram", "iit gandhinagar", "iit bombay", "iit delhi", "svnit", "vnsgu", "spu",
+            "sardar patel university", "ganpat", "silver oak", "lj institute", "lj university",
+            "indus university", "rai university", "atmiya", "swarrnim", "rk university",
+            "karnavati", "gls university", "sal college", "gandhinagar university", "ld college",
+            "gec gandhinagar", "gec modasa", "vgec", "mit wpu", "symbiosis", "nmims"
+        ]
+
+        has_other_college = any(re.search(rf'\b{re.escape(c)}\b', q_lower) for c in other_colleges)
+        if has_other_college:
+            is_gujlish = any(w in q_lower.split() for w in ["che", "ketli", "kai", "kaya", "koni", "mate", "nathi", "aave", "badha", "aap", "eemni", "nii", "kevi", "rite", "ma", "nu", "ni", "no", "vishe"])
+            has_guj_script = bool(re.search(r'[\u0A80-\u0AFF]', query))
+            is_hinglish = any(w in q_lower.split() for w in ["hai", "kya", "kaun", "kitni", "kaise", "batao", "hoga", "bataiye", "aur", "me", "mein"])
+            has_hin_script = bool(re.search(r'[\u0900-\u097F]', query))
+
+            if is_gujlish:
+                return (
+                    "### 🏛️ CHARUSAT Virtual Intelligence\n\n"
+                    "Hu fakt **Charotar University of Science and Technology (CHARUSAT)** no dedicated official AI Assistant chu.\n\n"
+                    "⚠️ **Hu biji koi external colleges athva universities vishe mahiti aapi shakto nathi.**\n\n"
+                    "Tame mane **CHARUSAT Campus** na vishe kai pan puchhi shako cho, jem ke:\n"
+                    "• **Constituent Institutes**: CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS\n"
+                    "• **Admissions & Cutoffs**: ACPC Gujarat, GUJCET, JEE Main merit\n"
+                    "• **Degrees**: B.Tech, BCA, MCA, MBA, B.Pharm, Physiotherapy, Nursing, Applied Sciences\n"
+                    "• **Campus Life**: Central Library books, AC/Non-AC Hostels, Transportation, 32.5+ LPA Placements"
+                )
+            elif has_guj_script:
+                return (
+                    "### 🏛️ ચારુસેટ વર્ચ્યુઅલ ઇન્ટેલિજન્સ\n\n"
+                    "હું માત્ર **ચારુતર યુનિવર્સિટી ઓફ સાયન્સ એન્ડ ટેકનોલોજી (CHARUSAT)** નો સત્તાવાર AI સહાયક છું.\n\n"
+                    "⚠️ **હું અન્ય કોઈ કોલેજ કે યુનિવર્સિટી વિશે માહિતી આપી શકતો નથી.**\n\n"
+                    "તમે મને **ચારુસેટ (CHARUSAT)** ના વિભાગો (CSPIT, DEPSTAR, CMPICA વગેરે), એડમિશન, ફી, સિલેબસ, લાયબ્રેરી કે હોસ્ટેલ વિશે પૂછી શકો છો."
+                )
+            elif is_hinglish or has_hin_script:
+                return (
+                    "### 🏛️ CHARUSAT Virtual Intelligence\n\n"
+                    "Main sirf **Charotar University of Science and Technology (CHARUSAT)** ka dedicated official AI Assistant hoon.\n\n"
+                    "⚠️ **Main doosri kisi bhi college ya university ke baare mein jaankari nahi de sakta.**\n\n"
+                    "Aap mujhse **CHARUSAT** ke institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM), admissions, syllabus, fees aur campus facilities ke baare mein pooch sakte hain."
+                )
+            else:
+                return (
+                    "### 🏛️ CHARUSAT Virtual Intelligence\n\n"
+                    "I am the dedicated official AI Assistant for **Charotar University of Science and Technology (CHARUSAT)**.\n\n"
+                    "⚠️ **I am strictly configured to provide information exclusively about CHARUSAT and cannot answer queries regarding other external universities or colleges.**\n\n"
+                    "You can ask me about CHARUSAT's 9 constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS), admissions, syllabus, fees, library books, placements, and hostel facilities."
+                )
+
+        return None
+
     def answer_query(self, query: str, history: Optional[List[Any]] = None, top_k: int = 6) -> Dict[str, Any]:
         """
         End-to-End Flowchart Implementation:
         Start -> User Input -> Intent Router (Conversation vs Query) -> NLP Preprocessing -> Database Matching -> Response / Admin Notification -> Display Response -> Stop
         """
+        # Step 0: Strict CHARUSAT Domain Boundary Enforcement
+        guardrail_response = self.check_out_of_scope_guardrails(query)
+        if guardrail_response:
+            return {
+                "query": query,
+                "answer": guardrail_response,
+                "sources": [],
+                "intent": "out_of_scope",
+                "rewritten_query": None
+            }
+
         # Step 1: Intent Classification (Flowchart: 'Conversion / query' decision)
         intent = self.classify_intent(query)
         if intent == "conversation":
