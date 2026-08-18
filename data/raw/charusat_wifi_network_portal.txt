@@ -1,0 +1,45 @@
+# CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY (CHARUSAT)
+# OFFICIAL CAMPUS WI-FI NETWORK, CAPTIVE PORTAL GATEWAYS & WINCELL IT DIRECTORY
+
+================================================================================
+1. CAMPUS WI-FI NETWORK OVERVIEW
+================================================================================
+• Network Infrastructure: High-speed 1 Gbps+ optical fiber backbone powered by NKN (National Knowledge Network).
+• Official Campus SSIDs (Wi-Fi Names):
+  1. CHARUSAT-STUDENT (Primary secure network for enrolled students)
+  2. CHARUSAT-FACULTY (Dedicated network for professors & researchers)
+  3. CHARUSAT-CAMPUS / CHARUSAT-GUEST (Guest & seminar attendees)
+• Coverage: 120+ acre Wi-Fi enabled smart campus covering CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, Central Library, Hostels, Canteens, and Sports Grounds.
+
+================================================================================
+2. CAPTIVE PORTAL GATEWAY IP ADDRESSES & DIRECT LOGIN URLS
+================================================================================
+When connected to campus Wi-Fi, authentication is managed via Sophos / Cyberroam Next-Gen Firewall:
+
+• Primary Gateway Login URLs:
+  - http://172.16.0.1:8090
+  - http://172.16.16.16:8090
+  - http://10.10.10.1:8090
+  - http://1.1.1.1:8090
+  - https://gateway.charusat.ac.in:8090
+
+• Login Credentials Format:
+  - Username: Student University ID / Enrollment Number (e.g., 21ce001, 22dce055, 23aiml012, 24bca045)
+  - Password: Wi-Fi Password / CHARUSAT E-Governance Portal Password (issued at admission orientation)
+
+================================================================================
+3. TROUBLESHOOTING: "WI-FI CONNECTED BUT NO INTERNET / LOGIN PAGE NOT OPENING"
+================================================================================
+• Step 1: Force Captive Portal Trigger:
+  Open Chrome/Safari/Edge and navigate to http://neverssl.com or http://172.16.0.1:8090 (do NOT use https).
+• Step 2: Disable Private/Randomized MAC address or Custom DNS (e.g. 8.8.8.8) in phone Wi-Fi settings so that the campus DHCP server assigns the proper 172.16.x.x IP.
+• Step 3: Keep the login status tab open in background to maintain active session.
+
+================================================================================
+4. WINCELL (UNIVERSITY DATA CENTER & NETWORK INFRASTRUCTURE) SUPPORT
+================================================================================
+• Department: WINCell (Data Center & Campus Network Engineering)
+• Head & Network Engineer: Mr. Ritesh Bhatt (Head, Datacenter and University Network)
+• Location: Central Data Center Building, CHARUSAT Campus
+• Internal Phone Extension: Ext. 5106 / 5107 | Phone: +91-2697-265106
+• Official Email: info@charusat.ac.in

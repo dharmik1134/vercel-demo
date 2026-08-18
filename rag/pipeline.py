@@ -290,7 +290,13 @@ class RAGPipeline:
             "   • Nescafe Coffee Kiosks: Hot/cold coffee, frappes, Maggi, and quick bites across institute plazas.\n"
             "   • Amul Dairy & Ice Cream Parlour: Campus parlour for ice creams, cold coffee, buttermilk, and dairy snacks.\n"
             "   • Lotus Complex & Ramdev Food Hub (Opposite Hospital & Nursing Gate): Tea Post (The Desi Cafe for premium chai, bun maska, handvo), Hot N Spicy (famous fresh cheese/paneer/manchurian puffs & frankies), Kingsman Eatery (burgers, wraps, momos).\n"
-            "   • Valetva Road & Hostel Zone: Cafe Robusta (late night coffee, thick shakes), The Hideout Cafe (pizza, pasta, burgers), and street Maggi/Frankie/Dosa food stalls."
+            "   • Valetva Road & Hostel Zone: Cafe Robusta (late night coffee, thick shakes), The Hideout Cafe (pizza, pasta, burgers), and street Maggi/Frankie/Dosa food stalls.\n"
+            "13. CHARUSAT CAMPUS WI-FI & CAPTIVE PORTAL GATEWAY:\n"
+            "   • Official SSIDs: CHARUSAT-STUDENT, CHARUSAT-FACULTY, CHARUSAT-CAMPUS.\n"
+            "   • Captive Portal Gateway Login URLs: http://172.16.0.1:8090 or http://172.16.16.16:8090 or http://10.10.10.1:8090 or http://1.1.1.1:8090 (Sophos/Cyberroam firewall).\n"
+            "   • Username: Student ID / University Enrollment Number (e.g. 21ce001, 23aiml012, 24bca045); Password: Wi-Fi / e-Governance password.\n"
+            "   • Troubleshooting: If login page doesn't pop up, navigate to http://neverssl.com or http://172.16.0.1:8090 directly.\n"
+            "   • WINCell Support: Mr. Ritesh Bhatt (Head, Datacenter & University Network), Ext. 5106 / 5107."
         )
 
         history_section = ""
@@ -573,6 +579,23 @@ class RAGPipeline:
                     "• **Hostel Facility**: Boys ane Girls mate separate AC / Non-AC hostels available che.\n"
                     "• **Hostel Fees**: Non-AC (~INR 45,000 - 65,000 / year), AC (~INR 85,000 - 1,10,000 / year) jema mess food ane laundry include che.\n"
                     "• **Bus Transportation**: Ahmedabad, Vadodara, Anand, Nadiad thi 60+ GPS buses available che."
+                )
+
+            if any(w in q_lower for w in ["wifi", "wi-fi", "internet", "portal", "172.16", "captive", "gateway", "wincell", "hotspot"]):
+                return (
+                    "### 📶 CHARUSAT Campus Wi-Fi & 1-Click Fast Captive Portal Login\n\n"
+                    "CHARUSAT campus ma Wi-Fi connect karva mate koi pan IP address manual search karvani jarur nathi! Ahiya direct links ane details aapi che:\n\n"
+                    "**1. ⚡ Direct 1-Click Captive Portal Login Links:**\n"
+                    "• [Click Here to Open Primary Wi-Fi Gateway (172.16.0.1:8090)](http://172.16.0.1:8090)\n"
+                    "• [Secondary Wi-Fi Gateway Link (172.16.16.16:8090)](http://172.16.16.16:8090)\n"
+                    "• [Force Trigger Captive Portal (NeverSSL)](http://neverssl.com)\n\n"
+                    "**2. 🔑 Login Credentials:**\n"
+                    "• **Username / User ID**: Tamaro University Student ID / Enrollment No. (jem ke `21ce001`, `23aiml012`, `24bca045`).\n"
+                    "• **Password**: Tamaro Wi-Fi password / CHARUSAT e-Governance password.\n\n"
+                    "**3. 🛠️ Wi-Fi Connected But No Internet?**\n"
+                    "• Phone na Wi-Fi settings ma jaine **'Private / Random MAC Address' OFF** karo ane **'Use Device MAC'** select karo.\n"
+                    "• Chrome / Safari ma `http://neverssl.com` open karo jena thi captive login pop-up direct aavi jashe.\n"
+                    "• **WINCell IT Support**: Central Data Center, Ext. 5106 / 5107 (Mr. Ritesh Bhatt)."
                 )
 
         if has_guj_script:

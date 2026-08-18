@@ -317,6 +317,9 @@
                     </div>
                 </div>
                 <div class="header-actions">
+                    <button id="wifi-portal-btn" class="header-wifi-btn" title="CHARUSAT Campus Wi-Fi 1-Click Fast Gateway Login">
+                        <span>📶</span> <span class="btn-label">Wi-Fi Portal</span>
+                    </button>
                     <button id="materials-hub-btn" class="header-materials-btn" title="Department Curriculum, Core Reference Books & Assignment Hub">
                         <span>📚</span> <span class="btn-label">Study Hub</span>
                     </button>
@@ -408,6 +411,7 @@
 
                 <div class="quick-tags-bar">
                     <span class="tag-label">QUICK:</span>
+                    <button class="quick-tag" id="quick-wifi-btn">📶 Wi-Fi Login</button>
                     <button class="quick-tag" id="quick-snap-btn">📷 Snap Assignment</button>
                     <button class="quick-tag" id="quick-study-hub-btn">📚 Core Books & Syllabus</button>
                     <button class="quick-tag" data-query="cspit ma kaya kaya dept che and eemni badha nii details aap">💻 CSPIT B.Tech</button>
@@ -673,6 +677,122 @@
     </div>
 
     <!-- ==============================================================================
+         CHARUSAT WI-FI CAPTIVE PORTAL & FAST CONNECT MODAL
+         ============================================================================== -->
+    <div class="modal-backdrop" id="wifi-modal-backdrop">
+        <div class="modal-card wifi-portal-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>📶 CHARUSAT Campus Wi-Fi Fast Portal</h3>
+                    <span class="wifi-chip-badge">⚡ 1 Gbps NKN Fiber • 1-Click Connect</span>
+                </div>
+                <button class="modal-close" id="wifi-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Connect directly to university Wi-Fi captive gateway without searching or typing IP addresses on Google!</p>
+            
+            <!-- Quick Gateway Launch Grid -->
+            <div class="wifi-gateways-grid">
+                <a href="http://172.16.0.1:8090" target="_blank" rel="noopener noreferrer" class="wifi-gateway-card active-gateway">
+                    <div class="gateway-card-top">
+                        <span class="gateway-icon">⚡</span>
+                        <span class="gateway-tag primary">Primary Gateway</span>
+                    </div>
+                    <strong class="gateway-ip">172.16.0.1:8090</strong>
+                    <span class="gateway-desc">Main Sophos / Cyberroam captive portal for students</span>
+                    <div class="gateway-action-link">Open Gateway ↗</div>
+                </a>
+
+                <a href="http://172.16.16.16:8090" target="_blank" rel="noopener noreferrer" class="wifi-gateway-card">
+                    <div class="gateway-card-top">
+                        <span class="gateway-icon">🔄</span>
+                        <span class="gateway-tag">Secondary Gateway</span>
+                    </div>
+                    <strong class="gateway-ip">172.16.16.16:8090</strong>
+                    <span class="gateway-desc">Backup captive login gateway across academic blocks</span>
+                    <div class="gateway-action-link">Open Gateway ↗</div>
+                </a>
+
+                <a href="http://neverssl.com" target="_blank" rel="noopener noreferrer" class="wifi-gateway-card">
+                    <div class="gateway-card-top">
+                        <span class="gateway-icon">🚀</span>
+                        <span class="gateway-tag green">Force Trigger</span>
+                    </div>
+                    <strong class="gateway-ip">neverssl.com</strong>
+                    <span class="gateway-desc">Force captive pop-up if login page doesn't appear</span>
+                    <div class="gateway-action-link">Force Trigger ↗</div>
+                </a>
+
+                <a href="https://gateway.charusat.ac.in:8090" target="_blank" rel="noopener noreferrer" class="wifi-gateway-card">
+                    <div class="gateway-card-top">
+                        <span class="gateway-icon">🔒</span>
+                        <span class="gateway-tag">SSL Portal</span>
+                    </div>
+                    <strong class="gateway-ip">gateway.charusat.ac.in</strong>
+                    <span class="gateway-desc">Official domain SSL gateway for secure authentication</span>
+                    <div class="gateway-action-link">Open Gateway ↗</div>
+                </a>
+            </div>
+
+            <!-- In-App Fast Credentials Autofill & Form -->
+            <div class="wifi-login-box">
+                <div class="wifi-login-box-header">
+                    <h4>🔑 Fast 1-Click Wi-Fi Credentials Login</h4>
+                    <span class="safe-badge">🔒 Stored Safely on Local Device</span>
+                </div>
+                <form id="wifi-auth-form" action="http://172.16.0.1:8090/httpclient.html" method="POST" target="_blank">
+                    <div class="wifi-input-row">
+                        <div class="input-group">
+                            <label for="wifi-username-input">Student ID / Enrollment No.</label>
+                            <input type="text" id="wifi-username-input" name="username" placeholder="e.g. 21ce001, 23aiml012, 24bca045" required />
+                        </div>
+                        <div class="input-group">
+                            <label for="wifi-password-input">Wi-Fi / E-Governance Password</label>
+                            <input type="password" id="wifi-password-input" name="password" placeholder="••••••••" required />
+                        </div>
+                    </div>
+                    <input type="hidden" name="mode" value="191" />
+                    <div class="wifi-checkbox-row">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="wifi-remember-check" checked />
+                            <span class="checkbox-label">Remember credentials on this device for 1-click instant login</span>
+                        </label>
+                    </div>
+                    <div class="wifi-form-actions">
+                        <button type="button" id="wifi-auto-connect-btn" class="orange-portal-btn">
+                            🚀 1-Click Authenticate (172.16.0.1)
+                        </button>
+                        <a href="http://172.16.0.1:8090" target="_blank" rel="noopener noreferrer" class="secondary-btn">
+                            🌐 Open Direct Login Tab
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Wi-Fi Tips & Support -->
+            <div class="wifi-help-box">
+                <div class="wifi-help-item">
+                    <span class="help-icon">💡</span>
+                    <div>
+                        <strong>Wi-Fi Connected but No Internet?</strong>
+                        <p>Phone na Wi-Fi Settings ma <em>'Private / MAC Randomization'</em> OFF karo ane <em>'Use Device MAC'</em> select karo, pachi <strong>neverssl.com</strong> par click karo.</p>
+                    </div>
+                </div>
+                <div class="wifi-help-item">
+                    <span class="help-icon">📞</span>
+                    <div>
+                        <strong>WINCell IT Helpdesk & Datacenter:</strong>
+                        <p>Mr. Ritesh Bhatt (Head, Datacenter & University Network) • Internal Ext: <strong>5106 / 5107</strong> • Email: info@charusat.ac.in</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="wifi-modal-close-btn">Close Portal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================================================
          STUDY HUB & CURRICULUM REFERENCE MODAL
          ============================================================================== -->
     <div class="modal-backdrop" id="materials-modal-backdrop">
@@ -779,6 +899,6 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast">Answer copied to clipboard!</div>
 
-    <script src="app.js?v=11.0"></script>
+    <script src="app.js?v=12.0"></script>
 </body>
 </html>

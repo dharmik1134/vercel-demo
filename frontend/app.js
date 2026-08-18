@@ -135,6 +135,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const hubCardsGrid = document.getElementById("hub-cards-grid");
     const hubSnapBtn = document.getElementById("hub-snap-btn");
 
+    // Campus Wi-Fi Captive Portal Elements
+    const wifiPortalBtn = document.getElementById("wifi-portal-btn");
+    const quickWifiBtn = document.getElementById("quick-wifi-btn");
+    const wifiModalBackdrop = document.getElementById("wifi-modal-backdrop");
+    const wifiModalClose = document.getElementById("wifi-modal-close");
+    const wifiModalCloseBtn = document.getElementById("wifi-modal-close-btn");
+    const wifiUsernameInput = document.getElementById("wifi-username-input");
+    const wifiPasswordInput = document.getElementById("wifi-password-input");
+    const wifiRememberCheck = document.getElementById("wifi-remember-check");
+    const wifiAutoConnectBtn = document.getElementById("wifi-auto-connect-btn");
+    const wifiAuthForm = document.getElementById("wifi-auth-form");
+
     let chatHistory = [];
     let currentUser = null;
     let savedSessions = [];
@@ -1477,7 +1489,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------------------------
-    // 9. Send Message Handler (Multimodal Vision + Text RAG)
+    // 9. Campus Wi-Fi Captive Portal & 1-Click Fast Connect Logic
+    // --------------------------------------------------------------------------
+    const WIFI_CREDS_KEY = "charusat_wifi_credentials_v1";
+
+    function loadSavedWifiCredentials() {
+        try {
+            const raw = localStorage.getItem(WIFI_CREDS_KEY);
+            if (raw) {
+                const creds = JSON.parse(raw);
+                if (wifiUsernameInput && creds.username) wifiUsernameInput.value = creds.username;
+                if (wifiPasswordInput && creds.password) wifiPasswordInput.value = creds.password;
+                if (wifiRememberCheck) wifiRememberCheck.checked = true;
+            }
+        } catch (e) {}
+    }
+
+    function saveWifiCredentials() {
+        if (!wifiUsernameInput || !wifiPasswordInput) return;
+        if (wifiRememberCheck && wifiRememberCheck.checked) {
+            const creds = {
+                username: wifiUsernameInput.value.trim(),
+                password: wifiPasswordInput.value
+            };
+            localStorage.setItem(WIFI_CREDS_KEY, JSON.stringify(creds));
+        } else {
+            localStorage.removeItem(WIFI_CREDS_KEY);
+        }
+    }
+
+    function openWifiModal() {
+        if (wifiModalBackdrop) wifiModalBackdrop.classList.add("show");
+        loadSavedWifiCredentials();
+    }
+
+    function closeWifiModal() {
+        if (wifiModalBackdrop) wifiModalBackdrop.classList.remove("show");
+    }
+
+    if (wifiPortalBtn) wifiPortalBtn.addEventListener("click", openWifiModal);
+    if (quickWifiBtn) quickWifiBtn.addEventListener("click", openWifiModal);
+    if (wifiModalClose) wifiModalClose.addEventListener("click", closeWifiModal);
+    if (wifiModalCloseBtn) wifiModalCloseBtn.addEventListener("click", closeWifiModal);
+    if (wifiModalBackdrop) {
+        wifiModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === wifiModalBackdrop) closeWifiModal();
+        });
+    }
+
+    if (wifiAutoConnectBtn) {
+        wifiAutoConnectBtn.addEventListener("click", () => {
+            saveWifiCredentials();
+            showToast("🚀 Authenticating with CHARUSAT Gateway (172.16.0.1)...");
+            if (wifiAuthForm) wifiAuthForm.submit();
+        });
+    }
+
+    if (wifiAuthForm) {
+        wifiAuthForm.addEventListener("submit", () => {
+            saveWifiCredentials();
+            showToast("🚀 Connecting to Wi-Fi Gateway...");
+        });
+    }
+
+    // --------------------------------------------------------------------------
+    // 10. Send Message Handler (Multimodal Vision + Text RAG)
     // --------------------------------------------------------------------------
     async function handleSendMessage(query) {
         const hasText = query && query.trim();
