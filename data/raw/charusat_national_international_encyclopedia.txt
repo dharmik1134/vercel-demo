@@ -29,8 +29,7 @@
    - Departments & Intake:
      * Computer Science and Engineering (CSE): 300 seats
      * Information Technology (IT): 180 seats
-     * Artificial Intelligence and Machine Learning (AI & ML): 120 seats
-   - Features: Advanced AI, Big Data Analytics, Cloud Computing, Cyber Security, and NVIDIA GPU Labs.
+   - Features: Advanced Big Data Analytics, Cloud Computing, Cyber Security, and High-Performance Computing Labs.
 
 3. Smt. Chandaben Mohanbhai Patel Institute of Computer Applications (CMPICA):
    - Programs: BCA, B.Sc (IT), MCA, M.Sc (IT), Dual Degree BCA+MCA, Ph.D.

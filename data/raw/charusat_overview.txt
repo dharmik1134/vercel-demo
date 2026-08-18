@@ -4,8 +4,8 @@
 CHARUSAT is a premier university located in Changa, Anand district, Gujarat, India. It was accredited with 'A+' Grade by NAAC. The campus is spread across 120+ acres of lush green environment with state-of-the-art infrastructure.
 
 ## Institutes & Constituent Colleges
-1. **CSPIT** - Chandubhai S. Patel Institute of Technology (Computer Engineering, IT, Civil, Mechanical, EC, EE)
-2. **DEPSTAR** - Devang Patel Institute of Advance Technology and Research (CSE, IT, AI & ML)
+1. **CSPIT** - Chandubhai S. Patel Institute of Technology (Computer Engineering, IT, AI & ML, Civil, Mechanical, EC, EE)
+2. **DEPSTAR** - Devang Patel Institute of Advance Technology and Research (CSE, IT)
 3. **CMPICA** - Chandaben Mohanbhai Patel Institute of Computer Applications (MCA, BCA, M.Sc IT, B.Sc IT)
 4. **RPCP** - Ramanbhai Patel College of Pharmacy (B.Pharm, M.Pharm, Ph.D.)
 5. **PDPIAS** - P. D. Patel Institute of Applied Sciences (Chemical, Physical, Biological Sciences)

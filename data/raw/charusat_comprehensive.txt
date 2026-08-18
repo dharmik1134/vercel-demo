@@ -30,8 +30,7 @@
 • B.Tech Programs Offered (4 Years):
   1. Computer Science and Engineering (CSE) - Intake: 300 seats
   2. Information Technology (IT) - Intake: 180 seats
-  3. Artificial Intelligence and Machine Learning (AI & ML) - Intake: 120 seats
-• Key Facilities: NVIDIA Deep Learning Lab, High-Performance GPU Cluster, Apple iOS Development Lab.
+• Key Facilities: Advanced Computing Labs, High-Performance GPU Cluster, Apple iOS Development Lab.
 
 1.3 Chandaben Mohanbhai Patel Institute of Computer Applications (CMPICA) - Faculty of Computer Science
 • Established: 2002

@@ -860,7 +860,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 `### 🏛️ CHARUSAT Virtual Intelligence\n\n` +
                 `Here is the verified information regarding **"${cleanQuery}"**:\n\n` +
                 `• **CSPIT**: 7 Departments (CE, IT, AI & ML, EC, EE, Mechanical, Civil).\n` +
-                `• **DEPSTAR**: Computer Science & Engineering (CSE), IT, AI & ML.\n` +
+                `• **DEPSTAR**: Computer Science & Engineering (CSE), Information Technology (IT).\n` +
                 `• **Central Library**: Dr. K. C. Patel Resource Centre (105,000+ books, IEEE, ScienceDirect, 24/7 exam reading hall).\n` +
                 `• **Admissions**: Through ACPC Gujarat & GUJCET/JEE Main merit.\n` +
                 `• **Placements**: Top recruiters include Amazon, TCS, Infosys, Crest Data Systems with packages up to 32.5+ LPA.`,

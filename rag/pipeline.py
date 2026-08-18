@@ -231,7 +231,7 @@ class RAGPipeline:
             "4. CENTRAL LIBRARY & BOOKS SYSTEM: When asked about books (e.g. Core Java, Algorithms CLRS, DBMS Korth, Computer Networks Tanenbaum, Operating Systems, AI Russell & Norvig, Mathematics B.S. Grewal, Pharmacy, Management), state exact availability status, number of copies, shelf location, borrowing rules (4 books for 14 days for UG, 6 books for PG), digital resources (IEEE, ScienceDirect, Springer), and library timings (8:30 AM - 8:30 PM, 24/7 reading hall during exams).\n"
             "5. INSTITUTES & DEPARTMENTS DIRECTORY:\n"
             "   • CSPIT: Computer Engineering (CE), Information Technology (IT), Artificial Intelligence & Machine Learning (AI & ML), Electronics & Communication (EC), Electrical (EE), Mechanical (ME), Civil (CL).\n"
-            "   • DEPSTAR: Computer Science & Engineering (CSE), Information Technology (IT), Artificial Intelligence & Machine Learning (AI & ML).\n"
+            "   • DEPSTAR: Computer Science & Engineering (CSE), Information Technology (IT). (AI & ML is in CSPIT).\n"
             "   • CMPICA: BCA, B.Sc IT, MCA, M.Sc IT, Dual Degree BCA+MCA, Ph.D.\n"
             "   • RPCP: B.Pharm, M.Pharm (Pharmaceutics, Pharmacology, QA, Clinical Pharmacy), Ph.D.\n"
             "   • I2IM: MBA (Finance, Marketing, HR, Business Analytics), BBA, Dual Degree.\n"
@@ -355,9 +355,8 @@ class RAGPipeline:
                 "### 🚀 B.Tech Branches in DEPSTAR\n\n"
                 "**Devang Patel Institute of Advance Technology and Research (DEPSTAR)** offers:\n\n"
                 "1. **Computer Science and Engineering (CSE)** — Intake: 300 seats\n"
-                "2. **Information Technology (IT)** — Intake: 180 seats\n"
-                "3. **Artificial Intelligence and Machine Learning (AI & ML)** — Intake: 120 seats\n\n"
-                "*(Equipped with NVIDIA Deep Learning Lab & High-Performance GPU Cluster)*"
+                "2. **Information Technology (IT)** — Intake: 180 seats\n\n"
+                "*(Note: AI & ML department is under CSPIT. DEPSTAR offers CSE and IT)*"
             )
 
         if any(w in q_lower for w in ["book", "library", "koha", "opac", "cormen", "java", "horstmann"]):
