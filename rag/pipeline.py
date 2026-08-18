@@ -284,7 +284,13 @@ class RAGPipeline:
             "   • HACKATHONS: DUHacks (36hr national hackathon), Pythakon, Odoo x CHARUSAT, n8n Automation Hackathon, Smart India Hackathon (SIH), MSME Idea Hackathon.\n"
             "   • STUDENT CLUBS: IEEE Student Branch, ACM Chapter, CSI Chapter, Google Developer Student Clubs (GDSC), AWS Cloud Club, Microsoft Learn Student Ambassadors (MLSA), Robotics & IoT Maker Club, Astronomy Club, Competitive Programming Club, Rotaract Club, NSS, NCC.\n"
             "   • FESTS & CONCERTS: SPOURAL (Mega Sports & Cultural Fest in mid-Feb), VRUND (10,000+ student Navratri Garba night), Celebrity Pro-Nights (Live Bollywood/Gujarati celebrity singers, EDM DJ Nights on campus ground).\n"
-            "11. NO REPETITIVE ROBOTIC GREETINGS: Do NOT begin messages with 'Namaste! I am CHARUSAT AI Assistant' or repeat formal introductions on every single turn. Dive directly into the direct answer and facts in a clean, natural conversational tone just like ChatGPT."
+            "11. NO REPETITIVE ROBOTIC GREETINGS: Do NOT begin messages with 'Namaste! I am CHARUSAT AI Assistant' or repeat formal introductions on every single turn. Dive directly into the direct answer and facts in a clean, natural conversational tone just like ChatGPT.\n"
+            "12. CAMPUS CANTEENS, FOOD COURTS & POPULAR STUDENT EATERIES:\n"
+            "   • Shreeji Central Canteen: Main on-campus canteen (8:30 AM - 5:30 PM) serving Punjabi thali, Paneer Butter Masala, Chinese (Manchurian, Hakka Noodles), South Indian (Dosa, Idli), Grilled Sandwiches, Puffs, and Masala Chai.\n"
+            "   • Nescafe Coffee Kiosks: Hot/cold coffee, frappes, Maggi, and quick bites across institute plazas.\n"
+            "   • Amul Dairy & Ice Cream Parlour: Campus parlour for ice creams, cold coffee, buttermilk, and dairy snacks.\n"
+            "   • Lotus Complex & Ramdev Food Hub (Opposite Hospital & Nursing Gate): Tea Post (The Desi Cafe for premium chai, bun maska, handvo), Hot N Spicy (famous fresh cheese/paneer/manchurian puffs & frankies), Kingsman Eatery (burgers, wraps, momos).\n"
+            "   • Valetva Road & Hostel Zone: Cafe Robusta (late night coffee, thick shakes), The Hideout Cafe (pizza, pasta, burgers), and street Maggi/Frankie/Dosa food stalls."
         )
 
         history_section = ""
@@ -534,6 +540,31 @@ class RAGPipeline:
                     "2. **VRUND (Grand Navratri Mahotsav)**:\n"
                     "   • CHARUSAT no iconic 10,000+ students no Grand Garba Mahotsav.\n"
                     "   • Traditional attire, live professional orchestra, and energetic Raas-Garba all night long!"
+                )
+
+            if any(w in q_lower for w in ["canteen", "canteens", "centeen", "food", "khava", "nasto", "cafe", "shreeji", "tea post", "robusta", "hideout", "nescafe", "maggi", "frankie", "puff"]):
+                return (
+                    "### 🍔 CHARUSAT Campus Canteens, Food Courts & Student Eateries\n\n"
+                    "CHARUSAT campus ane aaspaas students mate khub j saras canteens ane food spots available che:\n\n"
+                    "**1. 🏛️ On-Campus Central Dining Facilities:**\n"
+                    "• **Shreeji Central Canteen (Main Campus Canteen)**:\n"
+                    "  - *Location*: Campus na center ma, CSPIT, DEPSTAR ane sports ground ni vachhe (8:30 AM - 5:30 PM).\n"
+                    "  - *Menu*: Punjabi Thali, Paneer Butter Masala, Chinese (Manchurian, Hakka Noodles, Fried Rice), South Indian (Masala Dosa, Idli-Vada), Veg Cheese Grilled Sandwiches, Puffs, Chai-Coffee ane Ice Cream.\n"
+                    "• **Nescafe Coffee Kiosks**:\n"
+                    "  - Academic plazas pase hot/cold coffee, iced frappes, Cheese Maggi ane quick snacks mate student favorite spot.\n"
+                    "• **Amul Dairy & Ice Cream Parlour**:\n"
+                    "  - Cold coffee, Amul Kool, Masti Chhas, ice cream varieties ane chocolates.\n"
+                    "• **Hostel Dining Mess**:\n"
+                    "  - Boys & Girls hostels mate 4-time healthy, pure vegetarian meals (Breakfast, Lunch, High Tea, Dinner).\n\n"
+                    "**2. 🌟 Newly Opened & Popular Student Food Hubs (Outside Campus Gates / Changa Road):**\n"
+                    "• **Lotus Complex & Ramdev Food Hub (Opposite Hospital & Nursing Gate)**:\n"
+                    "  - **Tea Post (The Desi Cafe)**: Premium Chai (Ginger, Elaichi), Bun Maska, Handvo, Thepla, Garlic Toast.\n"
+                    "  - **Hot N Spicy**: Famous fresh Puffs (Cheese Burst, Paneer, Schezwan Puff), Frankies ane Club Sandwiches.\n"
+                    "  - **Kingsman Eatery**: Burgers, Wraps, Momos ane Mocktails.\n"
+                    "• **Valetva Road & Hostel Zone**:\n"
+                    "  - **Cafe Robusta (opp SBI Bank)**: Late-night coffee, Thick Shakes, Cold Brew ane Cheesy Fries.\n"
+                    "  - **The Hideout Cafe (Near Om Hostel)**: Wood-fired Pizzas, Pasta, Burgers ane Nachos.\n"
+                    "  - **Street Maggi & Frankie Stalls**: Tadka Maggi, Double Cheese Maggi, Pav Bhaji ane Live Dosa counters."
                 )
 
             if any(w in q_lower for w in ["fee", "fees", "hostel"]):
