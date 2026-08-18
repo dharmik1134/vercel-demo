@@ -102,8 +102,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const sidebar = document.getElementById("sidebar");
     const sidebarBackdrop = document.getElementById("sidebar-backdrop");
 
+    // Chat History & Multi-Session Elements
+    const newChatBtn = document.getElementById("new-chat-btn");
+    const sidebarHistoryList = document.getElementById("sidebar-history-list");
+    const historySearchInput = document.getElementById("history-search-input");
+    const clearAllHistoryBtn = document.getElementById("clear-all-history-btn");
+    const historyDrawerBtn = document.getElementById("history-drawer-btn");
+    const historyBadge = document.getElementById("history-badge");
+    const historyModalBackdrop = document.getElementById("history-modal-backdrop");
+    const historyModalClose = document.getElementById("history-modal-close");
+    const historyModalCloseBtn = document.getElementById("history-modal-close-btn");
+    const historyModalClearAllBtn = document.getElementById("history-modal-clear-all-btn");
+    const historyModalSearch = document.getElementById("history-modal-search");
+    const historyModalNewChatBtn = document.getElementById("history-modal-new-chat-btn");
+    const historyModalList = document.getElementById("history-modal-list");
+    const historyModalCount = document.getElementById("history-modal-count");
+
     let chatHistory = [];
     let currentUser = null;
+    let savedSessions = [];
+    let activeSessionId = null;
 
     // Toast helper
     function showToast(msg) {
@@ -801,7 +819,358 @@ document.addEventListener("DOMContentLoaded", () => {
             role: role === "user" ? "user" : "assistant",
             content: text
         });
+
+        // Record in persistent session
+        recordMessageInSession(role, text, sources, latency);
     }
+
+    // --------------------------------------------------------------------------
+    // 6. Multi-Session Conversation History & Memory Engine
+    // --------------------------------------------------------------------------
+    const SESSIONS_STORAGE_KEY = "charusat_chat_sessions_v2";
+
+    function formatTimeAgo(isoString) {
+        if (!isoString) return "";
+        const diff = Date.now() - new Date(isoString).getTime();
+        const mins = Math.floor(diff / 60000);
+        if (mins < 1) return "Just now";
+        if (mins < 60) return `${mins}m ago`;
+        const hours = Math.floor(mins / 60);
+        if (hours < 24) return `${hours}h ago`;
+        const days = Math.floor(hours / 24);
+        if (days === 1) return "Yesterday";
+        if (days < 7) return `${days}d ago`;
+        return new Date(isoString).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    }
+
+    function loadSessionsFromStorage() {
+        try {
+            const raw = localStorage.getItem(SESSIONS_STORAGE_KEY);
+            savedSessions = raw ? JSON.parse(raw) : [];
+            if (!Array.isArray(savedSessions)) savedSessions = [];
+        } catch (e) {
+            savedSessions = [];
+        }
+        renderHistoryUI();
+    }
+
+    function saveSessionsToStorage() {
+        try {
+            localStorage.setItem(SESSIONS_STORAGE_KEY, JSON.stringify(savedSessions));
+        } catch (e) {}
+        renderHistoryUI();
+    }
+
+    function recordMessageInSession(role, text, sources = null, latency = null) {
+        const msgObj = {
+            role,
+            text,
+            sources,
+            latency,
+            timestamp: new Date().toISOString()
+        };
+
+        if (!activeSessionId) {
+            const cleanTitle = text.replace(/^[#*\s]+/, "").slice(0, 45).trim() + (text.length > 45 ? "..." : "");
+            const newSession = {
+                id: "sess_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4),
+                title: cleanTitle || "New Conversation",
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                messages: [msgObj]
+            };
+            activeSessionId = newSession.id;
+            savedSessions.unshift(newSession);
+        } else {
+            const session = savedSessions.find(s => s.id === activeSessionId);
+            if (session) {
+                session.messages.push(msgObj);
+                session.updatedAt = new Date().toISOString();
+                // Move to top
+                savedSessions = [session, ...savedSessions.filter(s => s.id !== activeSessionId)];
+            }
+        }
+        saveSessionsToStorage();
+    }
+
+    function renderHistoryUI(filterText = "") {
+        const query = filterText.toLowerCase().trim();
+        const filtered = query 
+            ? savedSessions.filter(s => s.title.toLowerCase().includes(query) || (s.messages && s.messages.some(m => m.text.toLowerCase().includes(query))))
+            : savedSessions;
+
+        // Update badge counts
+        if (historyBadge) historyBadge.textContent = savedSessions.length;
+        if (historyModalCount) historyModalCount.textContent = `${savedSessions.length} Saved Sessions`;
+
+        // Render Sidebar List
+        if (sidebarHistoryList) {
+            if (filtered.length === 0) {
+                sidebarHistoryList.innerHTML = `<div class="history-empty-msg">${savedSessions.length === 0 ? "No saved chats yet" : "No matching chats"}</div>`;
+            } else {
+                sidebarHistoryList.innerHTML = filtered.slice(0, 10).map(s => `
+                    <div class="history-item ${s.id === activeSessionId ? "active" : ""}" data-session-id="${s.id}">
+                        <div class="history-item-left">
+                            <span class="history-icon">💬</span>
+                            <div class="history-item-details">
+                                <span class="history-item-title">${escapeHtml(s.title)}</span>
+                                <span class="history-item-time">${formatTimeAgo(s.updatedAt || s.createdAt)}</span>
+                            </div>
+                        </div>
+                        <button class="history-del-btn" data-del-id="${s.id}" title="Delete conversation">🗑️</button>
+                    </div>
+                `).join("");
+
+                // Attach listeners
+                sidebarHistoryList.querySelectorAll(".history-item").forEach(el => {
+                    el.addEventListener("click", (e) => {
+                        if (e.target.closest(".history-del-btn")) return;
+                        loadSessionById(el.dataset.sessionId);
+                        closeSidebar();
+                    });
+                });
+
+                sidebarHistoryList.querySelectorAll(".history-del-btn").forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        deleteSessionById(btn.dataset.delId);
+                    });
+                });
+            }
+        }
+
+        // Render Modal Drawer List
+        if (historyModalList) {
+            if (filtered.length === 0) {
+                historyModalList.innerHTML = `<div class="history-empty-msg" style="padding:30px 10px;">${savedSessions.length === 0 ? "No conversation history recorded yet. Start asking questions!" : "No chats matched your search query."}</div>`;
+            } else {
+                historyModalList.innerHTML = filtered.map(s => {
+                    const lastMsg = s.messages && s.messages.length > 0 ? s.messages[s.messages.length - 1].text : "";
+                    const cleanPreview = lastMsg.replace(/^[#*\s]+/, "").slice(0, 85) + "...";
+                    return `
+                        <div class="history-modal-item ${s.id === activeSessionId ? "active" : ""}" data-session-id="${s.id}">
+                            <div class="history-modal-item-info">
+                                <span class="history-modal-item-title">${escapeHtml(s.title)}</span>
+                                <span class="history-modal-item-preview">${escapeHtml(cleanPreview)}</span>
+                                <div class="history-modal-item-meta">
+                                    <span>🕒 ${formatTimeAgo(s.updatedAt || s.createdAt)}</span>
+                                    <span>💬 ${s.messages ? s.messages.length : 0} messages</span>
+                                </div>
+                            </div>
+                            <div class="history-modal-item-actions">
+                                <button class="history-restore-btn" data-restore-id="${s.id}">Open Chat →</button>
+                                <button class="history-del-btn" data-del-id="${s.id}" style="opacity:1;" title="Delete">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+
+                historyModalList.querySelectorAll(".history-modal-item").forEach(el => {
+                    el.addEventListener("click", (e) => {
+                        if (e.target.closest(".history-del-btn")) return;
+                        loadSessionById(el.dataset.sessionId);
+                        closeHistoryModal();
+                    });
+                });
+
+                historyModalList.querySelectorAll(".history-restore-btn").forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        loadSessionById(btn.dataset.restoreId);
+                        closeHistoryModal();
+                    });
+                });
+
+                historyModalList.querySelectorAll(".history-del-btn").forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        deleteSessionById(btn.dataset.delId);
+                    });
+                });
+            }
+        }
+    }
+
+    function escapeHtml(str) {
+        if (!str) return "";
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function loadSessionById(sessionId) {
+        const session = savedSessions.find(s => s.id === sessionId);
+        if (!session) return;
+
+        activeSessionId = session.id;
+        messagesList.innerHTML = "";
+        chatHistory = [];
+        if (welcomeCard) welcomeCard.style.display = "none";
+
+        if (session.messages && session.messages.length > 0) {
+            session.messages.forEach(msg => {
+                const msgRow = document.createElement("div");
+                msgRow.className = `msg-row ${msg.role}`;
+
+                const avatar = document.createElement("div");
+                avatar.className = "msg-avatar";
+                if (msg.role === "user") {
+                    if (currentUser && currentUser.avatar_url) {
+                        avatar.innerHTML = `<img src="${currentUser.avatar_url}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+                    } else if (currentUser && currentUser.provider === "google") {
+                        avatar.textContent = "🌐";
+                    } else if (currentUser && currentUser.provider === "github") {
+                        avatar.textContent = "🐙";
+                    } else {
+                        avatar.textContent = "👤";
+                    }
+                } else {
+                    avatar.textContent = "🏛️";
+                }
+
+                const bubble = document.createElement("div");
+                bubble.className = "msg-bubble";
+                bubble.innerHTML = parseMarkdown(msg.text);
+
+                if (msg.role === "bot") {
+                    const footer = document.createElement("div");
+                    footer.className = "bubble-actions-footer";
+                    const sourcesSpan = document.createElement("div");
+                    sourcesSpan.className = "sources-info";
+                    const latencyStr = msg.latency ? ` • <em>${msg.latency}s</em>` : "";
+                    sourcesSpan.innerHTML = `<strong>Verified:</strong> CHARUSAT Knowledge Base${latencyStr}`;
+                    footer.appendChild(sourcesSpan);
+
+                    const btnGroup = document.createElement("div");
+                    btnGroup.className = "bubble-btn-group";
+
+                    const copyBtn = document.createElement("button");
+                    copyBtn.className = "action-icon-btn";
+                    copyBtn.title = "Copy answer";
+                    copyBtn.innerHTML = `<span>📋</span> Copy`;
+                    copyBtn.addEventListener("click", () => {
+                        navigator.clipboard.writeText(msg.text).then(() => showToast("📋 Answer copied!"));
+                    });
+                    btnGroup.appendChild(copyBtn);
+
+                    const speakBtn = document.createElement("button");
+                    speakBtn.className = "action-icon-btn";
+                    speakBtn.title = "Read aloud";
+                    speakBtn.innerHTML = `<span>🔊</span> Listen`;
+                    speakBtn.addEventListener("click", () => speakText(msg.text));
+                    btnGroup.appendChild(speakBtn);
+
+                    footer.appendChild(btnGroup);
+                    bubble.appendChild(footer);
+                }
+
+                if (msg.role === "user") {
+                    msgRow.appendChild(bubble);
+                    msgRow.appendChild(avatar);
+                } else {
+                    msgRow.appendChild(avatar);
+                    msgRow.appendChild(bubble);
+                }
+
+                messagesList.appendChild(msgRow);
+                chatHistory.push({ role: msg.role === "user" ? "user" : "assistant", content: msg.text });
+            });
+        }
+
+        const viewport = document.getElementById("chat-viewport");
+        if (viewport) {
+            viewport.scrollTo({ top: viewport.scrollHeight, behavior: "smooth" });
+        }
+
+        renderHistoryUI();
+        showToast(`📂 Restored: "${session.title}"`);
+    }
+
+    function createNewSession() {
+        activeSessionId = null;
+        chatHistory = [];
+        messagesList.innerHTML = "";
+        if (welcomeCard) welcomeCard.style.display = "block";
+        if (userInput) {
+            userInput.value = "";
+            userInput.focus();
+        }
+        renderHistoryUI();
+        showToast("✨ Started a new conversation");
+    }
+
+    function deleteSessionById(sessionId) {
+        savedSessions = savedSessions.filter(s => s.id !== sessionId);
+        saveSessionsToStorage();
+        if (activeSessionId === sessionId) {
+            createNewSession();
+        }
+        showToast("🗑️ Chat deleted");
+    }
+
+    function clearAllSessions() {
+        if (savedSessions.length === 0) return;
+        if (confirm("Are you sure you want to clear all chat history?")) {
+            savedSessions = [];
+            saveSessionsToStorage();
+            createNewSession();
+            closeHistoryModal();
+            showToast("🗑️ All chat history cleared");
+        }
+    }
+
+    function openHistoryModal() {
+        if (historyModalBackdrop) historyModalBackdrop.classList.add("show");
+        renderHistoryUI();
+        if (historyModalSearch) {
+            historyModalSearch.value = "";
+            historyModalSearch.focus();
+        }
+    }
+
+    function closeHistoryModal() {
+        if (historyModalBackdrop) historyModalBackdrop.classList.remove("show");
+    }
+
+    // Initialize Sessions
+    loadSessionsFromStorage();
+
+    // History UI Listeners
+    if (newChatBtn) newChatBtn.addEventListener("click", createNewSession);
+    if (historyDrawerBtn) historyDrawerBtn.addEventListener("click", openHistoryModal);
+    if (historyModalClose) historyModalClose.addEventListener("click", closeHistoryModal);
+    if (historyModalCloseBtn) historyModalCloseBtn.addEventListener("click", closeHistoryModal);
+    if (historyModalBackdrop) {
+        historyModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === historyModalBackdrop) closeHistoryModal();
+        });
+    }
+    if (clearAllHistoryBtn) clearAllHistoryBtn.addEventListener("click", clearAllSessions);
+    if (historyModalClearAllBtn) historyModalClearAllBtn.addEventListener("click", clearAllSessions);
+    if (historyModalNewChatBtn) {
+        historyModalNewChatBtn.addEventListener("click", () => {
+            createNewSession();
+            closeHistoryModal();
+        });
+    }
+
+    if (historySearchInput) {
+        historySearchInput.addEventListener("input", (e) => {
+            renderHistoryUI(e.target.value);
+        });
+    }
+
+    if (historyModalSearch) {
+        historyModalSearch.addEventListener("input", (e) => {
+            renderHistoryUI(e.target.value);
+        });
+    }
+
+    // Global Keyboard Shortcut: ⌘K or Ctrl+K for New Chat
+    window.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+            e.preventDefault();
+            createNewSession();
+        }
+    });
 
     async function handleSendMessage(query) {
         if (!query || !query.trim()) return;
@@ -902,9 +1271,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     clearChatBtn.addEventListener("click", () => {
-        messagesList.innerHTML = "";
-        chatHistory = [];
-        if (welcomeCard) welcomeCard.style.display = "block";
-        showToast("Conversation cleared");
+        createNewSession();
     });
 });
+

@@ -187,6 +187,29 @@
                 <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Menu">✕</button>
             </div>
 
+            <!-- New Chat / Reset Button -->
+            <div class="new-chat-wrapper">
+                <button id="new-chat-btn" class="new-chat-btn" title="Start a fresh conversation">
+                    <span class="btn-icon">✨</span>
+                    <span class="btn-text">New Conversation</span>
+                    <span class="shortcut">⌘K</span>
+                </button>
+            </div>
+
+            <!-- Chat History Section in Sidebar -->
+            <div class="sidebar-history-section" id="sidebar-history-section">
+                <div class="history-section-header">
+                    <span class="history-section-title">💬 CHAT HISTORY</span>
+                    <button id="clear-all-history-btn" class="history-clear-all-btn" title="Clear all chat history">Clear</button>
+                </div>
+                <div class="history-search-wrapper">
+                    <input type="text" id="history-search-input" placeholder="Search chats..." class="history-search-input" aria-label="Search chat history">
+                </div>
+                <div id="sidebar-history-list" class="sidebar-history-list">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
             <div class="campus-highlights">
                 <div class="highlight-chip">
                     <span class="chip-dot blue"></span>
@@ -294,6 +317,10 @@
                     </div>
                 </div>
                 <div class="header-actions">
+                    <button id="history-drawer-btn" class="header-history-btn" title="View Chat History & Saved Chats">
+                        <span>💬</span> <span class="btn-label">History</span>
+                        <span id="history-badge" class="history-count-badge">0</span>
+                    </button>
                     <button id="add-notice-btn" class="orange-portal-btn" title="Add Live University Notice">
                         <span>📢</span> <span class="btn-label">Notice</span>
                     </button>
@@ -302,7 +329,7 @@
                         <span class="user-avatar" id="header-user-avatar">👤</span>
                         <span class="user-name" id="header-user-name">Sign In</span>
                     </button>
-                    <button id="clear-chat-btn" class="secondary-btn" title="Clear Conversation">
+                    <button id="clear-chat-btn" class="secondary-btn" title="Clear Current Conversation">
                         <span>🗑️</span>
                     </button>
                 </div>
@@ -622,6 +649,34 @@
         </div>
     </div>
 
+    <!-- Chat History Slide-out Modal / Drawer -->
+    <div class="modal-backdrop" id="history-modal-backdrop">
+        <div class="modal-card history-drawer-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>💬 Conversation History & Memory</h3>
+                    <span id="history-modal-count" class="history-chip-badge">0 Saved Sessions</span>
+                </div>
+                <button class="modal-close" id="history-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Browse, restore, or manage your previous AI discussions and campus queries.</p>
+            
+            <div class="history-modal-toolbar">
+                <input type="text" id="history-modal-search" placeholder="🔍 Search through past questions and topics..." class="history-modal-search-input" />
+                <button id="history-modal-new-chat-btn" class="orange-portal-btn compact">✨ New Chat</button>
+            </div>
+
+            <div id="history-modal-list" class="history-modal-list">
+                <!-- Dynamically rendered past conversations -->
+            </div>
+
+            <div class="modal-actions space-between">
+                <button type="button" class="danger-outline-btn" id="history-modal-clear-all-btn">🗑️ Clear All History</button>
+                <button type="button" class="secondary-btn" id="history-modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Ingest Notice Modal -->
     <div class="modal-backdrop" id="notice-modal-backdrop">
         <div class="modal-card">
@@ -661,6 +716,6 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast">Answer copied to clipboard!</div>
 
-    <script src="app.js?v=7.0"></script>
+    <script src="app.js?v=8.0"></script>
 </body>
 </html>
