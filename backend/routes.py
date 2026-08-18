@@ -5,7 +5,8 @@ from backend.config import settings
 from backend.models import (
     QueryRequest, QueryResponse, HealthResponse, SourceDocument,
     IngestTextRequest, IngestResponse,
-    LoginRequest, RegisterRequest, ForgotPasswordRequest, SocialLoginRequest, AuthResponse, UserResponse
+    LoginRequest, RegisterRequest, ForgotPasswordRequest, SocialLoginRequest, AuthResponse, UserResponse,
+    AssignmentSolveRequest, AssignmentSolveResponse
 )
 from rag.pipeline import RAGPipeline
 from database.db_client import DBClient
@@ -93,6 +94,50 @@ async def chat_endpoint(
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
+
+@router.post("/assignment/solve", response_model=AssignmentSolveResponse)
+async def solve_assignment_endpoint(
+    request: AssignmentSolveRequest,
+    rag_pipeline: RAGPipeline = Depends(get_rag_pipeline),
+    db_client: DBClient = Depends(get_db_client)
+):
+    """
+    Multimodal Instant Assignment Problem Solver for CHARUSAT Students.
+    Receives an image of an assignment/exam problem and generates a step-by-step verified solution.
+    """
+    if not request.image_base64:
+        raise HTTPException(status_code=400, detail="Image data is required.")
+
+    start_time = time.time()
+    try:
+        result = rag_pipeline.solve_assignment_image(
+            image_base64=request.image_base64,
+            prompt=request.prompt,
+            department=request.department,
+            subject=request.subject,
+            mime_type=request.mime_type or "image/jpeg"
+        )
+        latency = round(time.time() - start_time, 3)
+        
+        # Log solving interaction
+        db_client.log_interaction(
+            query=f"[Assignment Image Problem]: {request.prompt or 'Step-by-step problem solution'}",
+            answer=result["solution"],
+            latency=latency,
+            intent="assignment_solver",
+            user_email=request.user_email or "guest"
+        )
+
+        return AssignmentSolveResponse(
+            solution=result["solution"],
+            problem_title="Assignment Problem Solution",
+            department=request.department,
+            subject=request.subject,
+            latency_seconds=latency,
+            status=result.get("status", "success")
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error solving assignment problem: {str(e)}")
 
 # ==============================================================================
 # Authentication Endpoints

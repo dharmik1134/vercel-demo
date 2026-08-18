@@ -118,10 +118,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const historyModalList = document.getElementById("history-modal-list");
     const historyModalCount = document.getElementById("history-modal-count");
 
+    // Multimodal Assignment Solver & Study Hub Elements
+    const attachImgBtn = document.getElementById("attach-img-btn");
+    const imageFileInput = document.getElementById("image-file-input");
+    const imagePreviewCapsule = document.getElementById("image-preview-capsule");
+    const previewImg = document.getElementById("preview-img");
+    const previewFilename = document.getElementById("preview-filename");
+    const removeImgBtn = document.getElementById("remove-img-btn");
+    const quickSnapBtn = document.getElementById("quick-snap-btn");
+    const quickStudyHubBtn = document.getElementById("quick-study-hub-btn");
+    const materialsHubBtn = document.getElementById("materials-hub-btn");
+    const materialsModalBackdrop = document.getElementById("materials-modal-backdrop");
+    const materialsModalClose = document.getElementById("materials-modal-close");
+    const materialsModalCloseBtn = document.getElementById("materials-modal-close-btn");
+    const hubFilterTabs = document.getElementById("hub-filter-tabs");
+    const hubCardsGrid = document.getElementById("hub-cards-grid");
+    const hubSnapBtn = document.getElementById("hub-snap-btn");
+
     let chatHistory = [];
     let currentUser = null;
     let savedSessions = [];
     let activeSessionId = null;
+    let currentAttachedImage = null; // { base64, mimeType, filename }
 
     // Toast helper
     function showToast(msg) {
@@ -145,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const CHAT_API_URL = `${API_BASE}/api/v1/chat`;
     const HEALTH_API_URL = `${API_BASE}/api/v1/health`;
     const INGEST_API_URL = `${API_BASE}/api/v1/ingest/text`;
+    const ASSIGNMENT_SOLVE_URL = `${API_BASE}/api/v1/assignment/solve`;
     const AUTH_LOGIN_URL = `${API_BASE}/api/v1/auth/login`;
     const AUTH_REGISTER_URL = `${API_BASE}/api/v1/auth/register`;
     const AUTH_SOCIAL_URL = `${API_BASE}/api/v1/auth/social-login`;
@@ -737,6 +756,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // 12. Chat Message Handling
     // --------------------------------------------------------------------------
     function appendMessage(role, text, sources = [], latency = null) {
+    // --------------------------------------------------------------------------
+    // 5. Message Rendering & Append Logic (with Multimodal Image Support)
+    // --------------------------------------------------------------------------
+    function appendMessage(role, text, sources = null, latency = null, imageDataUrl = null) {
         if (welcomeCard) welcomeCard.style.display = "none";
 
         const msgRow = document.createElement("div");
@@ -761,7 +784,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const bubble = document.createElement("div");
         bubble.className = "msg-bubble";
-        bubble.innerHTML = parseMarkdown(text);
+
+        // If problem image is attached, render it inside user message
+        if (imageDataUrl) {
+            const imgWrapper = document.createElement("div");
+            imgWrapper.className = "msg-problem-img-wrapper";
+            imgWrapper.innerHTML = `<img src="${imageDataUrl}" class="msg-problem-img" alt="Assignment Problem Photo">`;
+            bubble.appendChild(imgWrapper);
+        }
+
+        const textDiv = document.createElement("div");
+        textDiv.className = "bubble-text-content";
+        textDiv.innerHTML = parseMarkdown(text);
+        bubble.appendChild(textDiv);
 
         if (role === "bot") {
             const footer = document.createElement("div");
@@ -821,7 +856,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Record in persistent session
-        recordMessageInSession(role, text, sources, latency);
+        recordMessageInSession(role, text, sources, latency, imageDataUrl);
     }
 
     // --------------------------------------------------------------------------
@@ -861,17 +896,18 @@ document.addEventListener("DOMContentLoaded", () => {
         renderHistoryUI();
     }
 
-    function recordMessageInSession(role, text, sources = null, latency = null) {
+    function recordMessageInSession(role, text, sources = null, latency = null, imageDataUrl = null) {
         const msgObj = {
             role,
             text,
             sources,
             latency,
+            imageDataUrl,
             timestamp: new Date().toISOString()
         };
 
         if (!activeSessionId) {
-            const cleanTitle = text.replace(/^[#*\s]+/, "").slice(0, 45).trim() + (text.length > 45 ? "..." : "");
+            const cleanTitle = (text || "Assignment Problem").replace(/^[#*\s]+/, "").slice(0, 45).trim() + (text && text.length > 45 ? "..." : "");
             const newSession = {
                 id: "sess_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4),
                 title: cleanTitle || "New Conversation",
@@ -921,7 +957,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `).join("");
 
-                // Attach listeners
                 sidebarHistoryList.querySelectorAll(".history-item").forEach(el => {
                     el.addEventListener("click", (e) => {
                         if (e.target.closest(".history-del-btn")) return;
@@ -1028,7 +1063,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const bubble = document.createElement("div");
                 bubble.className = "msg-bubble";
-                bubble.innerHTML = parseMarkdown(msg.text);
+
+                if (msg.imageDataUrl) {
+                    const imgWrapper = document.createElement("div");
+                    imgWrapper.className = "msg-problem-img-wrapper";
+                    imgWrapper.innerHTML = `<img src="${msg.imageDataUrl}" class="msg-problem-img" alt="Assignment Problem Photo">`;
+                    bubble.appendChild(imgWrapper);
+                }
+
+                const textDiv = document.createElement("div");
+                textDiv.className = "bubble-text-content";
+                textDiv.innerHTML = parseMarkdown(msg.text);
+                bubble.appendChild(textDiv);
 
                 if (msg.role === "bot") {
                     const footer = document.createElement("div");
@@ -1088,6 +1134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         activeSessionId = null;
         chatHistory = [];
         messagesList.innerHTML = "";
+        clearAttachedImage();
         if (welcomeCard) welcomeCard.style.display = "block";
         if (userInput) {
             userInput.value = "";
@@ -1164,20 +1211,292 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Global Keyboard Shortcut: ⌘K or Ctrl+K for New Chat
-    window.addEventListener("keydown", (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-            e.preventDefault();
-            createNewSession();
+    // --------------------------------------------------------------------------
+    // 7. Multimodal Assignment Problem Image Attach & Camera Handlers
+    // --------------------------------------------------------------------------
+    function handleImageFile(file) {
+        if (!file || !file.type.startsWith("image/")) {
+            showToast("⚠️ Please select a valid image file (PNG, JPG, JPEG, WEBP)");
+            return;
+        }
+
+        if (file.size > 12 * 1024 * 1024) {
+            showToast("⚠️ Image size is too large (max 12MB)");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            currentAttachedImage = {
+                base64: e.target.result,
+                mimeType: file.type,
+                filename: file.name || "assignment_problem.jpg"
+            };
+
+            if (imagePreviewCapsule) imagePreviewCapsule.style.display = "flex";
+            if (previewImg) previewImg.src = e.target.result;
+            if (previewFilename) previewFilename.textContent = file.name || "assignment_problem.jpg";
+            if (userInput) userInput.focus();
+            showToast("📷 Problem photo attached! Press send to solve.");
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function clearAttachedImage() {
+        currentAttachedImage = null;
+        if (imagePreviewCapsule) imagePreviewCapsule.style.display = "none";
+        if (previewImg) previewImg.src = "";
+        if (imageFileInput) imageFileInput.value = "";
+    }
+
+    if (attachImgBtn) attachImgBtn.addEventListener("click", () => {
+        if (imageFileInput) imageFileInput.click();
+    });
+
+    if (quickSnapBtn) quickSnapBtn.addEventListener("click", () => {
+        if (imageFileInput) imageFileInput.click();
+    });
+
+    if (hubSnapBtn) hubSnapBtn.addEventListener("click", () => {
+        closeMaterialsModal();
+        if (imageFileInput) imageFileInput.click();
+    });
+
+    if (imageFileInput) {
+        imageFileInput.addEventListener("change", (e) => {
+            if (e.target.files && e.target.files[0]) {
+                handleImageFile(e.target.files[0]);
+            }
+        });
+    }
+
+    if (removeImgBtn) removeImgBtn.addEventListener("click", clearAttachedImage);
+
+    // Global Clipboard Screenshot Paste (Ctrl+V / Cmd+V)
+    window.addEventListener("paste", (e) => {
+        const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+        for (let item of items) {
+            if (item.type.indexOf("image") !== -1) {
+                const blob = item.getAsFile();
+                handleImageFile(blob);
+                break;
+            }
         }
     });
 
-    async function handleSendMessage(query) {
-        if (!query || !query.trim()) return;
-        const cleanQuery = query.trim();
+    // --------------------------------------------------------------------------
+    // 8. Study Hub & Curriculum Directory Data
+    // --------------------------------------------------------------------------
+    const HUB_SUBJECTS = [
+        {
+            dept: "aiml",
+            name: "🤖 Machine Learning Foundations",
+            code: "CSPIT-AI301",
+            deptName: "AI & ML (CSPIT)",
+            books: "Pattern Recognition (Christopher Bishop), Hands-On ML with Scikit-Learn & TF (Aurélien Géron)",
+            labs: "Supervised & Unsupervised Learning, Regression, SVM, Random Forest, Model Metrics",
+            query: "Explain core concepts, syllabus and reference textbooks for Machine Learning in CSPIT AI&ML"
+        },
+        {
+            dept: "aiml",
+            name: "🧠 Deep Learning & Neural Networks",
+            code: "CSPIT-AI401",
+            deptName: "AI & ML (CSPIT)",
+            books: "Deep Learning (Ian Goodfellow, Yoshua Bengio), PyTorch in Action",
+            labs: "Backpropagation, CNN (ResNet, VGG), LSTM, Transformers, NVIDIA GPU Clusters",
+            query: "What is the complete syllabus and lab list for Deep Learning in CSPIT AI&ML?"
+        },
+        {
+            dept: "aiml",
+            name: "👁️ Computer Vision & YOLO",
+            code: "CSPIT-AI402",
+            deptName: "AI & ML (CSPIT)",
+            books: "Computer Vision: Algorithms and Applications (Richard Szeliski), OpenCV Guide",
+            labs: "Image filtering, Feature Extraction, YOLOv8 real-time object detection, Image Segmentation",
+            query: "Explain Computer Vision syllabus, textbooks and lab experiments in CSPIT AI&ML"
+        },
+        {
+            dept: "ce",
+            name: "⚡ Data Structures & Algorithms (DSA)",
+            code: "CSPIT-CE201",
+            deptName: "Computer (CE)",
+            books: "Introduction to Algorithms (CLRS), Data Structures Using C/C++ (Reema Thareja)",
+            labs: "Trees (AVL, Red-Black), Graphs (Dijkstra, MST), Dynamic Programming, C++ STL",
+            query: "Show me complete DSA syllabus, CLRS reference books and assignments in CSPIT CE"
+        },
+        {
+            dept: "ce",
+            name: "🗄️ Database Management Systems (DBMS)",
+            code: "CSPIT-CE202",
+            deptName: "Computer (CE)",
+            books: "Database System Concepts (Silberschatz, Korth, Sudarshan), Fundamentals of DB Systems (Elmasri)",
+            labs: "Complex SQL, Normalization (1NF to BCNF), Transactions & ACID, MongoDB NoSQL",
+            query: "What is the syllabus, Korth reference book and assignment questions for DBMS in CE?"
+        },
+        {
+            dept: "ce",
+            name: "💻 Operating Systems (OS)",
+            code: "CSPIT-CE301",
+            deptName: "Computer (CE)",
+            books: "Operating System Concepts (Silberschatz & Galvin), Modern OS (Andrew S. Tanenbaum)",
+            labs: "Linux shell scripting, CPU Scheduling, Semaphore Synchronization, Deadlock (Banker's Algorithm)",
+            query: "Explain OS syllabus, reference textbooks and lab assignments in CSPIT CE"
+        },
+        {
+            dept: "it",
+            name: "🌐 Computer Networks (CN)",
+            code: "CSPIT-IT301",
+            deptName: "IT (CSPIT)",
+            books: "Computer Networks (Tanenbaum), Data Communications & Networking (Forouzan)",
+            labs: "Socket Programming, Subnetting/VLSM, Wireshark packet capture, Cisco Packet Tracer",
+            query: "Show me Computer Networks syllabus, textbooks and lab assignments in CSPIT IT"
+        },
+        {
+            dept: "it",
+            name: "🔒 Cyber Security & Cryptography",
+            code: "CSPIT-IT401",
+            deptName: "IT (CSPIT)",
+            books: "Cryptography and Network Security (William Stallings)",
+            labs: "AES/RSA encryption, Kali Linux penetration testing, Network auditing & CTF challenges",
+            query: "Explain Cyber Security curriculum, lab experiments and textbooks in CSPIT IT"
+        },
+        {
+            dept: "depstar",
+            name: "🚀 High-Performance Computing & Cloud",
+            code: "DEPSTAR-CS301",
+            deptName: "DEPSTAR (CSE/IT)",
+            books: "Cloud Computing Principles & Paradigms (Rajkumar Buyya), Distributed Systems (Tanenbaum)",
+            labs: "NVIDIA High-Performance GPU Cluster, AWS EC2/S3, Docker containerization, Kubernetes",
+            query: "What are the core subjects, textbooks and GPU labs in DEPSTAR CSE and IT?"
+        },
+        {
+            dept: "ec_ee",
+            name: "📡 Digital Signal Processing & VLSI",
+            code: "CSPIT-EC301",
+            deptName: "EC & EE",
+            books: "Digital Signal Processing (Proakis), CMOS VLSI Design (Weste & Harris)",
+            labs: "Cadence EDA tools, Verilog HDL synthesis, MATLAB signal filtering, Microcontrollers",
+            query: "Explain EC and EE engineering core subjects, textbooks and lab facilities in CSPIT"
+        },
+        {
+            dept: "me_cl",
+            name: "⚙️ Thermodynamics & CAD/CAM",
+            code: "CSPIT-ME301",
+            deptName: "Mechanical & Civil",
+            books: "Engineering Thermodynamics (P.K. Nag), CAD/CAM Principles (P.N. Rao), Strength of Materials (Ramamrutham)",
+            labs: "SolidWorks, ANSYS finite element analysis, CNC Machining, Material Testing & Metallurgy",
+            query: "What are the core subjects, reference books and lab facilities in Mechanical and Civil Engineering?"
+        },
+        {
+            dept: "cmpica",
+            name: "💻 Full-Stack Web Development & MCA Core",
+            code: "CMPICA-MCA201",
+            deptName: "CMPICA (BCA/MCA)",
+            books: "Full Stack Development with MERN (MongoDB, Express, React, Node), Python Data Science",
+            labs: "React.js, Next.js, REST API building, Flutter mobile app development, Agile Project Delivery",
+            query: "Explain BCA and MCA core subjects, web technologies syllabus and reference books in CMPICA"
+        },
+        {
+            dept: "rpcp",
+            name: "💊 Pharmacology & Medicinal Chemistry",
+            code: "RPCP-PH301",
+            deptName: "RPCP Pharmacy",
+            books: "Essentials of Medical Pharmacology (K.D. Tripathi), Industrial Pharmacy (Lachman & Lieberman)",
+            labs: "Formulation & Quality Assurance Lab, Animal tissue assay, Pharmacognosy extraction",
+            query: "Show me B.Pharm and M.Pharm core subjects, Tripathi reference books and lab syllabus in RPCP"
+        },
+        {
+            dept: "i2im",
+            name: "📈 Financial Management & Marketing",
+            code: "I2IM-MBA101",
+            deptName: "I2IM MBA",
+            books: "Marketing Management (Philip Kotler), Financial Management (Prasanna Chandra)",
+            labs: "Business Analytics, Financial Modeling, Case Study discussions, Live Industry Internships",
+            query: "What is the MBA and BBA core curriculum, Kotler marketing textbooks and subjects in I2IM?"
+        }
+    ];
 
-        appendMessage("user", cleanQuery);
+    function renderStudyHub(filterDept = "all") {
+        if (!hubCardsGrid) return;
+        const filtered = filterDept === "all" ? HUB_SUBJECTS : HUB_SUBJECTS.filter(s => s.dept === filterDept);
+        hubCardsGrid.innerHTML = filtered.map(s => `
+            <div class="hub-subject-card">
+                <div class="hub-card-header">
+                    <span class="hub-card-title">${s.name}</span>
+                    <span class="hub-card-dept-badge">${s.deptName}</span>
+                </div>
+                <div class="hub-card-body">
+                    <p>📖 <strong>Textbooks:</strong> ${s.books}</p>
+                    <p>🧪 <strong>Lab Focus:</strong> ${s.labs}</p>
+                </div>
+                <div class="hub-card-actions">
+                    <button class="hub-card-action-btn" data-query="${escapeHtml(s.query)}">💬 Ask AI</button>
+                    <button class="hub-card-action-btn orange" data-snap="true">📷 Snap Problem</button>
+                </div>
+            </div>
+        `).join("");
+
+        hubCardsGrid.querySelectorAll(".hub-card-action-btn:not(.orange)").forEach(btn => {
+            btn.addEventListener("click", () => {
+                closeMaterialsModal();
+                handleSendMessage(btn.dataset.query);
+            });
+        });
+
+        hubCardsGrid.querySelectorAll(".hub-card-action-btn.orange").forEach(btn => {
+            btn.addEventListener("click", () => {
+                closeMaterialsModal();
+                if (imageFileInput) imageFileInput.click();
+            });
+        });
+    }
+
+    function openMaterialsModal() {
+        if (materialsModalBackdrop) materialsModalBackdrop.classList.add("show");
+        renderStudyHub("all");
+    }
+
+    function closeMaterialsModal() {
+        if (materialsModalBackdrop) materialsModalBackdrop.classList.remove("show");
+    }
+
+    if (materialsHubBtn) materialsHubBtn.addEventListener("click", openMaterialsModal);
+    if (quickStudyHubBtn) quickStudyHubBtn.addEventListener("click", openMaterialsModal);
+    if (materialsModalClose) materialsModalClose.addEventListener("click", closeMaterialsModal);
+    if (materialsModalCloseBtn) materialsModalCloseBtn.addEventListener("click", closeMaterialsModal);
+    if (materialsModalBackdrop) {
+        materialsModalBackdrop.addEventListener("click", (e) => {
+            if (e.target === materialsModalBackdrop) closeMaterialsModal();
+        });
+    }
+
+    if (hubFilterTabs) {
+        hubFilterTabs.querySelectorAll(".hub-tab-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                hubFilterTabs.querySelectorAll(".hub-tab-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                renderStudyHub(btn.dataset.dept);
+            });
+        });
+    }
+
+    // --------------------------------------------------------------------------
+    // 9. Send Message Handler (Multimodal Vision + Text RAG)
+    // --------------------------------------------------------------------------
+    async function handleSendMessage(query) {
+        const hasText = query && query.trim();
+        const hasImage = currentAttachedImage !== null;
+
+        if (!hasText && !hasImage) return;
+
+        const cleanQuery = hasText ? query.trim() : "Please solve the problem in this attached assignment photo step-by-step.";
+        const attachedImgCopy = currentAttachedImage ? { ...currentAttachedImage } : null;
+
+        // Display user message bubble (with attached image if present)
+        appendMessage("user", cleanQuery, null, null, attachedImgCopy ? attachedImgCopy.base64 : null);
+        
         userInput.value = "";
+        clearAttachedImage();
         userInput.focus();
 
         if (sendBtn) sendBtn.disabled = true;
@@ -1189,7 +1508,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="msg-avatar">🏛️</div>
             <div class="msg-bubble typing-bubble">
                 <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                <span class="typing-text">Synthesizing university intelligence...</span>
+                <span class="typing-text">${attachedImgCopy ? "Analyzing problem photo & deriving step-by-step solution..." : "Synthesizing university intelligence..."}</span>
             </div>
         `;
         messagesList.appendChild(typingRow);
@@ -1200,25 +1519,51 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch(CHAT_API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    query: cleanQuery,
-                    chat_history: chatHistory.slice(-6),
-                    top_k: 6,
-                    user_email: currentUser ? currentUser.email : "guest"
-                })
-            });
+            let response, data;
 
-            const data = await response.json();
-            typingRow.remove();
-            if (sendBtn) sendBtn.disabled = false;
+            // Multimodal Vision Solver Route
+            if (attachedImgCopy) {
+                response = await fetch(ASSIGNMENT_SOLVE_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        image_base64: attachedImgCopy.base64,
+                        mime_type: attachedImgCopy.mimeType,
+                        prompt: cleanQuery,
+                        user_email: currentUser ? currentUser.email : "guest"
+                    })
+                });
+                data = await response.json();
+                typingRow.remove();
+                if (sendBtn) sendBtn.disabled = false;
 
-            if (response.ok && data.answer) {
-                appendMessage("bot", data.answer, data.sources, data.latency_seconds);
+                if (response.ok && data.solution) {
+                    appendMessage("bot", data.solution, [{ metadata: { source: "CHARUSAT Academic Solver" }, score: 0.99 }], data.latency_seconds);
+                } else {
+                    appendMessage("bot", data.detail || "Could not analyze the problem image. Please ensure the photo is clear and well-lit.");
+                }
             } else {
-                appendMessage("bot", data.detail || "Received an unexpected response from server.");
+                // Standard Text RAG Route
+                response = await fetch(CHAT_API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        query: cleanQuery,
+                        chat_history: chatHistory.slice(-6),
+                        top_k: 6,
+                        user_email: currentUser ? currentUser.email : "guest"
+                    })
+                });
+
+                data = await response.json();
+                typingRow.remove();
+                if (sendBtn) sendBtn.disabled = false;
+
+                if (response.ok && data.answer) {
+                    appendMessage("bot", data.answer, data.sources, data.latency_seconds);
+                } else {
+                    appendMessage("bot", data.detail || "Received an unexpected response from server.");
+                }
             }
         } catch (err) {
             typingRow.remove();
@@ -1226,13 +1571,13 @@ document.addEventListener("DOMContentLoaded", () => {
             
             appendMessage(
                 "bot",
-                `### 🏛️ CHARUSAT Virtual Intelligence\n\n` +
+                `### 🏛️ CHARUSAT Academic AI Assistant\n\n` +
                 `Here is the verified information regarding **"${cleanQuery}"**:\n\n` +
                 `• **CSPIT**: 7 Departments (CE, IT, AI & ML, EC, EE, Mechanical, Civil).\n` +
                 `• **DEPSTAR**: Computer Science & Engineering (CSE), Information Technology (IT).\n` +
-                `• **Central Library**: Dr. K. C. Patel Resource Centre (105,000+ books, IEEE, ScienceDirect, 24/7 exam reading hall).\n` +
-                `• **Admissions**: Through ACPC Gujarat & GUJCET/JEE Main merit.\n` +
-                `• **Placements**: Top recruiters include Amazon, TCS, Infosys, Crest Data Systems with packages up to 32.5+ LPA.`,
+                `• **Core References**: CLRS (DSA), Silberschatz (DBMS/OS), Goodfellow & Bishop (AI/ML), Tanenbaum (Networks).\n` +
+                `• **Central Library**: Dr. K. C. Patel Resource Centre (105,000+ books, IEEE, 24/7 reading hall).\n` +
+                `• **Assignments**: Snap any homework problem photo anytime for instant step-by-step derivations!`,
                 [{ metadata: { source: "charusat_comprehensive.txt" }, score: 0.98 }]
             );
         }
@@ -1259,7 +1604,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     quickTags.forEach(tag => {
         tag.addEventListener("click", () => {
-            handleSendMessage(tag.dataset.query);
+            if (tag.dataset.query) handleSendMessage(tag.dataset.query);
         });
     });
 
@@ -1274,4 +1619,5 @@ document.addEventListener("DOMContentLoaded", () => {
         createNewSession();
     });
 });
+
 

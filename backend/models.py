@@ -74,3 +74,21 @@ class AuthResponse(BaseModel):
     message: str
     user: Optional[UserResponse] = None
     token: Optional[str] = None
+
+# Multimodal Assignment Problem Solver Schemas
+class AssignmentSolveRequest(BaseModel):
+    image_base64: str = Field(..., description="Base64 encoded problem image (JPEG/PNG/WEBP)")
+    prompt: Optional[str] = Field(default=None, description="Optional student question or prompt")
+    department: Optional[str] = Field(default=None, description="Department (e.g. AI&ML, CE, IT, ME, Civil, EC, EE, Pharmacy, MCA)")
+    subject: Optional[str] = Field(default=None, description="Subject name if known (e.g. DSA, ML, DBMS, OS, Math)")
+    mime_type: Optional[str] = Field(default="image/jpeg", description="MIME type of uploaded image")
+    user_email: Optional[str] = Field(default="guest", description="Logged in user email")
+
+class AssignmentSolveResponse(BaseModel):
+    solution: str
+    problem_title: Optional[str] = "Assignment Problem Solution"
+    department: Optional[str] = None
+    subject: Optional[str] = None
+    latency_seconds: float = 0.0
+    status: str = "success"
+

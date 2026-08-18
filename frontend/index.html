@@ -317,6 +317,9 @@
                     </div>
                 </div>
                 <div class="header-actions">
+                    <button id="materials-hub-btn" class="header-materials-btn" title="Department Curriculum, Core Reference Books & Assignment Hub">
+                        <span>📚</span> <span class="btn-label">Study Hub</span>
+                    </button>
                     <button id="history-drawer-btn" class="header-history-btn" title="View Chat History & Saved Chats">
                         <span>💬</span> <span class="btn-label">History</span>
                         <span id="history-badge" class="history-count-badge">0</span>
@@ -341,41 +344,41 @@
                 <div class="welcome-card" id="welcome-card">
                     <div class="welcome-badge">
                         <span class="sparkle">🏛️</span>
-                        <span>Official CHARUSAT AI Assistant • || अमृतं तु विद्या ||</span>
+                        <span>Official CHARUSAT AI Assistant • || अमृतં तु विद्या ||</span>
                     </div>
                     <h2>Welcome to CHARUSAT University Assistant</h2>
-                    <p>Instant answers about 9 colleges, branch cutoffs, library book shelves, hostel fees, and campus life in <strong>English, ગુજરાતી, Hindi, Gujlish, or Hinglish</strong>.</p>
+                    <p>Instant answers about 9 colleges, branch cutoffs, library book shelves, hostel fees, and campus life. <strong>Snap any assignment problem for instant step-by-step solutions!</strong></p>
                     
                     <div class="suggestion-grid">
+                        <div class="suggestion-pill" data-query="Show me core reference textbooks and lab syllabus for AI & ML department">
+                            <span class="pill-icon">🤖</span>
+                            <div class="pill-content">
+                                <strong>AI & ML Core Curriculum</strong>
+                                <span>Deep Learning, PyTorch, Bishop & Goodfellow</span>
+                            </div>
+                            <span class="pill-arrow">→</span>
+                        </div>
+
+                        <div class="suggestion-pill" data-query="What reference books are recommended for Data Structures and Algorithms in CE/IT?">
+                            <span class="pill-icon">📚</span>
+                            <div class="pill-content">
+                                <strong>DSA & DBMS Textbooks</strong>
+                                <span>CLRS, Korth, Silberschatz & Reema Thareja</span>
+                            </div>
+                            <span class="pill-arrow">→</span>
+                        </div>
+
                         <div class="suggestion-pill" data-query="cspit ma kaya kaya dept che and eemni badha nii details aap">
                             <span class="pill-icon">💻</span>
                             <div class="pill-content">
                                 <strong>CSPIT Engineering Departments</strong>
-                                <span>Seat intakes, labs, NBA accreditation</span>
+                                <span>Seat intakes, labs, HODs</span>
                             </div>
                             <span class="pill-arrow">→</span>
                         </div>
 
-                        <div class="suggestion-pill" data-query="What reference books are available in Central Library for Algorithms and Java?">
-                            <span class="pill-icon">📚</span>
-                            <div class="pill-content">
-                                <strong>Central Library Catalogue</strong>
-                                <span>Check Core Java, CLRS shelf numbers</span>
-                            </div>
-                            <span class="pill-arrow">→</span>
-                        </div>
-
-                        <div class="suggestion-pill" data-query="ચારુસેટમાં હોસ્ટેલ અને મેસની સુવિધાઓ વિશે સંપૂર્ણ માહિતી આપો">
-                            <span class="pill-icon">🏢</span>
-                            <div class="pill-content">
-                                <strong>Hostels & Mess Facilities</strong>
-                                <span>AC/Non-AC rooms, fees, food menu</span>
-                            </div>
-                            <span class="pill-arrow">→</span>
-                        </div>
-
-                        <div class="suggestion-pill" data-query="चारुसेट में बी.टेक एडमिशन कैसे होता है और प्लेसमेंट पैकेज क्या है?">
-                            <span class="pill-icon">🎓</span>
+                        <div class="suggestion-pill" data-query="How does admission work for ACPC Gujarat?">
+                            <span class="pill-icon">📝</span>
                             <div class="pill-content">
                                 <strong>Admissions & Placements</strong>
                                 <span>ACPC cutoff, 32.5+ LPA recruiters</span>
@@ -391,19 +394,39 @@
 
             <!-- Input Bar -->
             <div class="chat-input-wrapper">
+                <!-- Assignment Image Problem Preview Capsule -->
+                <div id="image-preview-capsule" class="image-preview-capsule" style="display: none;">
+                    <div class="preview-thumb-wrapper">
+                        <img id="preview-img" src="" alt="Assignment Problem Preview">
+                    </div>
+                    <div class="preview-meta">
+                        <span class="preview-badge">📷 Assignment Problem Attached</span>
+                        <span id="preview-filename" class="preview-filename">problem.jpg</span>
+                    </div>
+                    <button type="button" id="remove-img-btn" class="remove-img-btn" title="Remove attachment">✕</button>
+                </div>
+
                 <div class="quick-tags-bar">
                     <span class="tag-label">QUICK:</span>
+                    <button class="quick-tag" id="quick-snap-btn">📷 Snap Assignment</button>
+                    <button class="quick-tag" id="quick-study-hub-btn">📚 Core Books & Syllabus</button>
                     <button class="quick-tag" data-query="cspit ma kaya kaya dept che and eemni badha nii details aap">💻 CSPIT B.Tech</button>
                     <button class="quick-tag" data-query="What B.Tech branches and seats are in DEPSTAR?">🚀 DEPSTAR (CSE & IT)</button>
                     <button class="quick-tag" data-query="Which books for Algorithms and Database are available in Central Library?">📚 Library Books</button>
-                    <button class="quick-tag" data-query="How does admission work for ACPC Gujarat?">📝 ACPC Admissions</button>
                     <button class="quick-tag" data-query="hostel ni fee ketli che ane mess ma food kevu male?">🏢 Hostels & Buses</button>
                 </div>
                 <form id="chat-form" class="chat-form">
+                    <!-- Hidden File Input for Camera / Image Upload -->
+                    <input type="file" id="image-file-input" accept="image/*" capture="environment" style="display: none;">
+                    
+                    <button type="button" id="attach-img-btn" class="attach-img-button" title="Capture / Upload Assignment Problem Photo" aria-label="Upload Assignment Photo">
+                        <span>📷</span>
+                    </button>
+                    
                     <input 
                         type="text" 
                         id="user-input" 
-                        placeholder="Ask about departments, books, fees (English / ગુજરાતી / Hindi)..." 
+                        placeholder="Ask anything or paste/snap an assignment problem photo..." 
                         autocomplete="off"
                         required
                     />
@@ -649,6 +672,46 @@
         </div>
     </div>
 
+    <!-- ==============================================================================
+         STUDY HUB & CURRICULUM REFERENCE MODAL
+         ============================================================================== -->
+    <div class="modal-backdrop" id="materials-modal-backdrop">
+        <div class="modal-card materials-hub-card">
+            <div class="modal-header">
+                <div class="header-title-row">
+                    <h3>📚 CHARUSAT Curriculum, Reference Books & Assignment Hub</h3>
+                    <span class="history-chip-badge">9 Institutes • Verified Syllabi</span>
+                </div>
+                <button class="modal-close" id="materials-modal-close">✕</button>
+            </div>
+            <p class="modal-desc">Select your engineering branch or department to view core subjects, recommended reference textbooks, lab focus, and instant assignment help.</p>
+            
+            <!-- Department Filter Tabs -->
+            <div class="hub-filter-tabs" id="hub-filter-tabs">
+                <button class="hub-tab-btn active" data-dept="all">All</button>
+                <button class="hub-tab-btn" data-dept="aiml">🤖 AI & ML (CSPIT)</button>
+                <button class="hub-tab-btn" data-dept="ce">💻 Computer (CE)</button>
+                <button class="hub-tab-btn" data-dept="it">🌐 IT (CSPIT)</button>
+                <button class="hub-tab-btn" data-dept="depstar">🚀 DEPSTAR (CSE/IT)</button>
+                <button class="hub-tab-btn" data-dept="ec_ee">⚡ EC & EE</button>
+                <button class="hub-tab-btn" data-dept="me_cl">⚙️ ME & Civil</button>
+                <button class="hub-tab-btn" data-dept="cmpica">💻 CMPICA (BCA/MCA)</button>
+                <button class="hub-tab-btn" data-dept="rpcp">💊 RPCP Pharmacy</button>
+                <button class="hub-tab-btn" data-dept="i2im">📈 I2IM MBA</button>
+            </div>
+
+            <!-- Subject Cards Container -->
+            <div class="hub-cards-grid" id="hub-cards-grid">
+                <!-- Dynamically populated / pre-rendered cards -->
+            </div>
+
+            <div class="modal-actions space-between">
+                <button type="button" class="orange-portal-btn compact" id="hub-snap-btn">📷 Snap Assignment Problem</button>
+                <button type="button" class="secondary-btn" id="materials-modal-close-btn">Close Hub</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Chat History Slide-out Modal / Drawer -->
     <div class="modal-backdrop" id="history-modal-backdrop">
         <div class="modal-card history-drawer-card">
@@ -716,6 +779,6 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast">Answer copied to clipboard!</div>
 
-    <script src="app.js?v=8.0"></script>
+    <script src="app.js?v=9.0"></script>
 </body>
 </html>

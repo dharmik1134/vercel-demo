@@ -1,0 +1,111 @@
+# CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY (CHARUSAT)
+# OFFICIAL DEPARTMENT-WISE CURRICULUM, CORE SUBJECTS, REFERENCE TEXTBOOKS & LAB MANUALS REPOSITORY
+
+================================================================================
+1. FACULTY OF TECHNOLOGY & ENGINEERING (CSPIT & DEPSTAR)
+================================================================================
+
+1.1 COMPUTER ENGINEERING (CE) & INFORMATION TECHNOLOGY (IT) - CSPIT & DEPSTAR
+--------------------------------------------------------------------------------
+• Core Subjects & Recommended Reference Textbooks:
+  1. Data Structures and Algorithms (DSA):
+     - Textbooks: "Data Structures Using C and C++" by Reema Thareja; "Introduction to Algorithms" (CLRS) by Cormen, Leiserson, Rivest, Stein.
+     - Lab Focus: Array, Linked List, Stack, Queue, Trees (AVL, Red-Black), Graphs (Dijkstra, Prim, Kruskal), Dynamic Programming in C++ and Python.
+  2. Database Management Systems (DBMS):
+     - Textbooks: "Database System Concepts" by Silberschatz, Korth, Sudarshan; "Fundamentals of Database Systems" by Elmasri & Navathe.
+     - Lab Focus: SQL queries, Normalization (1NF to BCNF), Relational Algebra, Transactions & Concurrency Control, PostgreSQL & MongoDB.
+  3. Operating Systems (OS):
+     - Textbooks: "Operating System Concepts" by Silberschatz, Galvin, Gagne; "Modern Operating Systems" by Andrew S. Tanenbaum.
+     - Lab Focus: Linux shell scripting, Process Scheduling algorithms (FCFS, SJF, Round Robin), POSIX Threads, Semaphore Synchronization, Deadlock avoidance (Banker's Algorithm).
+  4. Computer Networks (CN):
+     - Textbooks: "Computer Networks" by Andrew S. Tanenbaum; "Data Communications and Networking" by Behrouz A. Forouzan.
+     - Lab Focus: OSI & TCP/IP stack implementation, Socket programming, Subnetting/VLSM calculations, Wireshark packet capture, Cisco Packet Tracer network simulation.
+  5. Theory of Computation & Automata (TOC):
+     - Textbooks: "An Introduction to Formal Languages and Automata" by Peter Linz; "Introduction to Automata Theory, Languages, and Computation" by Hopcroft, Motwani, Ullman.
+     - Key Concepts: DFA, NFA, Regular Expressions, Context-Free Grammars (CFG), Pushdown Automata (PDA), Turing Machines, Halting Problem.
+  6. Object Oriented Programming with Java / C++:
+     - Textbooks: "Java: The Complete Reference" by Herbert Schildt; "Object-Oriented Programming with C++" by E. Balagurusamy.
+     - Lab Focus: OOP Concepts (Inheritance, Polymorphism, Encapsulation, Abstraction), Exception Handling, Multithreading, Generics, JDBC.
+  7. Cloud Computing & DevOps:
+     - Textbooks: "Cloud Computing: Principles and Paradigms" by Rajkumar Buyya; AWS Official Architecture Documentation.
+     - Lab Focus: AWS EC2, S3, IAM, Docker Containerization, CI/CD with GitHub Actions, Kubernetes clustering.
+
+1.2 ARTIFICIAL INTELLIGENCE & MACHINE LEARNING (AI & ML) - CSPIT
+--------------------------------------------------------------------------------
+• Core Subjects & Recommended Reference Textbooks:
+  1. Foundations of Machine Learning:
+     - Textbooks: "Pattern Recognition and Machine Learning" by Christopher Bishop; "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow" by Aurélien Géron.
+     - Lab Focus: Supervised Learning (Linear/Logistic Regression, Decision Trees, Random Forests, SVM), Unsupervised Learning (K-Means, PCA), Model Evaluation (Precision, Recall, ROC-AUC).
+  2. Deep Learning & Neural Networks:
+     - Textbooks: "Deep Learning" by Ian Goodfellow, Yoshua Bengio, Aaron Courville.
+     - Lab Focus: Multi-Layer Perceptrons, Backpropagation calculus, CNNs (ResNet, VGG) for image classification, RNNs & LSTMs for sequence modeling, PyTorch & TensorFlow GPU workflows.
+  3. Natural Language Processing (NLP) & Large Language Models:
+     - Textbooks: "Speech and Language Processing" by Dan Jurafsky & James H. Martin.
+     - Lab Focus: Tokenization, TF-IDF, Word2Vec, Transformers Architecture, Attention Mechanisms, Fine-tuning HuggingFace LLMs, LangChain RAG pipelines.
+  4. Computer Vision (CV):
+     - Textbooks: "Computer Vision: Algorithms and Applications" by Richard Szeliski; "Learning OpenCV" by Gary Bradski.
+     - Lab Focus: OpenCV image filters, Feature extraction (SIFT/ORB), Object detection with YOLOv8, Image segmentation with U-Net.
+  5. High-Performance GPU Computing & AI Infrastructure:
+     - Focus: NVIDIA CUDA C/C++ programming, TensorRT inference optimization, Distributed PyTorch training on CHARUSAT High-Performance GPU clusters.
+
+1.3 ELECTRONICS & COMMUNICATION ENGINEERING (EC) - CSPIT
+--------------------------------------------------------------------------------
+• Core Subjects & Textbooks:
+  1. Digital Signal Processing (DSP): "Digital Signal Processing" by John G. Proakis & Dimitris G. Manolakis.
+  2. VLSI Design & Microelectronics: "CMOS VLSI Design: A Circuits and Systems Perspective" by Neil H.E. Weste & David Harris. (Lab: Cadence EDA Tools, Verilog HDL).
+  3. Embedded Systems & Microcontrollers: "The 8051 Microcontroller and Embedded Systems" by Muhammad Ali Mazidi; ARM Cortex-M architecture.
+  4. Wireless & Microwave Engineering: "Antenna Theory: Analysis and Design" by Constantine A. Balanis; "Microwave Engineering" by David M. Pozar.
+
+1.4 ELECTRICAL ENGINEERING (EE) - CSPIT
+--------------------------------------------------------------------------------
+• Core Subjects & Textbooks:
+  1. Electrical Power Systems: "Modern Power System Analysis" by I.J. Nagrath & D.P. Kothari; "Power System Engineering" by B.R. Gupta.
+  2. Electrical Machines: "Electrical Machinery" by P.S. Bimbhra; "Electric Machines" by D.P. Kothari & I.J. Nagrath.
+  3. Control Systems Engineering: "Control Systems Engineering" by Norman S. Nise; "Modern Control Engineering" by Katsuhiko Ogata.
+  4. Power Electronics & Renewable Energy: "Power Electronics" by P.S. Bimbhra; "Power Electronics: Circuits, Devices, and Applications" by Muhammad H. Rashid.
+
+1.5 MECHANICAL ENGINEERING (ME) - CSPIT
+--------------------------------------------------------------------------------
+• Core Subjects & Textbooks:
+  1. Engineering Thermodynamics & Heat Transfer: "Engineering Thermodynamics" by P.K. Nag; "Heat and Mass Transfer" by Yunus A. Cengel.
+  2. Fluid Mechanics & Hydraulic Machinery: "Fluid Mechanics and Hydraulic Machines" by R.K. Bansal; "Introduction to Fluid Mechanics" by Fox and McDonald.
+  3. Computer-Aided Design and Manufacturing (CAD/CAM): "CAD/CAM: Principles and Applications" by P.N. Rao; "Automation, Production Systems, and CIM" by Mikell P. Groover. (Lab: SolidWorks, ANSYS, CNC Machining).
+  4. Material Science and Metallurgy: "Callister's Materials Science and Engineering" by William D. Callister.
+
+1.6 CIVIL ENGINEERING (CL) - CSPIT
+--------------------------------------------------------------------------------
+• Core Subjects & Textbooks:
+  1. Structural Analysis & Design of Concrete Structures: "Theory of Structures" by S. Ramamrutham; "Reinforced Concrete Design" by S.U. Pillai & Devdas Menon; IS 456:2000 code.
+  2. Soil Mechanics and Foundation Engineering: "Soil Mechanics and Foundation Engineering" by K.R. Arora; "Basic and Applied Soil Mechanics" by Gopal Ranjan & A.S.R. Rao.
+  3. Environmental Engineering & Water Supply: "Environmental Engineering" by Peavy, Rowe, Tchobanoglous; "Water Supply Engineering" by S.K. Garg.
+  4. Surveying and Geomatics: "Surveying Vol. 1, 2 & 3" by B.C. Punmia; GIS & Total Station field surveying manuals.
+
+================================================================================
+2. FACULTY OF COMPUTER SCIENCE & APPLICATIONS (CMPICA)
+================================================================================
+• Programs: BCA, B.Sc (IT), MCA, M.Sc (IT), Ph.D.
+• Core Subjects:
+  1. Advanced Web Technologies: Full Stack MERN (MongoDB, Express, React, Node.js), Next.js, REST APIs.
+  2. Python Programming & Data Analytics: NumPy, Pandas, Matplotlib, Seaborn, Tableau, Machine Learning algorithms.
+  3. Enterprise Software Engineering: Agile & Scrum methodologies, Software Testing (Selenium, JUnit), CI/CD.
+  4. Mobile App Development: Android (Kotlin), Flutter cross-platform mobile apps.
+
+================================================================================
+3. FACULTY OF PHARMACY (RPCP - Ramanbhai Patel College of Pharmacy)
+================================================================================
+• Programs: B.Pharm, M.Pharm (Pharmaceutics, Pharmacology, Pharmaceutical Quality Assurance, Regulatory Affairs).
+• Core Subjects & Textbooks:
+  1. Pharmacology: "Essentials of Medical Pharmacology" by K.D. Tripathi; "Rang & Dale's Pharmacology".
+  2. Pharmaceutics: "The Theory and Practice of Industrial Pharmacy" by Leon Lachman & Herbert A. Lieberman.
+  3. Pharmaceutical Chemistry & Medicinal Chemistry: "Foye's Principles of Medicinal Chemistry"; "Wilson and Gisvold's Textbook of Organic Medicinal and Pharmaceutical Chemistry".
+  4. Pharmacognosy & Phytochemistry: "Textbook of Pharmacognosy" by C.K. Kokate, A.P. Purohit, S.B. Gokhale.
+
+================================================================================
+4. FACULTY OF MANAGEMENT STUDIES (I2IM - Indukaka Ipcowala Institute of Management)
+================================================================================
+• Programs: BBA, MBA, Ph.D.
+• Core Subjects & Textbooks:
+  1. Marketing Management: "Marketing Management" by Philip Kotler & Kevin Lane Keller.
+  2. Financial Management: "Financial Management: Theory and Practice" by Prasanna Chandra; "Financial Management" by I.M. Pandey.
+  3. Human Resource Management: "Human Resource Management" by Gary Dessler.
+  4. Business Analytics & Strategic Management: "Strategic Management and Business Policy" by Thomas L. Wheelen & J. David Hunger.
