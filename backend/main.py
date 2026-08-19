@@ -125,12 +125,13 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 app.include_router(api_router, prefix="/api")
 
 # ------------------------------------------------------------------------------
-# 5. Static Files Mounting (Local & Non-Vercel environments)
+# 5. Static Files Mounting (Serves CSS, JS, Images, and HTML)
 # ------------------------------------------------------------------------------
-if os.path.exists(frontend_dir) and not os.environ.get("VERCEL"):
+if os.path.exists(frontend_dir):
     app.mount("/charusatAIassistant", StaticFiles(directory=frontend_dir, html=True), name="charusat_assistant")
     app.mount("/app", StaticFiles(directory=frontend_dir, html=True), name="frontend_app")
     app.mount("/frontend", StaticFiles(directory=frontend_dir, html=True), name="frontend_files")
+    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend_root")
 
 if __name__ == "__main__":
     uvicorn.run(
@@ -139,3 +140,4 @@ if __name__ == "__main__":
         port=settings.PORT,
         reload=settings.DEBUG
     )
+
