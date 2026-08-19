@@ -277,34 +277,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function lockAppWorkspace() {
         currentUser = null;
-        if (loginGateScreen) loginGateScreen.style.display = "none";
-        if (appContainer) appContainer.style.display = "flex";
+        if (loginGateScreen) loginGateScreen.style.display = "flex";
+        if (appContainer) appContainer.style.display = "none";
         updateUIForUser(null);
     }
 
     function loadUserSession() {
         try {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get("login") === "true") {
+                lockAppWorkspace();
+                return;
+            }
+
             const saved = localStorage.getItem("charusat_ai_user");
             if (saved) {
                 const user = JSON.parse(saved);
                 unlockAppWorkspace(user);
             } else {
-                const defaultUser = {
-                    email: "neevp5356@gmail.com",
-                    name: "Neev Patel",
-                    institute: "CSPIT AI & ML",
-                    provider: "guest"
-                };
-                saveUserSession(defaultUser);
+                lockAppWorkspace();
             }
         } catch (e) {
-            const defaultUser = {
-                email: "neevp5356@gmail.com",
-                name: "Neev Patel",
-                institute: "CSPIT AI & ML",
-                provider: "guest"
-            };
-            saveUserSession(defaultUser);
+            lockAppWorkspace();
         }
     }
 
@@ -315,14 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
             unlockAppWorkspace(user);
         } else {
             localStorage.removeItem("charusat_ai_user");
-            const defaultUser = {
-                email: "neevp5356@gmail.com",
-                name: "Neev Patel",
-                institute: "CSPIT AI & ML",
-                provider: "guest"
-            };
-            currentUser = defaultUser;
-            unlockAppWorkspace(defaultUser);
+            lockAppWorkspace();
         }
     }
 
