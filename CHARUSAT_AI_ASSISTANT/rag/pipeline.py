@@ -638,42 +638,8 @@ class RAGPipeline:
                 "• **Timings**: 8:30 AM to 8:30 PM (Air Conditioned Reading Hall open 24/7 during exams)."
             )
 
-        # Filter and clean context pieces (remove raw separator lines and file headers)
-        cleaned_pieces = []
-        for doc in context_docs:
-            raw_content = doc.get("content", "").strip()
-            if not raw_content:
-                continue
-            # Remove ascii border lines like ==== or ----
-            lines = [
-                l for l in raw_content.splitlines()
-                if not re.match(r'^[=\-#\s]{4,}$', l.strip())
-                and not re.match(r'^#\s*CHAROTAR UNIVERSITY', l.strip(), re.IGNORECASE)
-                and not re.match(r'^OFFICIAL ACADEMIC CALENDAR', l.strip(), re.IGNORECASE)
-            ]
-            cleaned_text = "\n".join(lines).strip()
-            if cleaned_text and cleaned_text not in cleaned_pieces:
-                cleaned_pieces.append(cleaned_text)
-
-        # Check if query had meaningful relevance or if it was vague/unmatched
-        has_high_relevance = any(doc.get("score", 0) >= 0.82 for doc in context_docs)
-        if not has_high_relevance and len(q_lower.split()) <= 3 and not any(k in q_lower for k in ["charusat", "college", "uni", "campus", "changa"]):
-            return (
-                f"### 🏛️ CHARUSAT Virtual Intelligence\n\n"
-                f"Hu **'{query}'** vishe CHARUSAT na official records ma direct match shodhi shakyo nathi.\n\n"
-                f"**Tame niche mathi koi pan vishay vishe puchi shako cho:**\n"
-                f"• **Institutes & HODs**: CSPIT, DEPSTAR, CMPICA, BDIAS, AI & ML Department Head (Dr. Nirav Bhatt)\n"
-                f"• **Admissions & Cutoffs**: ACPC Gujarat, GUJCET merit, Seats & Eligibility\n"
-                f"• **Fees & Hostels**: Tuition fee status, AC/Non-AC Hostels, 4-Time Mess Menu, 60+ Bus Fleet\n"
-                f"• **Campus & Library**: Dr. K. C. Patel Central Library books, Canteens (Shreeji, Tea Post), Wi-Fi Portal\n\n"
-                f"*Krupaya tamaro prashna thodo spashta pucho.*"
-            )
-
-        return "\n\n".join(cleaned_pieces[:3]) if cleaned_pieces else (
-            "### 🏛️ CHARUSAT Virtual Intelligence\n\n"
-            "Charotar University of Science and Technology (CHARUSAT) offers top-ranked programs across 9 constituent institutes including CSPIT, DEPSTAR, CMPICA, RPCP, and BDIAS.\n\n"
-            "Feel free to ask about admissions, syllabi, fee structures, library books, or campus facilities."
-        )
+        pieces = [doc.get("content", "").strip() for doc in context_docs if doc.get("content", "").strip()]
+        return "\n\n".join(pieces) if pieces else "CHARUSAT offers premier education across Engineering, Computer Applications, Pharmacy, Applied Sciences, and Management."
 
     def generate_response(self, prompt: str, query: str = "", context_docs: Optional[List[Dict[str, Any]]] = None) -> str:
         """Fast sub-second response generation with smart fallback."""

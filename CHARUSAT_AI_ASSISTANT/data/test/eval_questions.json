@@ -1,0 +1,26 @@
+[
+  {
+    "id": "eval_1",
+    "question": "What is the NAAC accreditation grade of CHARUSAT?",
+    "expected_keywords": ["NAAC", "A+"],
+    "ground_truth": "CHARUSAT was accredited with an 'A+' Grade by NAAC."
+  },
+  {
+    "id": "eval_2",
+    "question": "What are the engineering institutes at CHARUSAT?",
+    "expected_keywords": ["CSPIT", "DEPSTAR"],
+    "ground_truth": "The engineering institutes at CHARUSAT are CSPIT (Chandubhai S. Patel Institute of Technology) and DEPSTAR (Devang Patel Institute of Advance Technology and Research)."
+  },
+  {
+    "id": "eval_3",
+    "question": "How can I apply for B.Tech admission at CHARUSAT?",
+    "expected_keywords": ["ACPC", "GUJCET", "JEE"],
+    "ground_truth": "B.Tech admissions are conducted through ACPC Gujarat, based on GUJCET and JEE Main scores, as well as management quota seats."
+  },
+  {
+    "id": "eval_4",
+    "question": "What are some of the top recruiters for campus placements at CHARUSAT?",
+    "expected_keywords": ["TCS", "Infosys", "Adani", "L&T", "Amazon"],
+    "ground_truth": "Top recruiters include TCS, Infosys, Adani, L&T, Crest Data Systems, Evosys, and Amazon."
+  }
+]

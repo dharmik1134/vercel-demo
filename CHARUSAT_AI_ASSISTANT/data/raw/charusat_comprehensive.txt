@@ -1,0 +1,275 @@
+# CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY (CHARUSAT)
+# COMPREHENSIVE OFFICIAL KNOWLEDGE BASE & CAMPUS DIRECTORY
+
+================================================================================
+0. UNIVERSITY LEADERSHIP & KEY OFFICIALS (CURRENT / UP-TO-DATE)
+================================================================================
+• President: Shri Surendra M. Patel
+• Provost (Vice-Chancellor): Dr. Atul M. Patel
+• Registrar: Dr. Binit Patel (Chief Administrative Officer)
+• Principals:
+  - CSPIT (Engineering): Dr. Trushit Upadhyaya
+  - DEPSTAR (Advance Tech & CSE/IT): Dr. Bankim Patel
+  - CMPICA (Computer Applications): Dr. Dharmendra Patel
+  - RPCP (Pharmacy): Dr. Manan Raval
+  - I2IM (Management): Dr. Reshma Sable
+  - PDPIAS (Applied Sciences): Dr. Abhishek Dadhania
+  - MTIN (Nursing): Dr. Anil Sharma
+  - ARIP (Physiotherapy): Dr. Dhruv Dave
+  - BDIAS (Paramedical & Allied Sciences): Dr. Dhara Patel
+
+================================================================================
+1. INSTITUTES, DEPARTMENTS & COURSE DIRECTORY
+================================================================================
+
+1.1 Chandubhai S. Patel Institute of Technology (CSPIT) - Faculty of Technology & Engineering
+• Established: 2000 (First institute of CHARUSAT campus).
+• Principal: Dr. Trushit Upadhyaya | Approved by AICTE, NBA Accredited programs.
+• B.Tech Degrees Offered (4 Years / 8 Semesters) & Department Details:
+  1. Computer Engineering (U & P U. Patel Department of Computer Engineering):
+     - Intake: 180 seats | Email: hod.ce@charusat.ac.in | Phone: +91-2697-265353
+     - Key Labs: High Performance Computing Lab, Cloud Computing & Virtualization Lab, Advanced Software Engineering Lab, Algorithms & Database Systems Lab.
+     - Student Chapters: IEEE Computer Society, CSI Student Chapter, ACM, GDSC.
+  2. Information Technology (Smt. Kundanben Dinsha Patel Department of IT):
+     - Intake: 120 seats | Email: hod.it@charusat.ac.in | Phone: +91-2697-265131
+     - Key Labs: Network Security & Cryptography Lab, Web & Mobile Application Development Lab, Data Analytics Lab, Enterprise Computing Lab.
+     - Student Chapters: IEEE Student Branch, CSI, GDSC, AWS Cloud Club.
+  3. Artificial Intelligence & Machine Learning (AI & ML Department):
+     - Intake: 60 seats | Email: hod.aiml@charusat.ac.in | Faculty Coordinator: Dr. Nirav Bhatt
+     - Key Labs: AI & Deep Learning Studio (NVIDIA GPU Tensor Core workstation clusters), Machine Learning & Neural Networks Lab, Computer Vision & NLP Lab, Big Data Analytics Lab.
+     - Student Activities: AI & ML students actively participate in university-level technical chapters (IEEE, ACM, GDSC, AWS Cloud Club, Competitive Programming Club) and annual national hackathons (DUHacks, SIH, Odoo Hackathon). Note: There are no separate isolated departmental mini-clubs; all technical clubs operate at the institute/university level.
+  4. Electronics & Communication Engineering (EC Department):
+     - Intake: 60 seats | Email: hod.ec@charusat.ac.in
+     - Key Labs: VLSI Design & Simulation Lab, Embedded Systems & Microcontrollers Lab, Digital Signal Processing Lab, Microwave & Wireless Communication Lab.
+  5. Electrical Engineering (M & V Patel Department of Electrical Engineering):
+     - Intake: 60 seats | HOD: Dr. Pragnesh Bhatt | Email: hod.ee@charusat.ac.in
+     - Key Labs: Power Systems & Protection Lab, High Voltage Engineering Lab, Electrical Machines & Drives Lab, Control Systems & Renewable Energy Lab.
+  6. Mechanical Engineering (CHAMOS Matrusanstha Department of Mechanical Engineering):
+     - Intake: 60 seats | HOD: Dr. Vijaykumar Chaudhary | Email: hod.me@charusat.ac.in
+     - Key Labs: CNC & Robotics Automation Lab, CAD/CAM/CAE Simulation Lab, Thermal Engineering & I.C. Engine Lab, Fluid Mechanics & Hydraulic Machinery Lab, Material Testing & Metallurgy Lab.
+  7. Civil Engineering (Manubhai Shivabhai Patel Department of Civil Engineering):
+     - Intake: 60 seats | HOD: Dr. V. R. Panchal | Email: hod.civil@charusat.ac.in
+     - Key Labs: Concrete Technology Lab, Geotechnical & Soil Mechanics Lab, Environmental Engineering & Water Quality Lab, Transportation Engineering Lab, Advanced Surveying (GIS & Total Station) Lab.
+• M.Tech Degrees Offered (2 Years):
+  - Computer Engineering (Cloud & Cyber Security)
+  - Information Technology
+  - Advanced Manufacturing / Thermal Engineering (Mechanical)
+  - Structural Engineering (Civil)
+  - Power System & Electrical Drives
+• Ph.D. Programs in all engineering disciplines.
+
+1.2 Devang Patel Institute of Advance Technology and Research (DEPSTAR) - Engineering
+• Established: 2017
+• Focus: Next-generation Computer & Advanced Technologies.
+• B.Tech Programs Offered (4 Years):
+  1. Computer Science and Engineering (CSE) - Intake: 300 seats
+  2. Information Technology (IT) - Intake: 180 seats
+• Key Facilities: Advanced Computing Labs, High-Performance GPU Cluster, Apple iOS Development Lab.
+
+1.3 Chandaben Mohanbhai Patel Institute of Computer Applications (CMPICA) - Faculty of Computer Science
+• Established: 2002
+• Programs Offered:
+  - Bachelor of Computer Applications (BCA) - 3 Years
+  - Bachelor of Science in Information Technology (B.Sc IT) - 3 Years
+  - Master of Computer Applications (MCA) - 2 Years
+  - Master of Science in Information Technology (M.Sc IT) - 2 Years
+  - Dual Degree BCA + MCA (Integrated 5 Years)
+  - Ph.D. in Computer Applications
+
+1.4 Ramanbhai Patel College of Pharmacy (RPCP) - Faculty of Pharmacy
+• Established: 2004
+• Approved by Pharmacy Council of India (PCI), NBA Accredited.
+• Programs Offered:
+  - Bachelor of Pharmacy (B.Pharm) - 4 Years (Intake: 100 seats)
+  - Master of Pharmacy (M.Pharm) - 2 Years in:
+    • Pharmaceutics
+    • Pharmacology
+    • Pharmaceutical Quality Assurance (QA)
+    • Regulatory Affairs / Clinical Pharmacy
+  - Ph.D. in Pharmaceutical Sciences
+
+1.5 Indukaka Ipcowala Institute of Management (I2IM) - Faculty of Management Studies
+• Established: 2006
+• Programs Offered:
+  - Master of Business Administration (MBA) - 2 Years (Intake: 120 seats)
+    Specializations: Finance, Marketing, Human Resource (HR), Business Analytics, Operations.
+  - Bachelor of Business Administration (BBA) - 3 Years
+  - Dual Degree BBA + MBA (5 Years Integrated)
+  - Ph.D. in Management
+
+1.6 P. D. Patel Institute of Applied Sciences (PDPIAS) - Faculty of Science
+• Established: 2007
+• Programs Offered:
+  - B.Sc (Hons) & M.Sc (2 Years) in:
+    • Biotechnology
+    • Microbiology
+    • Biochemistry
+    • Advanced Organic Chemistry
+    • Physics (Condensed Matter, Materials Science)
+    • Mathematics
+  - Ph.D. in Applied Sciences & Nanotechnology
+
+1.7 Manikaka Topawala Institute of Nursing (MTIN) - Faculty of Medical Sciences
+• Approved by Indian Nursing Council (INC) & Gujarat Nursing Council (GNC).
+• Programs: B.Sc Nursing (4 Years), Post Basic B.Sc Nursing (2 Years), GNM (3 Years), M.Sc Nursing.
+
+1.8 Ashok & Rita Patel Institute of Physiotherapy (ARIP)
+• Approved by Gujarat State Council for Physiotherapy.
+• Programs: Bachelor of Physiotherapy (BPT - 4.5 Years with 6 months internship), Master of Physiotherapy (MPT - 2 Years) with specializations in Musculoskeletal, Neurological, Cardiopulmonary, and Pediatric Physiotherapy.
+
+1.9 B. D. Patel Institute of Allied Sciences (BDIAS)
+• Programs: B.Sc in Medical Laboratory Technology (MLT), Radiology & Imaging Technology, Operation Theatre & Anaesthesia Technology, Optometry.
+
+================================================================================
+2. CENTRAL LIBRARY & KNOWLEDGE RESOURCE CENTRE (CATALOGUE & AVAILABILITY)
+================================================================================
+
+2.1 Overview & Digital Infrastructure
+• Central Library Name: Dr. K. C. Patel Learning Resource Centre.
+• Collection Size: Over 105,000+ Print Books, 25,000+ Reference Handbooks, 5,500+ National & International E-Journals.
+• Subscriptions: IEEE Xplore Digital Library, Elsevier ScienceDirect, Springer Link, ASCE, ASME, ACM Digital Library, DELNET, and NPTEL Local Video Server (over 10 TB of video lectures).
+• Library Automation System: SOUL 3.0 / KOHA Integrated Web-OPAC (Online Public Access Catalogue) with RFID automated gate management and smart card book checkout.
+• Timings:
+  - Regular Days: 8:30 AM to 8:30 PM (Monday to Saturday)
+  - Reading Hall (Air Conditioned): Open 24/7 during Mid-Sem and End-Sem Examination periods.
+  - Sundays & Public Holidays: Reading Hall open 9:00 AM to 5:00 PM.
+
+2.2 Book Circulation & Borrowing Rules
+• Undergraduate Students (B.Tech, BCA, BBA, B.Pharm, B.Sc): 4 Books for 14 Days (renewable twice).
+• Postgraduate Students (M.Tech, MCA, MBA, M.Pharm, M.Sc): 6 Books for 30 Days.
+• Ph.D. Scholars / Researchers: 8 Books for 45 Days.
+• Book Bank Facility: Needy and merit students get a complete set of semester textbooks issued for the whole semester.
+
+2.3 Comprehensive Library Book Inventory & Subject Guide
+Here is the official catalogue of reference books available across campus libraries:
+
+[COMPUTER SCIENCE & IT]
+1. "Introduction to Algorithms" by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein (CLRS)
+   - Status: Available (18 copies in Central Library, Shelf: CS-02A)
+2. "Core Java Volume I & II - Fundamentals & Advanced Features" by Cay S. Horstmann
+   - Status: Available (22 copies, Central Library & CMPICA Library, Shelf: CS-04B)
+3. "Database System Concepts" by Abraham Silberschatz, Henry F. Korth, S. Sudarshan
+   - Status: Available (25 copies, Central Library & DEPSTAR, Shelf: CS-03C)
+4. "Computer Networking: A Top-Down Approach" by James Kurose and Keith Ross
+   - Status: Available (16 copies, Shelf: CS-05A)
+5. "Computer Networks" by Andrew S. Tanenbaum and David J. Wetherall
+   - Status: Available (20 copies, Shelf: CS-05B)
+6. "Operating System Concepts" (Dinosaur Book) by Abraham Silberschatz, Peter B. Galvin, Greg Gagne
+   - Status: Available (24 copies, Shelf: CS-03A)
+7. "Artificial Intelligence: A Modern Approach" by Stuart Russell and Peter Norvig
+   - Status: Available (12 copies, Central Library & DEPSTAR AI Lab, Shelf: AI-01A)
+8. "Pattern Recognition and Machine Learning" by Christopher M. Bishop
+   - Status: Available (8 copies, DEPSTAR Library, Shelf: AI-02B)
+9. "Deep Learning" by Ian Goodfellow, Yoshua Bengio, and Aaron Courville (MIT Press)
+   - Status: Available (10 copies, DEPSTAR AI Centre, Shelf: AI-03A)
+10. "Compilers: Principles, Techniques, and Tools" (Dragon Book) by Aho, Lam, Sethi, Ullman
+    - Status: Available (14 copies, Shelf: CS-06A)
+11. "Software Engineering: A Practitioner's Approach" by Roger S. Pressman
+    - Status: Available (19 copies, Shelf: CS-07A)
+12. "Python Crash Course" & "Fluent Python" by Luciano Ramalho
+    - Status: Available (15 copies, Shelf: CS-04D)
+
+[MATHEMATICS & APPLIED SCIENCES]
+13. "Higher Engineering Mathematics" by B. S. Grewal
+    - Status: Available (45 copies across CSPIT and Central Library, Shelf: MATH-01A)
+14. "Advanced Engineering Mathematics" by Erwin Kreyszig
+    - Status: Available (30 copies, Shelf: MATH-01B)
+15. "Principles of Mathematical Analysis" by Walter Rudin
+    - Status: Available (8 copies, PDPIAS Library, Shelf: MATH-04)
+16. "University Physics with Modern Physics" by Young and Freedman
+    - Status: Available (15 copies, PDPIAS Library, Shelf: PHY-02)
+17. "Lehninger Principles of Biochemistry" by David L. Nelson and Michael M. Cox
+    - Status: Available (10 copies, PDPIAS & RPCP Library, Shelf: BIO-01)
+18. "Molecular Biology of the Cell" by Bruce Alberts
+    - Status: Available (6 copies, PDPIAS, Shelf: BIO-03)
+
+[MECHANICAL, CIVIL & ELECTRICAL ENGINEERING]
+19. "Engineering Mechanics: Statics and Dynamics" by J.L. Meriam, L.G. Kraige
+    - Status: Available (20 copies, CSPIT Mechanical, Shelf: ME-01)
+20. "Theory of Machines" by S. S. Rattan
+    - Status: Available (18 copies, CSPIT Mechanical, Shelf: ME-04)
+21. "Design of Steel Structures" by N. Subramanian
+    - Status: Available (12 copies, CSPIT Civil, Shelf: CL-03)
+22. "Electric Machinery Fundamentals" by Stephen J. Chapman
+    - Status: Available (14 copies, CSPIT Electrical, Shelf: EE-02)
+
+[PHARMACY & MEDICAL SCIENCES]
+23. "Remington: The Science and Practice of Pharmacy"
+    - Status: Available (6 Reference copies, RPCP Library Reference Desk)
+24. "Goodman & Gilman's The Pharmacological Basis of Therapeutics"
+    - Status: Available (8 copies, RPCP Library, Shelf: PHARM-01)
+25. "Guyton and Hall Textbook of Medical Physiology"
+    - Status: Available (12 copies, ARIP & MTIN Library, Shelf: MED-01)
+
+[MANAGEMENT & BUSINESS]
+26. "Marketing Management" by Philip Kotler and Kevin Lane Keller
+    - Status: Available (20 copies, I2IM Library, Shelf: MGMT-01)
+27. "Financial Management: Theory and Practice" by Prasanna Chandra
+    - Status: Available (18 copies, I2IM Library, Shelf: MGMT-03)
+28. "Organizational Behavior" by Stephen P. Robbins
+    - Status: Available (15 copies, I2IM Library, Shelf: MGMT-02)
+
+================================================================================
+3. ADMISSIONS, ELIGIBILITY & SCHOLARSHIPS
+================================================================================
+
+3.1 Admission Routes & Criteria
+• B.Tech Admissions (CSPIT & DEPSTAR):
+  - 50% Seats allocated through ACPC Gujarat (Admission Committee for Professional Courses) via GUJCET merit rank.
+  - 50% All India Management / NRI / Vacant seats allocated through JEE Main / GUJCET + 12th PCM merit percentage on CHARUSAT portal.
+• BCA, B.Sc IT, BBA, B.Pharm, B.Sc, BPT, B.Sc Nursing: Direct merit admission on university online application portal.
+• MCA, MBA, M.Tech, M.Pharm: Governed by ACPC Gujarat (through CMAT / PGCET / GPAT / GATE) and University NRI/Management quota.
+
+3.2 University Scholarships & Financial Aid
+• Merit Scholarship: Up to 100% tuition fee waiver for top board/GUJCET/JEE percentile rankers.
+• Late Shri Chhotabhai B. Patel Scholarship: Financial support for economically backward meritorious students.
+• Govt. Scholarships: MYSY (Mukhyamantri Yuva Swavalamban Yojana), Post-Matric SC/ST/OBC scholarships, and Pragati/Saksham AICTE schemes facilitated by the university scholarship desk.
+• Sports Concession: Up to 50% waiver for state/national level athletes and tournament winners.
+
+================================================================================
+4. CAMPUS INFRASTRUCTURE, HOSTELS, TRANSPORT & AMENITIES
+================================================================================
+
+4.1 Campus Overview & Location
+• Location: Changa, Anand District, PIN - 388421, Gujarat, India (Near Nadiad / Anand / Petlad).
+• Campus Size: 120+ Acres lush green, Wi-Fi enabled, fully eco-friendly campus.
+• NAAC Rating: Accredited with **'A+' Grade**.
+
+4.2 Hostels & Accommodation
+• AC and Non-AC Boys and Girls Hostels with 24/7 security, fingerprint biometric attendance, RO drinking water, backup generators, and recreational rooms.
+• Mess Facility: 100% Pure vegetarian Gujarati, North Indian, South Indian, and Continental hygienic food 4 times a day (Breakfast, Lunch, Evening Snacks, Dinner).
+• Hostel Fees: Non-AC (~INR 45,000 - 65,000 / year), AC (~INR 85,000 - 1,10,000 / year) including food and laundry depending on sharing tier.
+
+4.3 University Bus Transportation
+• CHARUSAT operates a dedicated fleet of 60+ GPS-tracked AC and Non-AC luxury buses covering daily routes from:
+  - Ahmedabad (all major pickup spots: Iscon, C.G. Road, Maninagar, Naroda, Vastral)
+  - Vadodara (Fatehgunj, Akota, Alkapuri, Manjalpur, Karelibaug)
+  - Anand & Vidyanagar (frequent 15-minute shuttles)
+  - Nadiad (City & Express Highway points)
+  - Petlad, Borsad, Khambhat, Tarapur.
+
+4.4 Advanced Computing & Lab Facilities
+• Param Shavak High-Performance Computing (HPC) AI Supercomputer.
+• 1000+ Mbps high-speed dedicated leased-line fiber internet across campus.
+• Apple iOS Lab, NVIDIA Deep Learning Studio, Robotics and Drone Automation Lab.
+
+================================================================================
+5. PLACEMENTS, INTERNSHIPS & TOP RECRUITERS
+================================================================================
+• Highest Package Recorded: INR 32.5+ LPA.
+• Average Package (Computer / IT / AI-ML): INR 6.5 - 8.5 LPA.
+• Top Recruiters:
+  - Tech Giants: Amazon, TCS, Infosys, Wipro, Cognizant, Capgemini, L&T Infotech, Tech Mahindra.
+  - Core & Product Companies: Crest Data Systems, Sophos, Evosys, Adani Enterprises, Torrent Power, Motorola Solutions, Meditab, Byju's, Volansys, TatvaSoft, Jeavio.
+• Internships: 6-month mandatory semester-long corporate internships in 8th semester for engineering students.
+• Incubation: CHARUSAT Startup and Innovation Center (SSIP & DST supported) with up to INR 2.5 Lakh seed funding for student ventures.
+
+================================================================================
+6. EXAMS, GRADING SYSTEM & ACADEMIC POLICIES
+================================================================================
+• Grading System: 10-Point Letter Grading Scale (O = 10, A+ = 9, A = 8, B+ = 7, B = 6, C = 5, F = 0).
+• Calculation: Semester Performance Index (SPI) and Cumulative Performance Index (CPI).
+• Attendance Policy: Minimum 75% mandatory attendance in lectures and practical labs to appear for End-Semester Examinations.
+• Annual Festivals:
+  - "SPOURAL": Annual Intra & Inter-University Cultural, Music, Dance & Drama Fest.
+  - "COGNIZANCE": National-Level Technical Symposium & Hackathon.

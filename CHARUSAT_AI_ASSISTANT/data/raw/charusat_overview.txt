@@ -1,0 +1,31 @@
+# CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY (CHARUSAT)
+
+## About University
+CHARUSAT is a premier university located in Changa, Anand district, Gujarat, India. It was accredited with 'A+' Grade by NAAC. The campus is spread across 120+ acres of lush green environment with state-of-the-art infrastructure.
+
+## Institutes & Constituent Colleges
+1. **CSPIT** - Chandubhai S. Patel Institute of Technology (Computer Engineering, IT, AI & ML, Civil, Mechanical, EC, EE)
+2. **DEPSTAR** - Devang Patel Institute of Advance Technology and Research (CSE, IT)
+3. **CMPICA** - Chandaben Mohanbhai Patel Institute of Computer Applications (MCA, BCA, M.Sc IT, B.Sc IT)
+4. **RPCP** - Ramanbhai Patel College of Pharmacy (B.Pharm, M.Pharm, Ph.D.)
+5. **PDPIAS** - P. D. Patel Institute of Applied Sciences (Chemical, Physical, Biological Sciences)
+6. **I2IM** - Indukaka Ipcowala Institute of Management (MBA, BBA)
+7. **MTIN** - Manikaka Topawala Institute of Nursing (B.Sc Nursing, GNM, M.Sc Nursing)
+8. **ARIP** - Ashok & Rita Patel Institute of Physiotherapy (BPT, MPT)
+9. **BDIAS** - B. D. Patel Institute of Allied Sciences (Paramedical, MLT, Radiology, Operation Theatre, Optometry)
+
+## Admissions & Eligibility
+- **B.Tech Programs**: Admission is governed by ACPC (Admission Committee for Professional Courses), Gujarat and through JEE Main / GUJCET scores. Management quota seats are filled based on merit.
+- **BCA / MCA / B.Sc / M.Sc**: Direct merit-based admission on university portal (charusat.ac.in).
+- **Scholarships**: CHARUSAT provides merit-cum-means scholarships, late Shri Chhotabhai B Patel scholarship, and sports/cultural fee concessions.
+
+## Campus Facilities & Hostels
+- Central Library with over 100,000+ volumes, IEEE, Springer, and ScienceDirect access.
+- On-campus AC and Non-AC Hostels for Girls and Boys with high-speed Wi-Fi, mess, and 24/7 security.
+- High-Performance Computing (HPC) Supercomputing Facility (Param Shavak / AI GPU labs).
+- Sports Complex with synthetic tennis courts, cricket ground, gymnasium, and indoor sports arena.
+
+## Placement & Training
+- CHARUSAT Training and Placement Cell (T&P) connects students with top recruiters including TCS, Infosys, Adani, L&T, Evosys, Crest Data Systems, Byju's, and Amazon.
+- Highest package recorded: INR 32+ LPA.
+- Strong support for student entrepreneurship and incubation via CHARUSAT Startup and Innovation Policy (SSIP).

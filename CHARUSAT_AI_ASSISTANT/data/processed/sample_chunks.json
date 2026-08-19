@@ -1,0 +1,38 @@
+[
+  {
+    "chunk_id": "charusat_overview_0",
+    "content": "CHARUSAT is a premier university located in Changa, Anand district, Gujarat, India. It was accredited with 'A+' Grade by NAAC. The campus is spread across 120+ acres of lush green environment with state-of-the-art infrastructure.",
+    "metadata": {
+      "source": "charusat_overview.txt",
+      "category": "About",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "charusat_overview_1",
+    "content": "Institutes include CSPIT (Engineering), DEPSTAR (Advance Tech & CSE/IT/AI-ML), CMPICA (MCA/BCA), RPCP (Pharmacy), PDPIAS (Applied Sciences), I2IM (Management/MBA), MTIN (Nursing), ARIP (Physiotherapy), and BDIAS (Paramedical & Allied Sciences).",
+    "metadata": {
+      "source": "charusat_overview.txt",
+      "category": "Institutes",
+      "chunk_index": 1
+    }
+  },
+  {
+    "chunk_id": "charusat_overview_2",
+    "content": "B.Tech Admissions are conducted via ACPC Gujarat, GUJCET and JEE Main scores. Direct merit applications for BCA, MCA, BBA, MBA, and Sciences are hosted directly on charusat.ac.in. Multiple merit scholarships are available.",
+    "metadata": {
+      "source": "charusat_overview.txt",
+      "category": "Admissions",
+      "chunk_index": 2
+    }
+  },
+  {
+    "chunk_id": "charusat_overview_3",
+    "content": "Placements at CHARUSAT: T&P cell facilitates recruitment from TCS, Infosys, Adani, Crest Data Systems, L&T, and Amazon. Highest salary packages exceed 32 LPA.",
+    "metadata": {
+      "source": "charusat_overview.txt",
+      "category": "Placements",
+      "chunk_index": 3
+    }
+  }
+]

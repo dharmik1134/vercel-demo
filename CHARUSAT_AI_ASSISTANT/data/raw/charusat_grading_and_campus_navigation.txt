@@ -1,0 +1,50 @@
+# CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY (CHARUSAT)
+# ACADEMIC GRADING SYSTEM, CGPA/SGPA RULES & 120-ACRE CAMPUS MAP DIRECTORY
+
+================================================================================
+1. CHARUSAT 10-POINT ACADEMIC GRADING SYSTEM & SGPA/CGPA CALCULATION
+================================================================================
+• Grading Scale:
+  - Grade O (Outstanding): 90% to 100% | Grade Point = 10.0
+  - Grade A+ (Excellent): 80% to 89% | Grade Point = 9.0
+  - Grade A (Very Good): 70% to 79% | Grade Point = 8.0
+  - Grade B+ (Good): 60% to 69% | Grade Point = 7.0
+  - Grade B (Above Average): 50% to 59% | Grade Point = 6.0
+  - Grade C (Average): 45% to 49% | Grade Point = 5.0
+  - Grade P (Pass): 40% to 44% | Grade Point = 4.0
+  - Grade F (Fail): Below 40% | Grade Point = 0.0 (Backlog / Remedial required)
+
+• Formula for SGPA (Semester Grade Point Average):
+  SGPA = Sum(Course_Credits * Grade_Points) / Sum(Course_Credits)
+
+• Formula for CGPA (Cumulative Grade Point Average):
+  CGPA = Sum(All_Semester_Credits * All_Semester_SGPA) / Total_Credits_Attempted
+
+• Percentage Equivalent Formula:
+  Percentage (%) = (CGPA - 0.5) * 10 or CGPA * 9.5 (As per university transcript guidelines).
+
+================================================================================
+2. 120-ACRE CAMPUS LOCATIONS & INTERACTIVE MAP DIRECTORY
+================================================================================
+• Main Gate (Gate No. 1 - Changa Highway):
+  - Primary entrance for university buses, cars, and visitors. Welcomes visitors with the iconic CHARUSAT fountain and administrative lawns.
+• Central Administrative Block & University Office:
+  - President, Provost, Registrar, Examination Controller, HR, and Accounts Section.
+• CSPIT Engineering Complex (Blocks 1 to 4):
+  - Houses 7 departments: CE, IT, AI & ML, EC, EE, Mechanical, and Civil Engineering labs, NVIDIA GPU server rooms, and workshops.
+• DEPSTAR Building (Devang Patel Institute of Advance Technology & Research):
+  - CSE and IT departments, Apple Mac Swift Lab, Cloud Computing Centers.
+• Central Library (Dr. K. C. Patel Resource Centre):
+  - 105,000+ books, IEEE digital resource lab, 24/7 reading hall during exam weeks.
+• CMPICA Building:
+  - Smt. Chandaben Mohanbhai Patel Institute of Computer Applications (BCA, MCA).
+• RPCP (Ramanbhai Patel College of Pharmacy):
+  - Pharmacy research labs, animal cell culture, medicinal chemistry.
+• I2IM (Indukaka Ipcowala Institute of Management):
+  - BBA, MBA, financial simulation lab, case-study amphitheater.
+• Central Canteen (Shreeji Canteen) & Sports Complex:
+  - Cricket ground, athletic track, basketball/volleyball courts, indoor badminton & gym.
+• CHARUSAT Hospital (CHRF) & Medical Colleges Gate (Gate No. 2):
+  - MTIN (Nursing), ARIP (Physiotherapy), BDIAS (Paramedical & Allied Sciences), 24/7 emergency hospital.
+• Hostels Zone:
+  - Boys Hostels & Girls Hostels with 24/7 security, Wi-Fi, and mess dining halls.

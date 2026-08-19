@@ -1,0 +1,69 @@
+# CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY (CHARUSAT)
+# COMPREHENSIVE GUIDE TO STUDENT LIFE, CLUBS, E-CELL, HACKATHONS, FESTS & CONCERTS
+
+================================================================================
+1. TECHFEST: COGNIZANCE (CZ / COGNIZANCEX)
+================================================================================
+• Overview: COGNIZANCE (famously known across Gujarat as "CZ") is the flagship annual National Technical Festival of CHARUSAT (organized jointly by CSPIT, DEPSTAR, and university faculties). It attracts thousands of tech enthusiasts and engineering students from across India.
+• Key Domains & Major Events in CZ:
+  1. Coding & Artificial Intelligence:
+     - Code Pie: High-speed competitive programming and algorithmic problem-solving.
+     - HackQuest Arena: Capture The Flag (CTF) cybersecurity challenge and ethical hacking.
+     - AIdeaForge (Build the Future): Generative AI, LLM, and computer vision solution sprint.
+     - UI/UX Design Jam: Fast-paced Figma UI/UX prototyping and user experience design.
+     - Hacking & Hardening: Web application security, penetration testing, and WAF configuration.
+  2. Robotics & Automation:
+     - SumoBots: Autonomous and RC heavy-metal robotic sumo wrestling in custom arenas.
+     - ROBO Race: High-speed obstacle track racing for RC bots.
+     - RoboSoccer League: 2v2 and 3v3 robotic football matches with wireless control.
+     - Drone Race: First-person view (FPV) high-speed drone aerial obstacle racing.
+     - Bot Roast + AI Repair Challenge: Hardware troubleshooting, sensor debugging, and AI bot diagnostics.
+  3. Gaming & E-Sports Championship:
+     - Official Valorant, BGMI / PUBG Mobile, and Free Fire university tournaments with live streaming.
+     - Logic Carnival & Shock & Block: Technical reflex and circuit wiring challenges.
+
+================================================================================
+2. HACKATHONS HOSTED & RUN AT CHARUSAT
+================================================================================
+• DUHacks / Pythakon: 36-hour non-stop national hackathon hosting 500+ developers building Web3, AI, and IoT solutions with industry mentors.
+• Odoo x CHARUSAT Hackathon: Industry-backed hackathon focused on enterprise ERP workflows, Python backend, and business automation.
+• n8n Community Automation Hackathon: Workflow automation, AI agent orchestration, and API pipelines.
+• Smart India Hackathon (SIH): CHARUSAT is a major nodal and institutional center for internal hackathons selecting teams that regularly win national prizes at SIH.
+• MSME Idea Hackathon & SSIP Hackathons: Government-funded prototype challenges offering ₹2.5 Lakh to ₹10 Lakh grants for winning student inventions.
+
+================================================================================
+3. ENTREPRENEURSHIP CELL (E-CELL) & CSIC / EDIC
+================================================================================
+• Charusat Startup & Innovation Centre (CSIC) / EDIC:
+  - Faculty Head & Coordinator: Dr. Jaimin Undavia (Associate Professor & Innovation Coordinator) along with university incubation officers.
+  - Objective: Translating student ideas into scalable startups under Gujarat's Student Startup and Innovation Policy (SSIP 2.0).
+  - Facilities Provided: Dedicated incubation center, co-working space, high-speed workstations, legal & IPR assistance, patent filing funding, and seed funding support.
+• CHARUSAT Student E-Cell:
+  - Student-driven body organizing annual E-Summits, Startup Pitch Competitions (Shark Tank CHARUSAT edition), Venture Capitalist interactions, and Founder Fireside Chats.
+
+================================================================================
+4. TECHNICAL CHAPTERS & STUDENT CLUBS DIRECTORY (INSTITUTE & UNIVERSITY LEVEL)
+================================================================================
+IMPORTANT NOTE ON CLUB ARCHITECTURE:
+At CHARUSAT, student technical chapters and clubs operate centrally at the Institute (CSPIT / DEPSTAR / CMPICA) and University level. Individual departments (such as AI & ML, CE, IT, EC, EE, ME, Civil) do NOT maintain separate isolated mini-clubs. Instead, students and faculty coordinators from all engineering departments (including AI & ML) actively collaborate, lead, and organize activities through these official recognized chapters:
+
+• IEEE Student Branch (CHARUSAT IEEE): Active student chapter organizing IEEE conferences, national workshops, and Women in Engineering (WiE) initiatives.
+• ACM Student Chapter: Association for Computing Machinery student body focusing on theoretical computing, algorithm seminars, and coding bootcamps.
+• CSI Student Chapter (Computer Society of India): Organizes software development, app building, and database design workshops.
+• Google Developer Student Clubs (GDSC CHARUSAT): Student community for Google technologies (Android, Flutter, Firebase, Google Cloud, TensorFlow).
+• AWS Cloud Club & Microsoft Learn Student Ambassadors (MLSA): Cloud computing certifications, AWS credits, and Azure workshops.
+• Charusat Robotics & IoT Club: Hands-on robotics, ROS, Arduino, ESP32, and Raspberry Pi maker lab.
+• Astronomy Club & Stargazing Unit: Stargazing telescope nights, astronomical observation sessions, and space tech workshops affiliated with the Space Center (CSRTC).
+• Competitive Programming Club: Weekly CodeChef, LeetCode, and HackerRank contests.
+• Rotaract Club of CHARUSAT / NSS / NCC: Social outreach, blood donation drives, tree plantation, disaster relief, and village digital literacy camps.
+
+================================================================================
+5. CULTURAL MEGA FESTS, SPORTS & CONCERTS (PRO-NIGHTS)
+================================================================================
+• SPOURAL (The Annual Mega Sports & Cultural Fest):
+  - Nature: The biggest festival of CHARUSAT taking place every year in Mid-February.
+  - Sports Arena: Inter-institute tournaments in Football, Cricket, Basketball, Volleyball, Kabaddi, Badminton, Table Tennis, and Athletics.
+  - Cultural Stage: Battle of Bands, Group Dance, Solo Singing, Skit & Drama, Fashion Show, and Fine Arts.
+  - Celebrity Pro-Nights & Concerts: High-octane live musical concerts featuring Bollywood singers, Gujarati film celebrities, renowned music directors, and EDM DJ nights with stadium sound and lighting on the campus sports ground.
+• VRUND (The Grand Navratri Mahotsav):
+  - The iconic university Garba night bringing together over 10,000+ students, alumni, and faculty in traditional Chaniya Choli and Kurta attire with professional live orchestras.

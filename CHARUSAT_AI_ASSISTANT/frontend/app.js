@@ -2187,36 +2187,20 @@ document.addEventListener("DOMContentLoaded", () => {
                             0.05
                         );
                     } else {
-                        if (cleanQuery.trim().split(/\s+/).length <= 3 && !qLower.includes("charusat") && !qLower.includes("college") && !qLower.includes("campus")) {
-                            appendMessage(
-                                "bot",
-                                `### 🏛️ CHARUSAT Virtual Intelligence\n\n` +
-                                `Hu **'${cleanQuery}'** vishe CHARUSAT na official records ma direct match shodhi shakyo nathi.\n\n` +
-                                `**Tame niche mathi koi pan vishay vishe puchi shako cho:**\n` +
-                                `• **Institutes & HODs**: CSPIT, DEPSTAR, CMPICA, BDIAS, AI & ML Department Head (Dr. Nirav Bhatt)\n` +
-                                `• **Admissions & Cutoffs**: ACPC Gujarat, GUJCET merit, Seats & Eligibility\n` +
-                                `• **Fees & Hostels**: Tuition fee status, AC/Non-AC Hostels, 4-Time Mess Menu, 60+ Bus Fleet\n` +
-                                `• **Campus & Library**: Dr. K. C. Patel Central Library books, Canteens (Shreeji, Tea Post), Wi-Fi Portal\n\n` +
-                                `*Krupaya tamaro prashna thodo spashta pucho.*`,
-                                [{ metadata: { source: "CHARUSAT Assistant Guidance" }, score: 0.95 }],
-                                0.05
-                            );
-                        } else {
-                            appendMessage(
-                                "bot",
-                                `### 🏛️ CHARUSAT Virtual Intelligence\n\n` +
-                                `Charotar University of Science and Technology (CHARUSAT) is a NAAC 'A+' Grade premier university in Changa, Gujarat.\n\n` +
-                                `**Key University Facts:**\n` +
-                                `• **Campus:** 120-Acre green, Wi-Fi enabled campus with 9 constituent institutes.\n` +
-                                `• **Constituent Institutes:** CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS.\n` +
-                                `• **Central Library:** 105,000+ print volumes, IEEE/Springer e-journals, and 24/7 reading halls.\n` +
-                                `• **Placements:** 32.5 LPA Highest package, 350+ top recruiters.\n` +
-                                `• **Campus Amenities:** 60+ GPS-tracked AC buses, AC/Non-AC hostels, sports grounds, and 24/7 multispecialty hospital.\n\n` +
-                                `*Tame mane admissions, departments, syllabus, hostel, ya library books vishe kai pan puchhi shako cho.*`,
-                                [{ metadata: { source: "CHARUSAT University Encyclopedia" }, score: 0.95 }],
-                                0.05
-                            );
-                        }
+                        appendMessage(
+                            "bot",
+                            `### 🏛️ CHARUSAT Virtual Intelligence\n\n` +
+                            `Charotar University of Science and Technology (CHARUSAT) is a NAAC 'A+' Grade premier university in Changa, Gujarat.\n\n` +
+                            `**Key University Facts:**\n` +
+                            `• **Campus:** 120-Acre green, Wi-Fi enabled campus with 9 constituent institutes.\n` +
+                            `• **Constituent Institutes:** CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS.\n` +
+                            `• **Central Library:** 105,000+ print volumes, IEEE/Springer e-journals, and 24/7 reading halls.\n` +
+                            `• **Placements:** 32.5 LPA Highest package, 350+ top recruiters.\n` +
+                            `• **Campus Amenities:** 60+ GPS-tracked AC buses, AC/Non-AC hostels, sports grounds, and 24/7 multispecialty hospital.\n\n` +
+                            `*Tame mane admissions, departments, syllabus, hostel, ya library books vishe kai pan puchhi shako cho.*`,
+                            [{ metadata: { source: "CHARUSAT University Encyclopedia" }, score: 0.95 }],
+                            0.05
+                        );
                     }
                 }
             }
