@@ -24,7 +24,7 @@ class VectorStore:
         self._client = None
         self._collection = None
         self._in_memory_docs: List[Dict[str, Any]] = []
-        self._fallback_file = os.path.join(self.persist_dir, "vector_backup.json")
+        self._fallback_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vector_backup.json")
         self._load_fallback_data()
 
     def _load_fallback_data(self):
@@ -71,20 +71,7 @@ class VectorStore:
         if not documents:
             return
 
-        self._init_chroma()
-        if self._client != "in-memory" and self._collection is not None:
-            try:
-                self._collection.upsert(
-                    documents=documents,
-                    metadatas=metadatas,
-                    embeddings=embeddings,
-                    ids=ids
-                )
-                return
-            except Exception:
-                pass
-
-        # In-memory storage with file backup
+        # In-memory storage with file backup (always synchronized)
         existing_ids = {doc["id"]: idx for idx, doc in enumerate(self._in_memory_docs)}
         for doc, meta, emb, doc_id in zip(documents, metadatas, embeddings, ids):
             entry = {

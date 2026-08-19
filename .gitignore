@@ -20,3 +20,9 @@ ENV/
 
 # Temporary SQLite & Chroma lock files (optional, persistence maintained)
 *.sqlite3-journal
+
+# Vercel Build Artifacts & Logs
+.vercel/
+*.log
+*.zip
+*.tar.gz

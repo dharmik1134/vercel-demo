@@ -32,3 +32,28 @@ INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
 INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
 INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 200 OK
 INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'rag/embeddings.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [74227]
+INFO:     Started server process [75828]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'database/vector_store.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [75828]
+INFO:     Started server process [75855]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'database/vector_store.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [75855]
+INFO:     Started server process [75905]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

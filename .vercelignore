@@ -1,0 +1,39 @@
+# Virtual Environments & Python Bytecode
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+
+# Version Control & IDE Files
+.git/
+.github/
+.idea/
+.vscode/
+
+# Build Artefacts, Logs & Zip Bundles
+*.log
+backend.log
+cloudflared.log
+pinggy.log
+*.zip
+*.tar.gz
+start_presentation.sh
+
+# Documentation & Evaluation Test Suites (Not needed in serverless production)
+evaluation/
+docs/
+render.yaml
+Procfile
+
+# Exclude Local Chroma Native C++ Binaries (uses database/vector_backup.json instead)
+database/chroma_db/
+database/test_chroma/
+database/*.db-journal
+database/*.db-wal
