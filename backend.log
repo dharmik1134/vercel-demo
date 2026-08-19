@@ -1,26 +1,33 @@
 INFO:     Will watch for changes in these directories: ['/Users/neev/Documents/CHARUSAT_AI_ASSISTAN']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [77846] using WatchFiles
-INFO:     Started server process [77848]
+INFO:     Started reloader process [77955] using WatchFiles
+INFO:     Started server process [77957]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 405 Method Not Allowed
-INFO:     103.26.49.54:0 - "HEAD /api/v1/health HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:60955 - "HEAD /style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60957 - "HEAD /app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60959 - "HEAD /logo.png HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /style.css HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /app.js HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /?login=true HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /app.js?v=14.0 HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /style.css HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /manifest.json HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /logo.png HTTP/1.1" 200 OK
 INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /health HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'backend/main.py'. Reloading...
+INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /app.js HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET / HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /logo.jpg HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /style.css HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /logo.png HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'api/index.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [77848]
-INFO:     Started server process [77869]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'backend/routes.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [77869]
-INFO:     Started server process [77877]
+INFO:     Finished server process [77957]
+INFO:     Started server process [78057]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
