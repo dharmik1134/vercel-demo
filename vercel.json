@@ -11,11 +11,11 @@
     },
     {
       "source": "/egovernance",
-      "destination": "/frontend/egovernance.html"
+      "destination": "/egovernance.html"
     },
     {
       "source": "/egov",
-      "destination": "/frontend/egovernance.html"
+      "destination": "/egovernance.html"
     }
   ]
 }

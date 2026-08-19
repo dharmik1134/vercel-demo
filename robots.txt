@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Direct indexing rules for search engine crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Sitemap Location
+Sitemap: https://charusat-ai-official.loca.lt/sitemap.xml
+Sitemap: https://charusat-ai-official.loca.lt/charusatAIassistant/sitemap.xml

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHARUSAT e-Governance Portal | Charotar University</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #004B87;
+            --primary-dark: #003366;
+            --accent: #0284c7;
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top University Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            padding: 12px 24px;
+            box-shadow: 0 4px 20px rgba(0, 75, 135, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-text h1 {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+        }
+
+        .brand-text p {
+            font-size: 11.5px;
+            color: #bae6fd;
+            font-weight: 500;
+        }
+
+        .user-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-badge {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            background: #38bdf8;
+            color: #003366;
+            font-weight: 700;
+            font-size: 13px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .user-id {
+            font-size: 11px;
+            color: #e0f2fe;
+        }
+
+        /* Integration Banner */
+        .demo-banner {
+            background: linear-gradient(90deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .demo-banner .badge {
+            background: #ffffff;
+            color: #0369a1;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .copy-embed-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-embed-btn:hover {
+            background: #ffffff;
+            color: #0369a1;
+        }
+
+        /* Main Dashboard Layout */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 24px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 24px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 13.5px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .sidebar-item.active a,
+        .sidebar-item a:hover {
+            background: #e0f2fe;
+            color: var(--primary);
+        }
+
+        /* Content Area */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Metric Cards Row */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .metric-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 10px 0 4px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .metric-sub {
+            font-size: 12px;
+            color: var(--success);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Panels Grid */
+        .panels-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 22px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Table */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .styled-table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: #f8fafc;
+            color: var(--text-muted);
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .styled-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .badge-status {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge-status.good {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-status.warn {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        /* Schedule list */
+        .schedule-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .schedule-item {
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .schedule-time {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .schedule-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .schedule-loc {
+            font-size: 11.5px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            .panels-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <div class="brand-section">
+                <div class="brand-logo">
+                    <img src="logo.png" alt="CHARUSAT Crest">
+                </div>
+                <div class="brand-text">
+                    <h1>CHARUSAT e-Governance Portal</h1>
+                    <p>Charotar University of Science and Technology, Changa</p>
+                </div>
+            </div>
+
+            <div class="user-nav">
+                <div class="user-badge">
+                    <div class="user-avatar">NP</div>
+                    <div class="user-info">
+                        <div class="user-name">Neev Patel</div>
+                        <div class="user-id">25AIML055 | CSPIT (AI & ML)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Embed Banner -->
+    <div class="demo-banner">
+        <span class="badge">Live AI Widget Demo</span>
+        <span>👉 Look at the bottom-right corner! The CHARUSAT AI Assistant is embedded directly into this e-Governance Portal.</span>
+        <button class="copy-embed-btn" onclick="copyEmbedCode()">📋 Copy Embed Code</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="sidebar-item active"><a href="#">📊 Student Dashboard</a></li>
+                <li class="sidebar-item"><a href="#">📈 Attendance Tracker</a></li>
+                <li class="sidebar-item"><a href="#">📅 Academic Calendar</a></li>
+                <li class="sidebar-item"><a href="#">📝 Exam & Results</a></li>
+                <li class="sidebar-item"><a href="#">💳 Fees & Receipts</a></li>
+                <li class="sidebar-item"><a href="#">📚 Library Resources</a></li>
+                <li class="sidebar-item"><a href="#">🏢 Hostel Portal</a></li>
+                <li class="sidebar-item"><a href="#">⚙️ Profile Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Dashboard -->
+        <main class="main-content">
+            <!-- Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span>Overall Attendance</span>
+                        <span>📊</span>
+                    </div>
+                    <div class="metric-value">88.4%</div>
+                    <div class="metric-sub">✅ Above 80% Requirement</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span>Cumulative CGPA</span>
+                        <span>⭐</span>
+                    </div>
+                    <div class="metric-value">8.92</div>
+                    <div class="metric-sub">🏆 First Class with Distinction</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span>Current Term</span>
+                        <span>🏛️</span>
+                    </div>
+                    <div class="metric-value">Sem 3</div>
+                    <div class="metric-sub">Academic Year 2026-27</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span>Fee Status</span>
+                        <span>💳</span>
+                    </div>
+                    <div class="metric-value">Paid</div>
+                    <div class="metric-sub">✅ No Pending Dues</div>
+                </div>
+            </div>
+
+            <!-- Panels -->
+            <div class="panels-grid">
+                <!-- Subject-wise Attendance -->
+                <div class="panel">
+                    <div class="panel-title">
+                        <span>Course Enrollment & Attendance Summary</span>
+                        <span style="font-size:12px; font-weight:600; color:#0284c7;">Sem 3 | Odd Term</span>
+                    </div>
+
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Name</th>
+                                <th>Faculty</th>
+                                <th>Attendance</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>AI301</strong></td>
+                                <td>Deep Learning & Neural Networks</td>
+                                <td>Dr. Nirav Bhatt</td>
+                                <td>92.5%</td>
+                                <td><span class="badge-status good">Eligible</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>CS304</strong></td>
+                                <td>Design & Analysis of Algorithms</td>
+                                <td>Dr. Parth Shah</td>
+                                <td>86.0%</td>
+                                <td><span class="badge-status good">Eligible</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>IT308</strong></td>
+                                <td>Database Management Systems</td>
+                                <td>Dr. Nilay Vaidya</td>
+                                <td>84.2%</td>
+                                <td><span class="badge-status good">Eligible</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>AI309</strong></td>
+                                <td>Computer Vision & NLP Studio</td>
+                                <td>Prof. Ritesh Patel</td>
+                                <td>91.0%</td>
+                                <td><span class="badge-status good">Eligible</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>HS102</strong></td>
+                                <td>Critical Thinking & Ethics</td>
+                                <td>Prof. Reshma Sable</td>
+                                <td>88.0%</td>
+                                <td><span class="badge-status good">Eligible</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Today's Schedule -->
+                <div class="panel">
+                    <div class="panel-title">
+                        <span>Today's Schedule</span>
+                        <span style="font-size:12px; color:#64748b;">CSPIT Block 3</span>
+                    </div>
+
+                    <ul class="schedule-list">
+                        <li class="schedule-item">
+                            <span class="schedule-time">09:00 AM - 11:00 AM</span>
+                            <span class="schedule-name">Deep Learning Studio (NVIDIA Lab)</span>
+                            <span class="schedule-loc">📍 CSPIT Block 3, Lab 402</span>
+                        </li>
+                        <li class="schedule-item">
+                            <span class="schedule-time">11:15 AM - 12:15 PM</span>
+                            <span class="schedule-name">Algorithms & Complexity Theory</span>
+                            <span class="schedule-loc">📍 Classroom 201</span>
+                        </li>
+                        <li class="schedule-item">
+                            <span class="schedule-time">01:15 PM - 03:15 PM</span>
+                            <span class="schedule-name">NLP & Transformers Workshop</span>
+                            <span class="schedule-loc">📍 High Performance Computing Center</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script to copy embed code -->
+    <script>
+        function copyEmbedCode() {
+            const embedTag = `<script src="${window.location.origin}/widget.js" defer><\/script>`;
+            navigator.clipboard.writeText(embedTag).then(() => {
+                alert("Copied embed code to clipboard!\n\n" + embedTag + "\n\nYou can paste this <script> tag into any HTML/e-Governance website!");
+            }).catch(() => {
+                prompt("Copy this embed code:", embedTag);
+            });
+        }
+    </script>
+
+    <!-- EMBEDDABLE CHARUSAT AI CHATBOT WIDGET -->
+    <script src="widget.js" defer></script>
+
+</body>
+</html>
