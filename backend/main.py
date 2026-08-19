@@ -125,9 +125,9 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 app.include_router(api_router, prefix="/api")
 
 # ------------------------------------------------------------------------------
-# 5. Static Files Mounting (Serves CSS, JS, Images, and HTML)
+# 5. Static Files Mounting (Local & Development)
 # ------------------------------------------------------------------------------
-if os.path.exists(frontend_dir):
+if os.path.exists(frontend_dir) and not os.environ.get("VERCEL"):
     app.mount("/charusatAIassistant", StaticFiles(directory=frontend_dir, html=True), name="charusat_assistant")
     app.mount("/app", StaticFiles(directory=frontend_dir, html=True), name="frontend_app")
     app.mount("/frontend", StaticFiles(directory=frontend_dir, html=True), name="frontend_files")
