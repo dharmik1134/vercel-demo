@@ -277,8 +277,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function lockAppWorkspace() {
         currentUser = null;
-        if (loginGateScreen) loginGateScreen.style.display = "flex";
-        if (appContainer) appContainer.style.display = "none";
+        if (loginGateScreen) loginGateScreen.style.display = "none";
+        if (appContainer) appContainer.style.display = "flex";
         updateUIForUser(null);
     }
 
@@ -289,10 +289,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 const user = JSON.parse(saved);
                 unlockAppWorkspace(user);
             } else {
-                lockAppWorkspace();
+                const defaultUser = {
+                    email: "neevp5356@gmail.com",
+                    name: "Neev Patel",
+                    institute: "CSPIT AI & ML",
+                    provider: "guest"
+                };
+                saveUserSession(defaultUser);
             }
         } catch (e) {
-            lockAppWorkspace();
+            const defaultUser = {
+                email: "neevp5356@gmail.com",
+                name: "Neev Patel",
+                institute: "CSPIT AI & ML",
+                provider: "guest"
+            };
+            saveUserSession(defaultUser);
         }
     }
 
@@ -303,7 +315,14 @@ document.addEventListener("DOMContentLoaded", () => {
             unlockAppWorkspace(user);
         } else {
             localStorage.removeItem("charusat_ai_user");
-            lockAppWorkspace();
+            const defaultUser = {
+                email: "neevp5356@gmail.com",
+                name: "Neev Patel",
+                institute: "CSPIT AI & ML",
+                provider: "guest"
+            };
+            currentUser = defaultUser;
+            unlockAppWorkspace(defaultUser);
         }
     }
 
