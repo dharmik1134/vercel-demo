@@ -16,10 +16,6 @@
     {
       "source": "/egov",
       "destination": "/frontend/egovernance.html"
-    },
-    {
-      "source": "/",
-      "destination": "/frontend/index.html"
     }
   ]
 }
