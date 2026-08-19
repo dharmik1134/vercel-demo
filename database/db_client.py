@@ -66,6 +66,12 @@ class DBClient:
             except Exception:
                 pass
 
+            try:
+                cursor.execute("ALTER TABLE query_logs ADD COLUMN intent TEXT DEFAULT 'query'")
+                conn.commit()
+            except Exception:
+                pass
+
     def _hash_password(self, password: str, salt: Optional[str] = None) -> tuple[str, str]:
         """Hash password securely using SHA-256 with random salt."""
         if not salt:
