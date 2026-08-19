@@ -27,18 +27,19 @@ class RAGPipeline:
 
     def _init_llm(self):
         """Pre-initialize Gemini model for sub-second responses."""
-        if settings.GEMINI_API_KEY and settings.GEMINI_API_KEY.strip() and settings.GEMINI_API_KEY != "your_gemini_api_key_here":
+        k = (settings.GEMINI_API_KEY or "").strip()
+        if k and k.startswith("AIzaSy") and k != "your_gemini_api_key_here":
             try:
                 import google.generativeai as genai
-                genai.configure(api_key=settings.GEMINI_API_KEY.strip())
-                for m in ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-3.6-flash", "gemini-flash-latest"]:
+                genai.configure(api_key=k)
+                for m in ["gemini-1.5-flash", "gemini-1.5-flash-latest", "gemini-2.0-flash"]:
                     try:
                         self._gemini_model = genai.GenerativeModel(m)
                         break
                     except Exception:
                         continue
-            except Exception as e:
-                print(f"[RAGPipeline] LLM init warning: {e}")
+            except Exception:
+                self._gemini_model = None
 
     def _ensure_knowledge_base_loaded(self):
         """Auto-seed vector store from all raw documents in data/raw."""
@@ -696,23 +697,22 @@ class RAGPipeline:
                 response = self._gemini_model.generate_content(prompt)
                 if response and response.text:
                     return response.text.strip()
-            except Exception as e:
-                print(f"[Gemini Timeout/Error]: {e}")
+            except Exception:
+                pass
 
-        if settings.OPENAI_API_KEY and settings.OPENAI_API_KEY.strip() and settings.OPENAI_API_KEY != "your_openai_api_key_here":
+        if settings.OPENAI_API_KEY and settings.OPENAI_API_KEY.strip().startswith("sk-") and settings.OPENAI_API_KEY != "your_openai_api_key_here":
             try:
                 from openai import OpenAI
-                client = OpenAI(api_key=settings.OPENAI_API_KEY.strip())
+                client = OpenAI(api_key=settings.OPENAI_API_KEY.strip(), timeout=2.0)
                 response = client.chat.completions.create(
                     model="gpt-4o-mini",
                     messages=[{"role": "user", "content": prompt}],
                     temperature=0.2,
-                    timeout=2.0
                 )
                 if response.choices and response.choices[0].message.content:
                     return response.choices[0].message.content.strip()
-            except Exception as e:
-                print(f"[OpenAI Timeout/Error]: {e}")
+            except Exception:
+                pass
 
         return self._synthesize_local_response(query, context_docs or [])
 

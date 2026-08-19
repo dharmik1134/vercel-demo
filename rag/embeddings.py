@@ -16,8 +16,10 @@ class EmbeddingManager:
     def __init__(self, model_name: str = "text-embedding-004"):
         self.model_name = model_name
         self.dimension = 384
-        self._gemini_available = bool(settings.GEMINI_API_KEY and settings.GEMINI_API_KEY.strip() and settings.GEMINI_API_KEY != "your_gemini_api_key_here")
-        self._openai_available = bool(settings.OPENAI_API_KEY and settings.OPENAI_API_KEY.strip() and settings.OPENAI_API_KEY != "your_openai_api_key_here")
+        k_gemini = (settings.GEMINI_API_KEY or "").strip()
+        k_openai = (settings.OPENAI_API_KEY or "").strip()
+        self._gemini_available = bool(k_gemini.startswith("AIzaSy") and k_gemini != "your_gemini_api_key_here")
+        self._openai_available = bool(k_openai.startswith("sk-") and k_openai != "your_openai_api_key_here")
 
     def get_embedding(self, text: str) -> List[float]:
         """Generate embedding vector for a single query/text."""
