@@ -1,7 +1,7 @@
 INFO:     Will watch for changes in these directories: ['/Users/neev/Documents/CHARUSAT_AI_ASSISTAN']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [73417] using WatchFiles
-INFO:     Started server process [73420]
+INFO:     Started reloader process [74225] using WatchFiles
+INFO:     Started server process [74227]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 /Users/neev/Documents/CHARUSAT_AI_ASSISTAN/rag/pipeline.py:32: FutureWarning: 
@@ -13,82 +13,22 @@ See README for more details:
 https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
 
   import google.generativeai as genai
-INFO:     127.0.0.1:57830 - "GET /api/v1/health HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'database/db_client.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [73420]
-INFO:     Started server process [73455]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-/Users/neev/Documents/CHARUSAT_AI_ASSISTAN/rag/pipeline.py:32: FutureWarning: 
-
-All support for the `google.generativeai` package has ended. It will no longer be receiving 
-updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
-See README for more details:
-
-https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
-
-  import google.generativeai as genai
-INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "HEAD /egovernance HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'api/index.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [73455]
-INFO:     Started server process [73693]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'database/db_client.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [73693]
-INFO:     Started server process [73713]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-/Users/neev/Documents/CHARUSAT_AI_ASSISTAN/rag/pipeline.py:32: FutureWarning: 
-
-All support for the `google.generativeai` package has ended. It will no longer be receiving 
-updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
-See README for more details:
-
-https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
-
-  import google.generativeai as genai
-INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET / HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /app.js?v=14.0 HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /style.css HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /manifest.json HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /logo.png HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /index.html HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /logo.jpg HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /app.js HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58678 - "GET / HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58678 - "GET /manifest.json HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58680 - "GET /app.js?v=14.0 HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58679 - "GET /style.css HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58678 - "GET /logo.png HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58680 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58681 - "GET /egovernance HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58681 - "GET /widget.js HTTP/1.1" 200 OK
-INFO:     192.168.1.38:58685 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "HEAD /egovernance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58777 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58781 - "POST /api/v1/chat HTTP/1.1" 200 OK
 INFO:     103.26.49.54:0 - "GET /?login=true HTTP/1.1" 200 OK
 INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
 INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'rag/pipeline.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [73713]
-INFO:     Started server process [74141]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
+INFO:     103.26.49.54:0 - "GET /?login=true HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /app.js?v=14.0 HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /logo.png HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /logo.png HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /style.css HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /?login=true HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /app.js?v=14.0 HTTP/1.1" 304 Not Modified
+INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK

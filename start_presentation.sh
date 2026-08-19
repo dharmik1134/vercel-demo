@@ -33,13 +33,23 @@ else
     sleep 2
 fi
 
-# 3. Start Pinggy High-Speed HTTPS Tunnel (No ISP blocks in India, zero Cloudflare Error 1033)
+# 3. Start Pinggy High-Speed HTTPS Tunnel with persistent auto-reconnect
 echo "🌐 Starting Direct Public HTTPS Tunnel (Pinggy)..."
-ssh -p 443 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 -R0:localhost:8000 a.pinggy.io > pinggy.log 2>&1 &
+(
+    while true; do
+        ssh -p 443 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 -R0:localhost:8000 a.pinggy.io > pinggy.log 2>&1
+        sleep 2
+    done
+) &
 PINGGY_PID=$!
 
 # 4. Start Cloudflare Tunnel as backup
-cloudflared tunnel --url http://localhost:8000 > cloudflared.log 2>&1 &
+(
+    while true; do
+        cloudflared tunnel --url http://localhost:8000 > cloudflared.log 2>&1
+        sleep 2
+    done
+) &
 CLOUDFLARE_PID=$!
 
 echo "⏳ Establishing secure HTTPS connections..."
