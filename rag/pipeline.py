@@ -793,10 +793,13 @@ class RAGPipeline:
     def check_out_of_scope_guardrails(self, query: str) -> Optional[str]:
         """
         STRICT CHARUSAT-ONLY DOMAIN GUARDRAILS:
-        If user asks about other colleges/universities (e.g. Nirma, DAIICT, Parul, GTU, IIT, MSU, DDU, etc.),
-        the AI strictly refuses and clarifies its exclusive CHARUSAT scope.
+        1. Checks for external colleges/universities (Nirma, DAIICT, Parul, GTU, IIT, etc.)
+        2. Checks for general out-of-domain topics (iPhones/gadget prices, recipes/cooking, Bollywood/movies, world politics, cricket scores, crypto, etc.)
+        3. Strictly refuses and redirects user back to CHARUSAT University domains.
         """
-        q_lower = query.lower()
+        q_lower = query.lower().strip()
+
+        # 1. Other Colleges & Universities
         other_colleges = [
             "nirma", "daiict", "daii ct", "ddu", "dharmsinh", "msu", "ms university",
             "parul", "marwadi", "bvm", "birla vishvakarma", "pdeu", "pdpu", "pandit deendayal",
@@ -808,18 +811,32 @@ class RAGPipeline:
             "gec gandhinagar", "gec modasa", "vgec", "mit wpu", "symbiosis", "nmims"
         ]
 
+        # 2. General Non-University / Out-of-Domain topics
+        out_of_domain_patterns = [
+            # Gadgets & Consumer Devices
+            r'\b(iphone|ipad|macbook|samsung galaxy|oneplus|realme|xiaomi|oppo|vivo|smartwatch|airpods|rtx \d+|gpu price|phone price|mobile price)\b',
+            # Cooking & Food Recipes
+            r'\b(cook food|how to cook|cooking recipe|how to bake|recipe of|recipe for|bake cake|cook biryani|make burger|make pizza|how to make)\b',
+            # Movies & Celebrity Trivia
+            r'\b(bollywood|hollywood|movie download|movie review|box office|salman khan|shah rukh|shahrukh|actor|actress|netflix series|ipl score|cricket match|live score)\b',
+            # World Politics & Non-academic
+            r'\b(narendra modi|donald trump|joe biden|rahul gandhi|prime minister of|president of|capital of france|capital of usa|weather in|crypto price|bitcoin|stock market)\b',
+        ]
+
         has_other_college = any(re.search(rf'\b{re.escape(c)}\b', q_lower) for c in other_colleges)
-        if has_other_college:
-            is_gujlish = any(w in q_lower.split() for w in ["che", "ketli", "kai", "kaya", "koni", "mate", "nathi", "aave", "badha", "aap", "eemni", "nii", "kevi", "rite", "ma", "nu", "ni", "no", "vishe"])
+        has_out_of_domain = any(re.search(pat, q_lower) for pat in out_of_domain_patterns)
+
+        if has_other_college or has_out_of_domain:
+            is_gujlish = any(w in q_lower.split() for w in ["che", "ketli", "kai", "kaya", "koni", "mate", "nathi", "aave", "badha", "aap", "eemni", "nii", "kevi", "rite", "ma", "nu", "ni", "no", "vishe", "bhai", "ala", "su", "shu"])
             has_guj_script = bool(re.search(r'[\u0A80-\u0AFF]', query))
-            is_hinglish = any(w in q_lower.split() for w in ["hai", "kya", "kaun", "kitni", "kaise", "batao", "hoga", "bataiye", "aur", "me", "mein"])
+            is_hinglish = any(w in q_lower.split() for w in ["hai", "kya", "kaun", "kitni", "kaise", "batao", "hoga", "bataiye", "aur", "me", "mein", "bhai"])
             has_hin_script = bool(re.search(r'[\u0900-\u097F]', query))
 
             if is_gujlish:
                 return (
                     "### 🏛️ CHARUSAT Virtual Intelligence\n\n"
                     "Hu fakt **Charotar University of Science and Technology (CHARUSAT)** no dedicated official AI Assistant chu.\n\n"
-                    "⚠️ **Hu biji koi external colleges athva universities vishe mahiti aapi shakto nathi.**\n\n"
+                    "⚠️ **Aa query CHARUSAT na academic / campus domain ni bahaar ni che, etle hu eno javab aapi shakto nathi.**\n\n"
                     "Tame mane **CHARUSAT Campus** na vishe kai pan puchhi shako cho, jem ke:\n"
                     "• **Constituent Institutes**: CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS\n"
                     "• **Admissions & Cutoffs**: ACPC Gujarat, GUJCET, JEE Main merit\n"
@@ -830,21 +847,21 @@ class RAGPipeline:
                 return (
                     "### 🏛️ ચારુસેટ વર્ચ્યુઅલ ઇન્ટેલિજન્સ\n\n"
                     "હું માત્ર **ચારુતર યુનિવર્સિટી ઓફ સાયન્સ એન્ડ ટેકનોલોજી (CHARUSAT)** નો સત્તાવાર AI સહાયક છું.\n\n"
-                    "⚠️ **હું અન્ય કોઈ કોલેજ કે યુનિવર્સિટી વિશે માહિતી આપી શકતો નથી.**\n\n"
-                    "તમે મને **ચારુસેટ (CHARUSAT)** ના વિભાગો (CSPIT, DEPSTAR, CMPICA વગેરે), એડમિશન, ફી, સિલેબસ, લાયબ્રેરી કે હોસ્ટેલ વિશે પૂછી શકો છો."
+                    "⚠️ **આ પ્રશ્ન ચારુસેટ કેમ્પસ / એકેડેમિક ડોમેનની બહારનો છે, તેથી હું તેનો જવાબ આપી શકતો નથી.**\n\n"
+                    "તમે મને **ચારુસેટ (CHARUSAT)** ના વિભાગો (CSPIT, DEPSTAR, CMPICA, BDIAS વગેરે), એડમિશન, ફી, સિલેબસ, લાયબ્રેરી કે હોસ્ટેલ વિશે પૂછી શકો છો."
                 )
             elif is_hinglish or has_hin_script:
                 return (
                     "### 🏛️ CHARUSAT Virtual Intelligence\n\n"
                     "Main sirf **Charotar University of Science and Technology (CHARUSAT)** ka dedicated official AI Assistant hoon.\n\n"
-                    "⚠️ **Main doosri kisi bhi college ya university ke baare mein jaankari nahi de sakta.**\n\n"
-                    "Aap mujhse **CHARUSAT** ke institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM), admissions, syllabus, fees aur campus facilities ke baare mein pooch sakte hain."
+                    "⚠️ **Yeh sawaal CHARUSAT campus ya academic domain se bahar ka hai, isliye main iska uttar nahi de sakta.**\n\n"
+                    "Aap mujhse **CHARUSAT** ke institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, BDIAS), admissions, syllabus, fees aur campus facilities ke baare mein pooch sakte hain."
                 )
             else:
                 return (
                     "### 🏛️ CHARUSAT Virtual Intelligence\n\n"
                     "I am the dedicated official AI Assistant for **Charotar University of Science and Technology (CHARUSAT)**.\n\n"
-                    "⚠️ **I am strictly configured to provide information exclusively about CHARUSAT and cannot answer queries regarding other external universities or colleges.**\n\n"
+                    "⚠️ **This query is outside the academic and campus scope of CHARUSAT University. I am strictly configured to answer questions exclusively regarding CHARUSAT.**\n\n"
                     "You can ask me about CHARUSAT's 9 constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS), admissions, syllabus, fees, library books, placements, and hostel facilities."
                 )
 

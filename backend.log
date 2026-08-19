@@ -79,3 +79,16 @@ INFO:     192.168.1.38:58680 - "GET /api/v1/health HTTP/1.1" 200 OK
 INFO:     192.168.1.38:58681 - "GET /egovernance HTTP/1.1" 200 OK
 INFO:     192.168.1.38:58681 - "GET /widget.js HTTP/1.1" 200 OK
 INFO:     192.168.1.38:58685 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /egovernance HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /?login=true HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'rag/pipeline.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [73713]
+INFO:     Started server process [74141]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

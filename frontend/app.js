@@ -1979,17 +1979,27 @@ document.addEventListener("DOMContentLoaded", () => {
             typingRow.remove();
             if (sendBtn) sendBtn.disabled = false;
             
-            appendMessage(
-                "bot",
-                `### 🏛️ CHARUSAT Academic AI Assistant\n\n` +
-                `Here is the verified information regarding **"${cleanQuery}"**:\n\n` +
-                `• **CSPIT**: 7 Departments (CE, IT, AI & ML, EC, EE, Mechanical, Civil).\n` +
-                `• **DEPSTAR**: Computer Science & Engineering (CSE), Information Technology (IT).\n` +
-                `• **Core References**: CLRS (DSA), Silberschatz (DBMS/OS), Goodfellow & Bishop (AI/ML), Tanenbaum (Networks).\n` +
-                `• **Central Library**: Dr. K. C. Patel Resource Centre (105,000+ books, IEEE, 24/7 reading hall).\n` +
-                `• **Assignments**: Snap any homework problem photo anytime for instant step-by-step derivations!`,
-                [{ metadata: { source: "charusat_comprehensive.txt" }, score: 0.98 }]
-            );
+            const qLower = cleanQuery.toLowerCase();
+            const isOutOfDomain = /iphone|ipad|macbook|samsung|price|cook|food|recipe|movie|bollywood|cricket|score|nirma|daiict|parul|gtu|iit/i.test(qLower);
+
+            if (isOutOfDomain) {
+                appendMessage(
+                    "bot",
+                    `### 🏛️ CHARUSAT Virtual Intelligence\n\n` +
+                    `Hu fakt **Charotar University of Science and Technology (CHARUSAT)** no dedicated AI Assistant chu.\n\n` +
+                    `⚠️ **Aa query CHARUSAT na academic / campus domain ni bahaar ni che, etle hu eno javab aapi shakto nathi.**\n\n` +
+                    `Tame mane **CHARUSAT Campus** na vishe kai pan puchhi shako cho, jem ke:\n` +
+                    `• **Constituent Institutes**: CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS\n` +
+                    `• **Admissions & Cutoffs**: ACPC Gujarat, GUJCET, JEE Main merit\n` +
+                    `• **Degrees**: B.Tech, BCA, MCA, MBA, B.Pharm, Physiotherapy, Nursing, Applied Sciences\n` +
+                    `• **Campus Life**: Central Library books, AC/Non-AC Hostels, Transportation, 32.5+ LPA Placements`
+                );
+            } else {
+                appendMessage(
+                    "bot",
+                    `⚠️ Server connect karva ma issue aave che. Krupaya check karo ke backend active che.`
+                );
+            }
         }
     }
 
