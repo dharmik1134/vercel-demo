@@ -18,62 +18,6 @@
       "destination": "/frontend/egovernance.html"
     },
     {
-      "source": "/widget.js",
-      "destination": "/frontend/widget.js"
-    },
-    {
-      "source": "/style.css",
-      "destination": "/frontend/style.css"
-    },
-    {
-      "source": "/app.js",
-      "destination": "/frontend/app.js"
-    },
-    {
-      "source": "/logo.png",
-      "destination": "/frontend/logo.png"
-    },
-    {
-      "source": "/logo.jpg",
-      "destination": "/frontend/logo.jpg"
-    },
-    {
-      "source": "/logo.svg",
-      "destination": "/frontend/logo.svg"
-    },
-    {
-      "source": "/favicon.ico",
-      "destination": "/frontend/favicon.ico"
-    },
-    {
-      "source": "/favicon.png",
-      "destination": "/frontend/favicon.png"
-    },
-    {
-      "source": "/manifest.json",
-      "destination": "/frontend/manifest.json"
-    },
-    {
-      "source": "/sw.js",
-      "destination": "/frontend/sw.js"
-    },
-    {
-      "source": "/sitemap.xml",
-      "destination": "/frontend/sitemap.xml"
-    },
-    {
-      "source": "/robots.txt",
-      "destination": "/frontend/robots.txt"
-    },
-    {
-      "source": "/charusatAIassistant/(.*)",
-      "destination": "/frontend/$1"
-    },
-    {
-      "source": "/frontend/(.*)",
-      "destination": "/frontend/$1"
-    },
-    {
       "source": "/",
       "destination": "/frontend/index.html"
     }
