@@ -1,14 +1,11 @@
 INFO:     Will watch for changes in these directories: ['/Users/neev/Documents/CHARUSAT_AI_ASSISTAN']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [78611] using WatchFiles
-INFO:     Started server process [78613]
+INFO:     Started reloader process [79093] using WatchFiles
+INFO:     Started server process [79095]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     127.0.0.1:61704 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61708 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61712 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61716 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61720 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61724 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61728 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61732 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62124 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62126 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62129 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62137 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62158 - "POST /api/v1/chat HTTP/1.1" 200 OK
