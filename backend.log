@@ -57,3 +57,19 @@ INFO:     Finished server process [75855]
 INFO:     Started server process [75905]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'database/db_client.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [75905]
+INFO:     Started server process [76169]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'api/index.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [76169]
+INFO:     Started server process [76179]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

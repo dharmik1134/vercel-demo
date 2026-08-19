@@ -8,7 +8,16 @@ class DBClient:
     """Manages metadata storage, user authentication, query logs, and admin notifications via SQLite."""
 
     def __init__(self, db_path: str = "./database/app.sqlite3"):
-        if os.environ.get("VERCEL"):
+        # Auto-detect Serverless / Read-Only Filesystem environments (Vercel, AWS Lambda, etc.)
+        is_serverless = bool(
+            os.environ.get("VERCEL")
+            or os.environ.get("VERCEL_ENV")
+            or os.environ.get("AWS_LAMBDA_FUNCTION_NAME")
+            or os.environ.get("LAMBDA_TASK_ROOT")
+            or not os.access(os.path.dirname(os.path.abspath(db_path)) if os.path.exists(os.path.dirname(os.path.abspath(db_path))) else ".", os.W_OK)
+        )
+
+        if is_serverless:
             tmp_db = "/tmp/app.sqlite3"
             if not os.path.exists(tmp_db) and os.path.exists(db_path):
                 try:
@@ -19,7 +28,20 @@ class DBClient:
             self.db_path = tmp_db
         else:
             self.db_path = db_path
-        self._init_db()
+
+        try:
+            self._init_db()
+        except Exception:
+            # Fallback to /tmp/app.sqlite3 if initial path is read-only
+            self.db_path = "/tmp/app.sqlite3"
+            try:
+                self._init_db()
+            except Exception:
+                self.db_path = ":memory:"
+                try:
+                    self._init_db()
+                except Exception:
+                    pass
 
     def _init_db(self):
         dir_name = os.path.dirname(self.db_path)
