@@ -26,15 +26,8 @@ app.add_middleware(
 # Mount API routes
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
-# Mount frontend static files
+# Frontend static directory
 frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
-if os.path.exists(frontend_dir):
-    # Mount primary custom path: /charusatAIassistant
-    app.mount("/charusatAIassistant", StaticFiles(directory=frontend_dir, html=True), name="charusat_assistant")
-    # Mount aliases for convenience
-    app.mount("/app", StaticFiles(directory=frontend_dir, html=True), name="frontend_app")
-    app.mount("/charusatai", StaticFiles(directory=frontend_dir, html=True), name="frontend_ai")
-    app.mount("/charusat-ai", StaticFiles(directory=frontend_dir, html=True), name="frontend_dash")
 
 @app.get("/sitemap.xml")
 async def sitemap():
@@ -60,13 +53,14 @@ async def robots():
         return FileResponse(robots_file, media_type="text/plain")
     return RedirectResponse(url="/charusatAIassistant/robots.txt")
 
-@app.get("/")
-async def root():
-    """Serve primary web app at root."""
-    index_file = os.path.join(frontend_dir, "index.html")
-    if os.path.exists(index_file):
-        return FileResponse(index_file)
-    return RedirectResponse(url="/charusatAIassistant")
+if os.path.exists(frontend_dir):
+    # Mount aliases for convenience
+    app.mount("/charusatAIassistant", StaticFiles(directory=frontend_dir, html=True), name="charusat_assistant")
+    app.mount("/app", StaticFiles(directory=frontend_dir, html=True), name="frontend_app")
+    app.mount("/charusatai", StaticFiles(directory=frontend_dir, html=True), name="frontend_ai")
+    app.mount("/charusat-ai", StaticFiles(directory=frontend_dir, html=True), name="frontend_dash")
+    # Mount root static files (serves index.html, style.css, app.js, logo.png, manifest.json, sw.js, etc.)
+    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend_root")
 
 if __name__ == "__main__":
     uvicorn.run(
