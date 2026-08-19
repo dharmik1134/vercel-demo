@@ -1,27 +1,29 @@
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "backend/main.py",
-      "use": "@vercel/python"
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
     },
     {
-      "src": "frontend/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/backend/main.py"
+      "source": "/egovernance",
+      "destination": "/frontend/egovernance.html"
     },
     {
-      "src": "/charusatAIassistant/(.*)",
-      "dest": "/frontend/$1"
+      "source": "/egov",
+      "destination": "/frontend/egovernance.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/frontend/$1"
+      "source": "/widget.js",
+      "destination": "/frontend/widget.js"
+    },
+    {
+      "source": "/charusatAIassistant/(.*)",
+      "destination": "/frontend/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/$1"
     }
   ]
 }

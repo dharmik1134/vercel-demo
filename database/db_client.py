@@ -8,7 +8,17 @@ class DBClient:
     """Manages metadata storage, user authentication, query logs, and admin notifications via SQLite."""
 
     def __init__(self, db_path: str = "./database/app.sqlite3"):
-        self.db_path = db_path
+        if os.environ.get("VERCEL"):
+            tmp_db = "/tmp/app.sqlite3"
+            if not os.path.exists(tmp_db) and os.path.exists(db_path):
+                try:
+                    import shutil
+                    shutil.copy2(db_path, tmp_db)
+                except Exception:
+                    pass
+            self.db_path = tmp_db
+        else:
+            self.db_path = db_path
         self._init_db()
 
     def _init_db(self):
