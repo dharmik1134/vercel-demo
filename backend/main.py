@@ -1,12 +1,26 @@
 import os
+import sys
+
+# Ensure project root directory and backend directory are on Python sys.path in Vercel Serverless
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(CURRENT_DIR)
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+if CURRENT_DIR not in sys.path:
+    sys.path.insert(0, CURRENT_DIR)
+
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse, FileResponse, RedirectResponse, Response
 
-from backend.config import settings
-from backend.routes import router as api_router
+try:
+    from backend.config import settings
+    from backend.routes import router as api_router
+except ImportError:
+    from config import settings
+    from routes import router as api_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -24,11 +38,11 @@ app.add_middleware(
 )
 
 # ------------------------------------------------------------------------------
-# 1. Zero-Dependency Health & Status Endpoints (Always Return 200 OK)
+# 1. Zero-Dependency Health & Status Endpoints (Supports GET & HEAD)
 # ------------------------------------------------------------------------------
-@app.get("/health")
-@app.get("/api/health")
-@app.get("/api/v1/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
+@app.api_route("/api/health", methods=["GET", "HEAD"])
+@app.api_route("/api/v1/health", methods=["GET", "HEAD"])
 async def health():
     """Universal health endpoint requiring zero external dependencies."""
     return {
@@ -38,11 +52,11 @@ async def health():
     }
 
 # ------------------------------------------------------------------------------
-# 2. Root API / Web Endpoint
+# 2. Root API / Web Endpoint (Supports GET & HEAD)
 # ------------------------------------------------------------------------------
-frontend_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
+frontend_dir = os.path.join(ROOT_DIR, "frontend")
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 async def root(request: Request):
     """Serve frontend index.html for browsers or JSON status for API callers."""
     accept = request.headers.get("accept", "")
@@ -57,12 +71,12 @@ async def root(request: Request):
     }
 
 # ------------------------------------------------------------------------------
-# 3. Favicon & Static Asset Fallbacks
+# 3. Favicon & Static Asset Fallbacks (Supports GET & HEAD)
 # ------------------------------------------------------------------------------
-@app.get("/favicon.ico")
-@app.get("/favicon.png")
-@app.get("/frontend/favicon.ico")
-@app.get("/frontend/favicon.png")
+@app.api_route("/favicon.ico", methods=["GET", "HEAD"])
+@app.api_route("/favicon.png", methods=["GET", "HEAD"])
+@app.api_route("/frontend/favicon.ico", methods=["GET", "HEAD"])
+@app.api_route("/frontend/favicon.png", methods=["GET", "HEAD"])
 async def favicon():
     """Serve university favicon/logo without crashing."""
     for fname in ["favicon.png", "favicon.ico", "logo.png"]:
@@ -72,16 +86,16 @@ async def favicon():
             return FileResponse(fpath, media_type=media)
     return Response(status_code=204)
 
-@app.get("/sitemap.xml")
-@app.get("/frontend/sitemap.xml")
+@app.api_route("/sitemap.xml", methods=["GET", "HEAD"])
+@app.api_route("/frontend/sitemap.xml", methods=["GET", "HEAD"])
 async def sitemap():
     sitemap_file = os.path.join(frontend_dir, "sitemap.xml")
     if os.path.exists(sitemap_file):
         return FileResponse(sitemap_file, media_type="application/xml")
     return Response(content="<urlset></urlset>", media_type="application/xml")
 
-@app.get("/robots.txt")
-@app.get("/frontend/robots.txt")
+@app.api_route("/robots.txt", methods=["GET", "HEAD"])
+@app.api_route("/frontend/robots.txt", methods=["GET", "HEAD"])
 async def robots():
     robots_file = os.path.join(frontend_dir, "robots.txt")
     if os.path.exists(robots_file):
@@ -96,8 +110,8 @@ async def egovernance_portal():
         return FileResponse(egov_file, media_type="text/html")
     return RedirectResponse(url="/")
 
-@app.get("/widget.js")
-@app.get("/frontend/widget.js")
+@app.api_route("/widget.js", methods=["GET", "HEAD"])
+@app.api_route("/frontend/widget.js", methods=["GET", "HEAD"])
 async def widget_script():
     w_file = os.path.join(frontend_dir, "widget.js")
     if os.path.exists(w_file):

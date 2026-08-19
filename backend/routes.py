@@ -1,13 +1,34 @@
 import time
 import os
+import sys
+
+# Ensure root and backend dirs are on sys.path
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(CURRENT_DIR)
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+if CURRENT_DIR not in sys.path:
+    sys.path.insert(0, CURRENT_DIR)
+
 from fastapi import APIRouter, HTTPException, Depends
-from backend.config import settings
-from backend.models import (
-    QueryRequest, QueryResponse, HealthResponse, SourceDocument,
-    IngestTextRequest, IngestResponse,
-    LoginRequest, RegisterRequest, ForgotPasswordRequest, SocialLoginRequest, AuthResponse, UserResponse,
-    AssignmentSolveRequest, AssignmentSolveResponse
-)
+
+try:
+    from backend.config import settings
+    from backend.models import (
+        QueryRequest, QueryResponse, HealthResponse, SourceDocument,
+        IngestTextRequest, IngestResponse,
+        LoginRequest, RegisterRequest, ForgotPasswordRequest, SocialLoginRequest, AuthResponse, UserResponse,
+        AssignmentSolveRequest, AssignmentSolveResponse
+    )
+except ImportError:
+    from config import settings
+    from models import (
+        QueryRequest, QueryResponse, HealthResponse, SourceDocument,
+        IngestTextRequest, IngestResponse,
+        LoginRequest, RegisterRequest, ForgotPasswordRequest, SocialLoginRequest, AuthResponse, UserResponse,
+        AssignmentSolveRequest, AssignmentSolveResponse
+    )
+
 from rag.pipeline import RAGPipeline
 from database.db_client import DBClient
 

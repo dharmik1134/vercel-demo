@@ -1,99 +1,26 @@
 INFO:     Will watch for changes in these directories: ['/Users/neev/Documents/CHARUSAT_AI_ASSISTAN']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [74225] using WatchFiles
-INFO:     Started server process [74227]
+INFO:     Started reloader process [77846] using WatchFiles
+INFO:     Started server process [77848]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-/Users/neev/Documents/CHARUSAT_AI_ASSISTAN/rag/pipeline.py:32: FutureWarning: 
-
-All support for the `google.generativeai` package has ended. It will no longer be receiving 
-updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
-See README for more details:
-
-https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
-
-  import google.generativeai as genai
-INFO:     127.0.0.1:58777 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58781 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /?login=true HTTP/1.1" 200 OK
+INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 405 Method Not Allowed
+INFO:     103.26.49.54:0 - "HEAD /api/v1/health HTTP/1.1" 405 Method Not Allowed
 INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /?login=true HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /app.js?v=14.0 HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /logo.png HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /logo.png HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /style.css HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "POST /api/v1/chat HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /?login=true HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /app.js?v=14.0 HTTP/1.1" 304 Not Modified
-INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /sw.js HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     103.26.49.54:0 - "HEAD /?login=true HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'rag/embeddings.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [74227]
-INFO:     Started server process [75828]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'database/vector_store.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [75828]
-INFO:     Started server process [75855]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'database/vector_store.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [75855]
-INFO:     Started server process [75905]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'database/db_client.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [75905]
-INFO:     Started server process [76169]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'api/index.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [76169]
-INFO:     Started server process [76179]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
+INFO:     103.26.49.54:0 - "GET /health HTTP/1.1" 200 OK
 WARNING:  WatchFiles detected changes in 'backend/main.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [76179]
-INFO:     Started server process [76371]
+INFO:     Finished server process [77848]
+INFO:     Started server process [77869]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'api/index.py'. Reloading...
+WARNING:  WatchFiles detected changes in 'backend/routes.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [76371]
-INFO:     Started server process [76381]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'api/index.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [76381]
-INFO:     Started server process [76864]
+INFO:     Finished server process [77869]
+INFO:     Started server process [77877]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
