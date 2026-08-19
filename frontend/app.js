@@ -1993,7 +1993,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     // Fallback to Instant Verified Knowledge Engine
                     const qLower = cleanQuery.toLowerCase();
-                    const isOutOfDomain = /iphone|ipad|macbook|samsung|price|cook|food|recipe|movie|bollywood|cricket|score|nirma|daiict|parul|gtu|iit/i.test(qLower);
+                    const isOutOfDomain = /iphone|ipad|macbook|samsung|galaxy|price|phone|mobile|cook|food|recipe|bake|biryani|pizza|burger|chai|tea|movie|cinema|film|bollywood|hollywood|actor|actress|netflix|series|cricket|match|mathch|score|ipl|football|fifa|goal|messi|ronaldo|virat|kohli|rohit|dhoni|ind vs|pak vs|sl vs|aus vs|india vs|sri lanka|tennis|nirma|daiict|parul|gtu|iit|nit|bits|svnit|vgec|bvm|ld|modi|trump|biden|election|minister|president|weather|crypto|bitcoin|ethereum|stock|gold/i.test(qLower);
 
                     if (isOutOfDomain) {
                         appendMessage(

@@ -779,7 +779,7 @@ class RAGPipeline:
         """
         STRICT CHARUSAT-ONLY DOMAIN GUARDRAILS:
         1. Checks for external colleges/universities (Nirma, DAIICT, Parul, GTU, IIT, etc.)
-        2. Checks for general out-of-domain topics (iPhones/gadget prices, recipes/cooking, Bollywood/movies, world politics, cricket scores, crypto, etc.)
+        2. Checks for sports, matches, cricket, movies, recipes, celebrities, politics, devices, crypto, etc.
         3. Strictly refuses and redirects user back to CHARUSAT University domains.
         """
         q_lower = query.lower().strip()
@@ -793,19 +793,21 @@ class RAGPipeline:
             "sardar patel university", "ganpat", "silver oak", "lj institute", "lj university",
             "indus university", "rai university", "atmiya", "swarrnim", "rk university",
             "karnavati", "gls university", "sal college", "gandhinagar university", "ld college",
-            "gec gandhinagar", "gec modasa", "vgec", "mit wpu", "symbiosis", "nmims"
+            "gec gandhinagar", "gec modasa", "vgec", "mit wpu", "symbiosis", "nmims", "amity", "lpu"
         ]
 
-        # 2. General Non-University / Out-of-Domain topics
+        # 2. General Non-University / Out-of-Domain topics (Comprehensive Blacklist)
         out_of_domain_patterns = [
-            # Gadgets & Consumer Devices
-            r'\b(iphone|ipad|macbook|samsung galaxy|oneplus|realme|xiaomi|oppo|vivo|smartwatch|airpods|rtx \d+|gpu price|phone price|mobile price)\b',
-            # Cooking & Food Recipes
-            r'\b(cook food|how to cook|cooking recipe|how to bake|recipe of|recipe for|bake cake|cook biryani|make burger|make pizza|how to make)\b',
-            # Movies & Celebrity Trivia
-            r'\b(bollywood|hollywood|movie download|movie review|box office|salman khan|shah rukh|shahrukh|actor|actress|netflix series|ipl score|cricket match|live score)\b',
-            # World Politics & Non-academic
-            r'\b(narendra modi|donald trump|joe biden|rahul gandhi|prime minister of|president of|capital of france|capital of usa|weather in|crypto price|bitcoin|stock market)\b',
+            # Sports, Matches, Cricket, Football
+            r'\b(cricket|match|mathch|score|live score|ipl|world cup|t20|odi|football|fifa|goal|messi|ronaldo|virat|kohli|rohit|dhoni|ind vs|pak vs|sl vs|aus vs|india vs|sri lanka|tennis|badminton match)\b',
+            # Gadgets, Phones & Consumer Devices
+            r'\b(iphone|ipad|macbook|samsung|galaxy|oneplus|realme|xiaomi|oppo|vivo|smartwatch|airpods|rtx \d+|gpu price|phone price|mobile price|car price|bike price)\b',
+            # Cooking, Food Making & Recipes
+            r'\b(cook|cooking|recipe|food making|make food|making food|bake|baking|how to make pizza|how to make burger|how to make biryani|cook biryani|ingredients of|tea making|chai recipe)\b',
+            # Movies, Celebrities & Entertainment
+            r'\b(bollywood|hollywood|movie|cinema|film|trailer|actor|actress|salman khan|shah rukh|shahrukh|deepika|katrina|netflix|series|season \d+|episode|song lyrics)\b',
+            # World Politics, Non-CHARUSAT News & Crypto
+            r'\b(narendra modi|donald trump|joe biden|rahul gandhi|bjp|congress|election|prime minister|president of usa|capital of|weather in|crypto|bitcoin|ethereum|stock market|share price|gold rate)\b',
         ]
 
         has_other_college = any(re.search(rf'\b{re.escape(c)}\b', q_lower) for c in other_colleges)
