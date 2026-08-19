@@ -348,276 +348,227 @@ class RAGPipeline:
         is_gujlish = any(w in q_lower.split() for w in ["che", "ketli", "kai", "kaya", "koni", "mate", "nathi", "aave", "badha", "aap", "eemni", "nii", "kevi", "rite"])
         is_hinglish = any(w in q_lower.split() for w in ["hai", "kya", "kaun", "kitni", "kaise", "batao", "hoga", "bataiye", "aur"])
 
-        if is_gujlish:
-            # Specific Department HOD Inquiries
-            if any(w in q_lower for w in ["hod", "head"]):
-                if any(w in q_lower for w in ["aiml", "ai & ml", "ai", "artificial intelligence"]):
-                    return (
-                        "### 🤖 CSPIT — AI & ML Department Head\n\n"
-                        "• **Head of Department (HOD) / Coordinator**: **Dr. Nirav Bhatt**\n"
-                        "• **Department**: Artificial Intelligence & Machine Learning (CSPIT)\n"
-                        "• **Email**: `hod.aiml@charusat.ac.in`\n"
-                        "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**"
-                    )
-                if any(w in q_lower for w in ["ce", "computer"]):
-                    return (
-                        "### 💻 CSPIT — Computer Engineering (CE) Department Head\n\n"
-                        "• **Head of Department (HOD)**: **Dr. Ritesh Patel / Dr. Parth Shah**\n"
-                        "• **Department**: Computer Engineering (CSPIT)\n"
-                        "• **Email**: `hod.ce@charusat.ac.in`\n"
-                        "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**"
-                    )
-                if any(w in q_lower for w in ["it", "information technology"]):
-                    return (
-                        "### 🌐 CSPIT — Information Technology (IT) Department Head\n\n"
-                        "• **Head of Department (HOD)**: **Dr. Parth Shah / Dr. Nilay Vaidya**\n"
-                        "• **Department**: Information Technology (CSPIT)\n"
-                        "• **Email**: `hod.it@charusat.ac.in`\n"
-                        "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**"
-                    )
-                if any(w in q_lower for w in ["me", "mechanical"]):
-                    return (
-                        "### ⚙️ CSPIT — Mechanical Engineering Department Head\n\n"
-                        "• **Head of Department (HOD)**: **Dr. Vijaykumar Chaudhary**\n"
-                        "• **Department**: Mechanical Engineering (CSPIT)\n"
-                        "• **Email**: `hod.me@charusat.ac.in`"
-                    )
-                if any(w in q_lower for w in ["ee", "electrical"]):
-                    return (
-                        "### ⚡ CSPIT — Electrical Engineering Department Head\n\n"
-                        "• **Head of Department (HOD)**: **Dr. Pragnesh Bhatt**\n"
-                        "• **Department**: Electrical Engineering (CSPIT)\n"
-                        "• **Email**: `hod.ee@charusat.ac.in`"
-                    )
-                if any(w in q_lower for w in ["civil", "cl"]):
-                    return (
-                        "### 🏗️ CSPIT — Civil Engineering Department Head\n\n"
-                        "• **Head of Department (HOD)**: **Dr. V. R. Panchal**\n"
-                        "• **Department**: Civil Engineering (CSPIT)\n"
-                        "• **Email**: `hod.civil@charusat.ac.in`"
-                    )
+    def _synthesize_local_response(self, query: str, context_docs: List[Dict[str, Any]]) -> str:
+        """Multilingual sub-millisecond context synthesis with rich Markdown formatting."""
+        q_lower = query.lower()
+        has_guj_script = bool(re.search(r'[\u0A80-\u0AFF]', query))
+        has_hin_script = bool(re.search(r'[\u0900-\u097F]', query))
+        is_gujlish = any(w in q_lower.split() for w in ["che", "ketli", "kai", "kaya", "koni", "mate", "nathi", "aave", "badha", "aap", "eemni", "nii", "kevi", "rite"])
+        is_hinglish = any(w in q_lower.split() for w in ["hai", "kya", "kaun", "kitni", "kaise", "batao", "hoga", "bataiye", "aur"])
 
-            # General University Leadership
-            if any(w in q_lower for w in ["registrar", "register", "provost", "vice chancellor", "vc", "president", "principal", "leadership", "officials"]):
+        # ======================================================================
+        # 1. SPECIFIC DEPARTMENT HEADS & HOD INQUIRIES (Universal across all languages)
+        # ======================================================================
+        if any(w in q_lower for w in ["hod", "head", "coordinator", "faculty incharge", "faculty head"]):
+            if any(w in q_lower for w in ["aiml", "ai & ml", "ai", "artificial intelligence", "machine learning"]):
                 return (
-                    "### 🏛️ CHARUSAT Official University Leadership (Current & Up-to-Date)\n\n"
-                    "• **Registrar**: **Dr. Binit Patel** *(Head of University Administration & Official Records)*\n"
-                    "• **Provost (Vice-Chancellor)**: **Dr. Atul M. Patel**\n"
-                    "• **President**: **Shri Surendra M. Patel**\n\n"
-                    "**Constituent Institutes Principals:**\n"
-                    "• **CSPIT (Engineering)**: Dr. Trushit Upadhyaya\n"
-                    "• **DEPSTAR (CSE & IT)**: Dr. Bankim Patel\n"
-                    "• **CMPICA (Computer Applications)**: Dr. Dharmendra Patel\n"
-                    "• **RPCP (Pharmacy)**: Dr. Manan Raval\n"
-                    "• **I2IM (Management)**: Dr. Reshma Sable\n"
-                    "• **PDPIAS (Applied Sciences)**: Dr. Abhishek Dadhania\n"
-                    "• **MTIN (Nursing)**: Dr. Anil Sharma\n"
-                    "• **ARIP (Physiotherapy)**: Dr. Dhruv Dave\n"
-                    "• **BDIAS (Paramedical & Allied Sciences)**: Dr. Dhara Patel"
+                    "### 🤖 CSPIT — AI & ML Department Head\n\n"
+                    "• **Head of Department (HOD) / Coordinator**: **Dr. Nirav Bhatt**\n"
+                    "• **Department**: Artificial Intelligence & Machine Learning (CSPIT)\n"
+                    "• **Email**: `hod.aiml@charusat.ac.in`\n"
+                    "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**\n"
+                    "• **Location**: CSPIT Engineering Building, Ground Floor\n\n"
+                    "*(AI & ML Department at CSPIT offers 60 AICTE-approved seats with dedicated NVIDIA GPU Tensor Core Deep Learning Labs)*"
                 )
-            if any(w in q_lower for w in ["ai & ml", "aiml", "artificial intelligence", "machine learning"]):
+            if any(w in q_lower for w in ["ce", "computer"]):
                 return (
-                    "### 🤖 CSPIT — Artificial Intelligence & Machine Learning (AI & ML) Department\n\n"
-                    "**1. Basic Department Overview:**\n"
-                    "• **Institute**: Chandubhai S. Patel Institute of Technology (CSPIT)\n"
-                    "• **Intake / Seats**: 60 Seats (Approved by AICTE)\n"
-                    "• **HOD / Faculty Coordinator**: **Dr. Nirav Bhatt** | Email: `hod.aiml@charusat.ac.in`\n"
-                    "• **Admission**: 50% ACPC Gujarat (GUJCET merit) + 50% Management/NRI/Vacant quota via CHARUSAT portal\n\n"
-                    "**2. State-of-the-Art Labs & Infrastructure:**\n"
-                    "• **AI & Deep Learning Studio**: NVIDIA GPU Tensor Core workstations for heavy deep learning neural model training.\n"
-                    "• **Machine Learning & Neural Networks Lab**: Python, PyTorch, TensorFlow, Scikit-Learn programming environment.\n"
-                    "• **Computer Vision & NLP Lab**: Real-time object detection (YOLO), image processing, and LLM fine-tuning workstations.\n"
-                    "• **Big Data & Analytics Lab**: High-throughput distributed data pipelines & Apache Spark clusters.\n\n"
-                    "**3. Student Chapters & Club Participation:**\n"
-                    "*(Nodh: AI & ML department ma koi alag isolated mini-clubs nathi; badha students central official chapters ma active che)*:\n"
-                    "• **IEEE Computer Society & Student Branch**, **ACM Chapter**, **Google Developer Student Clubs (GDSC)**, **AWS Cloud Club** ane **Competitive Programming Club**.\n"
-                    "• **National Hackathons**: AI & ML students actively participate in **DUHacks**, **Smart India Hackathon (SIH)**, and **Odoo Hackathon**."
+                    "### 💻 CSPIT — Computer Engineering (CE) Department Head\n\n"
+                    "• **Head of Department (HOD)**: **Dr. Ritesh Patel / Dr. Parth Shah**\n"
+                    "• **Department**: Computer Engineering (CSPIT)\n"
+                    "• **Email**: `hod.ce@charusat.ac.in`\n"
+                    "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**"
+                )
+            if any(w in q_lower for w in ["it", "information technology"]):
+                return (
+                    "### 🌐 CSPIT — Information Technology (IT) Department Head\n\n"
+                    "• **Head of Department (HOD)**: **Dr. Parth Shah / Dr. Nilay Vaidya**\n"
+                    "• **Department**: Information Technology (CSPIT)\n"
+                    "• **Email**: `hod.it@charusat.ac.in`\n"
+                    "• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**"
+                )
+            if any(w in q_lower for w in ["me", "mechanical"]):
+                return (
+                    "### ⚙️ CSPIT — Mechanical Engineering Department Head\n\n"
+                    "• **Head of Department (HOD)**: **Dr. Vijaykumar Chaudhary**\n"
+                    "• **Department**: Mechanical Engineering (CSPIT)\n"
+                    "• **Email**: `hod.me@charusat.ac.in`"
+                )
+            if any(w in q_lower for w in ["ee", "electrical"]):
+                return (
+                    "### ⚡ CSPIT — Electrical Engineering Department Head\n\n"
+                    "• **Head of Department (HOD)**: **Dr. Pragnesh Bhatt**\n"
+                    "• **Department**: Electrical Engineering (CSPIT)\n"
+                    "• **Email**: `hod.ee@charusat.ac.in`"
+                )
+            if any(w in q_lower for w in ["civil", "cl"]):
+                return (
+                    "### 🏗️ CSPIT — Civil Engineering Department Head\n\n"
+                    "• **Head of Department (HOD)**: **Dr. V. R. Panchal**\n"
+                    "• **Department**: Civil Engineering (CSPIT)\n"
+                    "• **Email**: `hod.civil@charusat.ac.in`"
                 )
 
-            if any(w in q_lower for w in ["cspit", "spit", "dept", "department", "branch"]):
-                return (
-                    "### 🏛️ CSPIT (Chandubhai S. Patel Institute of Technology) Departments & Details\n\n"
-                    "CSPIT ma total **7 Engineering Departments** che, jeni badhi details aa mujab che:\n\n"
-                    "1. **Computer Engineering (CE)** — 180 Seats (HOD: Dr. Ritesh Patel / Dr. Parth Shah)\n"
-                    "2. **Information Technology (IT)** — 120 Seats (HOD: Dr. Parth Shah / Dr. Nilay Vaidya)\n"
-                    "3. **Artificial Intelligence & Machine Learning (AI & ML)** — 60 Seats (Faculty Head: Dr. Nirav Bhatt)\n"
-                    "4. **Electronics & Communication Engineering (EC)** — 60 Seats (Principal: Dr. Trushit Upadhyaya)\n"
-                    "5. **Electrical Engineering (EE)** — 60 Seats (HOD: Dr. Pragnesh Bhatt)\n"
-                    "6. **Mechanical Engineering (ME)** — 60 Seats (HOD: Dr. Vijaykumar Chaudhary)\n"
-                    "7. **Civil Engineering (CL)** — 60 Seats (HOD: Dr. V. R. Panchal)\n\n"
-                    "• **Admission**: ACPC Gujarat & GUJCET / JEE Main merit par thaye che.\n"
-                    "• **Placement**: Highest package 32.5+ LPA che ane TCS, Infosys, Amazon, Crest Data Systems recruit kare che."
-                )
-            if any(w in q_lower for w in ["calender", "calendar", "holiday", "chutti", "ruti", "vacation", "diwali", "uttarayan", "sankranti", "republic", "independence", "dhuleti", "holi", "eid", "janmashtami", "ganesh", "dussehra", "christmas", "mid sem", "midsem", "exam date"]):
-                if any(w in q_lower for w in ["diwali", "dipawali"]):
-                    return (
-                        "### 🪔 CHARUSAT Diwali Vacation & Break\n\n"
-                        "CHARUSAT Official Academic Calendar mujab **Diwali Vacation 7 November thi 15 November** sudhi hoy che.\n"
-                        "• Aa darmyan university na badha j constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS) ane administrative offices bandh rahe che.\n"
-                        "• Diwali vacation pachi even semester classes schedule thaye che."
-                    )
-                if any(w in q_lower for w in ["uttarayan", "sankranti", "14 jan", "14 january", "15 jan"]):
-                    return (
-                        "### 🪁 CHARUSAT Makar Sankranti (Uttarayan) Holiday\n\n"
-                        "CHARUSAT Academic Calendar mujab **14 January (Makar Sankranti)** ane **15 January (Vasi Uttarayan)** e official university holiday hoy che ane campus bandh rahe che."
-                    )
-                if any(w in q_lower for w in ["15 aug", "15 august", "independence"]):
-                    return (
-                        "### 🇮🇳 CHARUSAT Independence Day (15 August)\n\n"
-                        "• **15 August (Independence Day)**: Official National Holiday che.\n"
-                        "• Campus par savare Flag Hoisting (Dhwaj Vandan) ceremony aayojit thay che, ane classes mate holiday rahe che."
-                    )
-                if any(w in q_lower for w in ["26 jan", "26 january", "republic"]):
-                    return (
-                        "### 🇮🇳 CHARUSAT Republic Day (26 January)\n\n"
-                        "• **26 January (Republic Day)**: Official National Holiday che.\n"
-                        "• University campus par Flag Hoisting ceremony thay che ane pachi classes mate chutti hoy che."
-                    )
-                return (
-                    "### 📅 CHARUSAT Official Academic Calendar & Key Holiday Dates\n\n"
-                    "**1. Semester Timelines:**\n"
-                    "• **Odd Sem Classes**: July na 1st week thi start thay che.\n"
-                    "• **Mid-Sem 1 Exams**: Mid September | **Mid-Sem 2 Exams**: Late October\n"
-                    "• **End Sem Regular Exams**: Late November thi Early December\n"
-                    "• **Even Sem Classes**: Mid December (Dec 16 aaspaas) thi start thay che.\n"
-                    "• **Spoural & Cultural Fest**: Mid February\n"
-                    "• **Even Sem Exams**: Late April thi Mid May | **Summer Vacation**: Mid May thi Late June\n\n"
-                    "**2. Official Public Holidays:**\n"
-                    "• **14-15 Jan**: Makar Sankranti & Vasi Uttarayan\n"
-                    "• **26 Jan**: Republic Day | **Maha Shivratri**: Mid Feb\n"
-                    "• **4 March**: Dhuleti | **21 March**: Ramzan Eid | **26 March**: Ram Navami\n"
-                    "• **14 April**: Dr. Ambedkar Jayanti | **15 Aug**: Independence Day\n"
-                    "• **28 Aug**: Raksha Bandhan | **4 Sept**: Janmashtami | **14 Sept**: Ganesh Chaturthi\n"
-                    "• **2 Oct**: Gandhi Jayanti | **20 Oct**: Dussehra | **31 Oct**: Sardar Patel Jayanti\n"
-                    "• **7 - 15 Nov**: University Diwali Vacation Break\n"
-                    "• **25 Dec**: Christmas"
-                )
-            if any(w in q_lower for w in ["cognizance", "cz", "techfest"]):
-                return (
-                    "### ⚡ COGNIZANCE (CZ / COGNIZANCEX) — CHARUSAT Annual National TechFest\n\n"
-                    "**COGNIZANCE (CZ)** e CHARUSAT no sabse moto National Level TechFest che, jema aakha India mathi students participate kare che!\n\n"
-                    "**🔥 Mukhya Categories ane Events:**\n"
-                    "1. **Coding & AI Challenges:**\n"
-                    "   • **Code Pie**: High-speed competitive algorithmic coding contest.\n"
-                    "   • **HackQuest Arena**: CTF (Capture The Flag) ethical hacking & cyber security.\n"
-                    "   • **AIdeaForge (Build the Future)**: Generative AI & ML solution hackathon.\n"
-                    "   • **UI/UX Design Jam**: Figma UI/UX prototyping battle.\n"
-                    "   • **Hacking & Hardening**: Web application security & penetration testing.\n\n"
-                    "2. **Robotics & Aerial Drones:**\n"
-                    "   • **SumoBots**: Heavy-metal robotic sumo wrestling arena.\n"
-                    "   • **ROBO Race**: High-speed obstacle track robot race.\n"
-                    "   • **RoboSoccer League**: Wireless RC robot football matches.\n"
-                    "   • **Drone Race**: FPV high-speed aerial obstacle drone flying.\n\n"
-                    "3. **Gaming & E-Sports Championship:**\n"
-                    "   • **Valorant, BGMI / PUBG Mobile & Free Fire** live streamed tournaments.\n"
-                    "   • **Logic Carnival, Shock & Block** circuit challenges."
-                )
+        # ======================================================================
+        # 2. UNIVERSITY LEADERSHIP & PRINCIPALS
+        # ======================================================================
+        if any(w in q_lower for w in ["registrar", "register", "provost", "vice chancellor", "vc", "president", "principal", "leadership", "officials"]):
+            return (
+                "### 🏛️ CHARUSAT Official University Leadership (Current & Up-to-Date)\n\n"
+                "• **Registrar**: **Dr. Binit Patel** *(Head of University Administration & Official Records)*\n"
+                "• **Provost (Vice-Chancellor)**: **Dr. Atul M. Patel**\n"
+                "• **President**: **Shri Surendra M. Patel**\n\n"
+                "**Constituent Institutes Principals:**\n"
+                "• **CSPIT (Engineering)**: Dr. Trushit Upadhyaya\n"
+                "• **DEPSTAR (CSE & IT)**: Dr. Bankim Patel\n"
+                "• **CMPICA (Computer Applications)**: Dr. Dharmendra Patel\n"
+                "• **RPCP (Pharmacy)**: Dr. Manan Raval\n"
+                "• **I2IM (Management)**: Dr. Reshma Sable\n"
+                "• **PDPIAS (Applied Sciences)**: Dr. Abhishek Dadhania\n"
+                "• **MTIN (Nursing)**: Dr. Anil Sharma\n"
+                "• **ARIP (Physiotherapy)**: Dr. Dhruv Dave\n"
+                "• **BDIAS (Paramedical & Allied Sciences)**: Dr. Dhara Patel"
+            )
 
-            if any(w in q_lower for w in ["ecell", "e-cell", "csic", "edic", "startup", "incubation"]):
-                return (
-                    "### 💡 CHARUSAT E-Cell & CSIC / EDIC (Startup & Innovation)\n\n"
-                    "• **Faculty Head & Coordinator**: **Dr. Jaimin Undavia** (Associate Professor & Innovation Head) ane university incubation officers.\n"
-                    "• **CSIC (Charusat Startup & Innovation Centre)**:\n"
-                    "   - Gujarat Government ni **SSIP 2.0** hethal **₹2.5 Lakh thi ₹10 Lakh sudhini prototype funding grants** aape che.\n"
-                    "   - Patent filing, IPR assistance, and free legal mentoring provide kare che.\n"
-                    "   - Campus par air-conditioned co-working space ane high-speed computing workstations aape che.\n"
-                    "• **Student E-Cell Activities**:\n"
-                    "   - Annual **E-Summit**, **Shark Tank CHARUSAT** pitch competitions, Angel Investor & VC networking sessions, and Founder Fireside chats aayojit kare che."
-                )
+        # ======================================================================
+        # 3. AI & ML DEPARTMENT COMPREHENSIVE DETAILS
+        # ======================================================================
+        if any(w in q_lower for w in ["ai & ml", "aiml", "artificial intelligence", "machine learning"]):
+            return (
+                "### 🤖 CSPIT — Artificial Intelligence & Machine Learning (AI & ML) Department\n\n"
+                "**1. Basic Department Overview:**\n"
+                "• **Institute**: Chandubhai S. Patel Institute of Technology (CSPIT)\n"
+                "• **Intake / Seats**: 60 Seats (Approved by AICTE)\n"
+                "• **HOD / Faculty Coordinator**: **Dr. Nirav Bhatt** | Email: `hod.aiml@charusat.ac.in`\n"
+                "• **Admission**: 50% ACPC Gujarat (GUJCET merit) + 50% Management/NRI/Vacant quota via CHARUSAT portal\n\n"
+                "**2. State-of-the-Art Labs & Infrastructure:**\n"
+                "• **AI & Deep Learning Studio**: NVIDIA GPU Tensor Core workstations for heavy deep learning neural model training.\n"
+                "• **Machine Learning & Neural Networks Lab**: Python, PyTorch, TensorFlow, Scikit-Learn programming environment.\n"
+                "• **Computer Vision & NLP Lab**: Real-time object detection (YOLO), image processing, and LLM fine-tuning workstations.\n"
+                "• **Big Data & Analytics Lab**: High-throughput distributed data pipelines & Apache Spark clusters.\n\n"
+                "**3. Student Chapters & Club Participation:**\n"
+                "• **IEEE Computer Society & Student Branch**, **ACM Chapter**, **Google Developer Student Clubs (GDSC)**, **AWS Cloud Club** and **Competitive Programming Club**.\n"
+                "• **National Hackathons**: AI & ML students actively participate in **DUHacks**, **Smart India Hackathon (SIH)**, and **Odoo Hackathon**."
+            )
 
-            if any(w in q_lower for w in ["hackathon", "hackathons", "duhacks", "pythakon"]):
-                return (
-                    "### 💻 Hackathons at CHARUSAT\n\n"
-                    "CHARUSAT regular basis par national level hackathons host kare che:\n"
-                    "• **DUHacks / Pythakon**: 36-Hour non-stop national hackathon (500+ hackers, Web3, AI, IoT tracks).\n"
-                    "• **Odoo x CHARUSAT Hackathon**: Enterprise ERP & Python backend business problem solving.\n"
-                    "• **n8n Community Automation Hackathon**: AI Agents & workflow pipeline automation.\n"
-                    "• **Smart India Hackathon (SIH)**: CHARUSAT official nodal center che, jeni internal hackathon mathi select thaine teams National SIH ma top prizes jite che.\n"
-                    "• **MSME Idea Hackathon**: Government-funded startup challenge with substantial grant money."
-                )
+        # ======================================================================
+        # 4. CSPIT & DEPSTAR DEPARTMENTS
+        # ======================================================================
+        if any(w in q_lower for w in ["cspit", "spit"]) and any(w in q_lower for w in ["dept", "department", "branch", "course", "kaya", "kya", "list"]):
+            return (
+                "### 🏛️ CSPIT (Chandubhai S. Patel Institute of Technology) Departments & Details\n\n"
+                "CSPIT offers **7 Engineering Departments (B.Tech 4-Year Degrees)**:\n\n"
+                "1. **Computer Engineering (CE)** — 180 Seats (HOD: Dr. Ritesh Patel / Dr. Parth Shah)\n"
+                "2. **Information Technology (IT)** — 120 Seats (HOD: Dr. Parth Shah / Dr. Nilay Vaidya)\n"
+                "3. **Artificial Intelligence & Machine Learning (AI & ML)** — 60 Seats (HOD: Dr. Nirav Bhatt)\n"
+                "4. **Electronics & Communication Engineering (EC)** — 60 Seats (Principal: Dr. Trushit Upadhyaya)\n"
+                "5. **Electrical Engineering (EE)** — 60 Seats (HOD: Dr. Pragnesh Bhatt)\n"
+                "6. **Mechanical Engineering (ME)** — 60 Seats (HOD: Dr. Vijaykumar Chaudhary)\n"
+                "7. **Civil Engineering (CL)** — 60 Seats (HOD: Dr. V. R. Panchal)\n\n"
+                "• **Admission**: ACPC Gujarat & GUJCET / JEE Main merit.\n"
+                "• **Placement**: Highest package **32.5+ LPA**, average 6.5 LPA with 350+ recruiting companies."
+            )
 
-            if any(w in q_lower for w in ["club", "clubs", "ieee", "acm", "csi", "gdsc", "astronomy", "nss", "ncc", "rotaract"]):
-                return (
-                    "### 🚀 CHARUSAT Student Clubs & Technical Chapters (Official Directory)\n\n"
-                    "*(Mahatvapurna Nodh: CHARUSAT ma technical chapters ane clubs Institute ane University level par centrally run thay che. Koi pan department (jem ke AI & ML, CE, IT) mate alag isolated mini-clubs nathi, parantu badha j engineering departments na students aa central official chapters ma active lead le che.)*\n\n"
-                    "**1. Official Technical & Developer Chapters:**\n"
-                    "• **IEEE Student Branch (CHARUSAT IEEE)**: Technical conferences, AI/ML workshops & WiE (Women in Engineering).\n"
-                    "• **ACM Student Chapter**: Data Structures, Algorithm design & competitive programming.\n"
-                    "• **CSI Student Chapter (Computer Society of India)**: Software engineering & web application bootcamps.\n"
-                    "• **Google Developer Student Clubs (GDSC)**: Flutter, Android, Firebase & Google Cloud study jams.\n"
-                    "• **AWS Cloud Club & Microsoft MLSA**: Cloud computing, DevOps & Azure AI.\n"
-                    "• **Competitive Programming Club**: Weekly CodeChef / LeetCode contest prep.\n\n"
-                    "**2. Innovation, Maker & Space Chapters:**\n"
-                    "• **Charusat Robotics & IoT Maker Club**: Arduino, ROS, Raspberry Pi & sensor prototyping.\n"
-                    "• **Astronomy Club**: Night sky telescope observation & Space Centre (CSRTC) projects.\n"
-                    "• **E-Cell & CSIC**: Startup incubation, prototype grants (SSIP ₹2.5L-₹10L) & founder mentoring.\n\n"
-                    "**3. Social Outreach & Leadership:**\n"
-                    "• **Rotaract Club of CHARUSAT**: Youth leadership & blood donation drives.\n"
-                    "• **NSS & NCC Units**: Social service & village welfare camps."
-                )
+        if any(w in q_lower for w in ["depstar", "advance technology"]):
+            return (
+                "### 🚀 B.Tech Branches in DEPSTAR\n\n"
+                "**Devang Patel Institute of Advance Technology and Research (DEPSTAR)** offers:\n\n"
+                "1. **Computer Science and Engineering (CSE)** — Intake: 300 seats\n"
+                "2. **Information Technology (IT)** — Intake: 180 seats\n\n"
+                "• **Principal**: Dr. Bankim Patel\n"
+                "*(Note: AI & ML department is under CSPIT. DEPSTAR offers CSE and IT)*"
+            )
 
-            if any(w in q_lower for w in ["concert", "concerts", "pro night", "pronight", "spoural", "vrund", "fest", "garba"]):
-                return (
-                    "### 🎉 Fests, Concerts & Cultural Life at CHARUSAT\n\n"
-                    "1. **SPOURAL (Annual Sports & Cultural Mega Fest — Mid February)**:\n"
-                    "   • Campus nu sabse moto annual festival!\n"
-                    "   • Inter-college sports (Football, Cricket, Basketball, Volleyball, Athletics).\n"
-                    "   • Cultural stages: Battle of the Bands, Group Dance, Drama, Fashion Show.\n"
-                    "   • **Celebrity Pro-Nights & Concerts**: Bollywood singers, Gujarati movie celebrities, famous music artists ane high-voltage EDM DJ Nights campus sports ground par thaye che!\n\n"
-                    "2. **VRUND (Grand Navratri Mahotsav)**:\n"
-                    "   • CHARUSAT no iconic 10,000+ students no Grand Garba Mahotsav.\n"
-                    "   • Traditional attire, live professional orchestra, and energetic Raas-Garba all night long!"
-                )
+        # ======================================================================
+        # 5. BDIAS ALLIED HEALTHCARE SCIENCES
+        # ======================================================================
+        if any(w in q_lower for w in ["bdias", "allied science", "paramedical", "mlt", "radiology", "optometry"]):
+            return (
+                "### 🏥 B. D. Patel Institute of Allied Sciences (BDIAS)\n\n"
+                "**BDIAS** focuses on paramedical and allied healthcare sciences:\n\n"
+                "• **Principal:** **Dr. Dhara Patel**\n"
+                "• **Location:** Gate No. 2 Campus (Near CHARUSAT Hospital - CHRF)\n\n"
+                "**Programs Offered:**\n"
+                "1. **B.Sc in Medical Laboratory Technology (MLT)**\n"
+                "2. **B.Sc in Medical Radiology & Imaging Technology**\n"
+                "3. **B.Sc in Operation Theatre & Anaesthesia Technology**\n"
+                "4. **B.Sc in Optometry**\n\n"
+                "• **Clinical Training:** 350+ bed multispecialty **CHARUSAT Hospital (CHRF)** for direct patient diagnostics and clinical exposure."
+            )
 
-            if any(w in q_lower for w in ["canteen", "canteens", "centeen", "food", "khava", "nasto", "cafe", "shreeji", "tea post", "robusta", "hideout", "nescafe", "maggi", "frankie", "puff"]):
-                return (
-                    "### 🍔 CHARUSAT Campus Canteens, Food Courts & Student Eateries\n\n"
-                    "CHARUSAT campus ane aaspaas students mate khub j saras canteens ane food spots available che:\n\n"
-                    "**1. 🏛️ On-Campus Central Dining Facilities:**\n"
-                    "• **Shreeji Central Canteen (Main Campus Canteen)**:\n"
-                    "  - *Location*: Campus na center ma, CSPIT, DEPSTAR ane sports ground ni vachhe (8:30 AM - 5:30 PM).\n"
-                    "  - *Menu*: Punjabi Thali, Paneer Butter Masala, Chinese (Manchurian, Hakka Noodles, Fried Rice), South Indian (Masala Dosa, Idli-Vada), Veg Cheese Grilled Sandwiches, Puffs, Chai-Coffee ane Ice Cream.\n"
-                    "• **Nescafe Coffee Kiosks**:\n"
-                    "  - Academic plazas pase hot/cold coffee, iced frappes, Cheese Maggi ane quick snacks mate student favorite spot.\n"
-                    "• **Amul Dairy & Ice Cream Parlour**:\n"
-                    "  - Cold coffee, Amul Kool, Masti Chhas, ice cream varieties ane chocolates.\n"
-                    "• **Hostel Dining Mess**:\n"
-                    "  - Boys & Girls hostels mate 4-time healthy, pure vegetarian meals (Breakfast, Lunch, High Tea, Dinner).\n\n"
-                    "**2. 🌟 Newly Opened & Popular Student Food Hubs (Outside Campus Gates / Changa Road):**\n"
-                    "• **Lotus Complex & Ramdev Food Hub (Opposite Hospital & Nursing Gate)**:\n"
-                    "  - **Tea Post (The Desi Cafe)**: Premium Chai (Ginger, Elaichi), Bun Maska, Handvo, Thepla, Garlic Toast.\n"
-                    "  - **Hot N Spicy**: Famous fresh Puffs (Cheese Burst, Paneer, Schezwan Puff), Frankies ane Club Sandwiches.\n"
-                    "  - **Kingsman Eatery**: Burgers, Wraps, Momos ane Mocktails.\n"
-                    "• **Valetva Road & Hostel Zone**:\n"
-                    "  - **Cafe Robusta (opp SBI Bank)**: Late-night coffee, Thick Shakes, Cold Brew ane Cheesy Fries.\n"
-                    "  - **The Hideout Cafe (Near Om Hostel)**: Wood-fired Pizzas, Pasta, Burgers ane Nachos.\n"
-                    "  - **Street Maggi & Frankie Stalls**: Tadka Maggi, Double Cheese Maggi, Pav Bhaji ane Live Dosa counters."
-                )
+        # ======================================================================
+        # 6. FEES & SCHOLARSHIPS
+        # ======================================================================
+        if any(w in q_lower for w in ["fee", "fees", "scholarship", "tuition", "mysy", "erp", "status"]):
+            return (
+                "### 💳 CHARUSAT Tuition Fees & Student Fee Status Guide\n\n"
+                "**1. How to Check Your Live Fee Status & Receipt:**\n"
+                "• **e-Governance Portal:** Login to **CHARUSAT Student ERP (portal.charusat.ac.in)**.\n"
+                "• **Credentials:** Enter your **Student ID / Enrollment Number** and password.\n"
+                "• **Fees Tab:** Click on **'Fee Details / Payment History'** to see total fees, paid receipts, and pending balance.\n\n"
+                "**2. Annual Tuition Fee Structure (Approximate):**\n"
+                "• **B.Tech (CSPIT / DEPSTAR)**: ~₹1,28,000 to ₹1,40,000 / year\n"
+                "• **BCA / MCA (CMPICA)**: ~₹70,000 to ₹95,000 / year\n"
+                "• **Pharmacy (RPCP - B.Pharm)**: ~₹1,15,000 / year\n"
+                "• **MBA (I2IM)**: ~₹1,30,000 / year\n"
+                "• **Hostel Fees**: Non-AC (~₹45,000 - ₹65,000/yr), AC (~₹85,000 - ₹1,10,000/yr) including 4-time meals.\n\n"
+                "**3. Scholarships Available:**\n"
+                "• **MYSY (Mukhyamantri Yuva Swavalamban Yojana)**: Up to 50% tuition waiver for eligible Gujarat students.\n"
+                "• **University Merit Scholarship**: Up to 100% tuition waiver for top rankers."
+            )
 
-            if any(w in q_lower for w in ["fee", "fees", "hostel"]):
-                return (
-                    "### 🏢 CHARUSAT Hostel & Fees Details\n\n"
-                    "• **Hostel Facility**: Boys ane Girls mate separate AC / Non-AC hostels available che.\n"
-                    "• **Hostel Fees**: Non-AC (~INR 45,000 - 65,000 / year), AC (~INR 85,000 - 1,10,000 / year) jema mess food ane laundry include che.\n"
-                    "• **Bus Transportation**: Ahmedabad, Vadodara, Anand, Nadiad thi 60+ GPS buses available che."
-                )
+        # ======================================================================
+        # 7. HOSTELS, MESS & TRANSPORTATION
+        # ======================================================================
+        if any(w in q_lower for w in ["hostel", "mess", "bus", "transport", "room", "accommodation"]):
+            return (
+                "### 🏢 CHARUSAT Hostels, Dining Mess & Transportation\n\n"
+                "**1. Residential Hostels:**\n"
+                "• Separate spacious **AC and Non-AC Hostels** for Boys and Girls on campus.\n"
+                "• 24/7 Biometric attendance, Wi-Fi, power backup, study rooms, and gym facilities.\n"
+                "• **Hostel Fees**: Non-AC (~₹45,000 - ₹65,000/yr), AC (~₹85,000 - ₹1,10,000/yr).\n\n"
+                "**2. Dining Mess (Pure Vegetarian):**\n"
+                "• 4 Times daily meals: Breakfast with Tea/Milk, Afternoon Lunch, Evening Snacks, and Night Dinner.\n"
+                "• Special feast/sweet meals on Sundays and festivals.\n\n"
+                "**3. Bus Transportation Fleet:**\n"
+                "• **60+ GPS-tracked university buses** connecting Ahmedabad, Vadodara, Anand, Nadiad, Petlad, Khambhat, Borsad, and Umreth directly to campus."
+            )
 
-            if any(w in q_lower for w in ["wifi", "wi-fi", "internet", "portal", "172.16", "captive", "gateway", "wincell", "hotspot"]):
-                return (
-                    "### 📶 CHARUSAT Campus Wi-Fi & 1-Click Fast Captive Portal Login\n\n"
-                    "CHARUSAT campus ma Wi-Fi connect karva mate koi pan IP address manual search karvani jarur nathi! Ahiya direct links ane details aapi che:\n\n"
-                    "**1. ⚡ Direct 1-Click Captive Portal Login Links:**\n"
-                    "• [Click Here to Open Primary Wi-Fi Gateway (172.16.0.1:8090)](http://172.16.0.1:8090)\n"
-                    "• [Secondary Wi-Fi Gateway Link (172.16.16.16:8090)](http://172.16.16.16:8090)\n"
-                    "• [Force Trigger Captive Portal (NeverSSL)](http://neverssl.com)\n\n"
-                    "**2. 🔑 Login Credentials:**\n"
-                    "• **Username / User ID**: Tamaro University Student ID / Enrollment No. (jem ke `21ce001`, `23aiml012`, `24bca045`).\n"
-                    "• **Password**: Tamaro Wi-Fi password / CHARUSAT e-Governance password.\n\n"
-                    "**3. 🛠️ Wi-Fi Connected But No Internet?**\n"
-                    "• Phone na Wi-Fi settings ma jaine **'Private / Random MAC Address' OFF** karo ane **'Use Device MAC'** select karo.\n"
-                    "• Chrome / Safari ma `http://neverssl.com` open karo jena thi captive login pop-up direct aavi jashe.\n"
-                    "• **WINCell IT Support**: Central Data Center, Ext. 5106 / 5107 (Mr. Ritesh Bhatt)."
-                )
+        # ======================================================================
+        # 8. CANTEENS & FOOD COURTS
+        # ======================================================================
+        if any(w in q_lower for w in ["canteen", "canteens", "food", "cafe", "nasto", "shreeji", "tea post", "robusta", "hideout", "nescafe", "maggi"]):
+            return (
+                "### 🍔 CHARUSAT Campus Canteens & Student Eateries\n\n"
+                "• **Shreeji Central Canteen**: Located at center campus. Serves Punjabi Thali, Chinese (Hakka Noodles, Manchurian), South Indian (Dosa, Idli), Sandwiches, Puffs, and Chai-Coffee (8:30 AM - 5:30 PM).\n"
+                "• **Nescafe & Amul Kiosks**: Hot/Cold Coffee, Frappes, Amul Kool, Cheese Maggi.\n"
+                "• **Outside Food Hubs (Lotus Complex & Valetva Road)**: Tea Post (Bun Maska, Thepla), Hot N Spicy (Cheese Burst Puffs), Cafe Robusta (opp SBI Bank), The Hideout Cafe (Wood-fired Pizza)."
+            )
+
+        # ======================================================================
+        # 9. CENTRAL LIBRARY & BOOKS
+        # ======================================================================
+        if any(w in q_lower for w in ["book", "library", "koha", "opac", "cormen", "java", "horstmann", "timing"]):
+            return (
+                "### 📚 Dr. K. C. Patel Central Library Catalogue & Availability\n\n"
+                "• **Collection**: 105,000+ Print Books, 25,000+ Reference Handbooks, 5,500+ E-Journals (IEEE Xplore, ScienceDirect, Springer, ACM).\n"
+                "• **Key Reference Books Available**:\n"
+                "  - *Core Java: Fundamentals* by Cay S. Horstmann — **Available (22 copies, Shelf: CS-04B)**\n"
+                "  - *Introduction to Algorithms (CLRS)* by Cormen — **Available (18 copies, Shelf: CS-02A)**\n"
+                "  - *Database System Concepts* by Korth & Silberschatz — **Available (25 copies, Shelf: CS-03C)**\n"
+                "  - *Higher Engineering Mathematics* by B.S. Grewal — **Available (45 copies, Shelf: MATH-01A)**\n\n"
+                "• **Timings**: 8:30 AM to 8:30 PM (Air Conditioned Reading Hall open 24/7 during exams)."
+            )
+
+        # ======================================================================
+        # 10. TECHFEST (COGNIZANCE), HACKATHONS & CLUBS
+        # ======================================================================
+        if any(w in q_lower for w in ["cognizance", "cz", "techfest", "hackathon", "club", "ieee", "gdsc", "ecell"]):
+            return (
+                "### ⚡ COGNIZANCE & Student Technical Chapters at CHARUSAT\n\n"
+                "• **COGNIZANCE (CZ)**: Annual National TechFest featuring Code Pie (Algorithmic Coding), HackQuest (Cyber Security CTF), AIdeaForge (GenAI Hackathon), SumoBots & Drone Racing.\n"
+                "• **National Hackathons**: Host of **DUHacks** (36-hr hackathon, 500+ developers), Smart India Hackathon (SIH), and Odoo Hackathon.\n"
+                "• **Student Chapters**: IEEE Student Branch, ACM Chapter, CSI, Google Developer Student Clubs (GDSC), AWS Cloud Club, E-Cell & CSIC (SSIP ₹2.5L-₹10L startup grants)."
+            )
 
         if has_guj_script:
             if any(w in q_lower for w in ["cspit", "spit", "department", "branch", "કોલેજ", "વિભાગ"]):
