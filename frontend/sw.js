@@ -1,12 +1,11 @@
 // CHARUSAT AI Assistant Service Worker
-const CACHE_NAME = "charusat-ai-cache-v14";
+const CACHE_NAME = "charusat-ai-cache-v16";
 const STATIC_ASSETS = [
     "./",
     "./index.html",
     "./style.css",
-    "./app.js",
+    "./app.js?v=16.0",
     "./logo.png",
-    "./logo.jpg",
     "./manifest.json"
 ];
 
