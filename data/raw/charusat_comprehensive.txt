@@ -16,7 +16,7 @@
   - PDPIAS (Applied Sciences): Dr. Abhishek Dadhania
   - MTIN (Nursing): Dr. Anil Sharma
   - ARIP (Physiotherapy): Dr. Dhruv Dave
-  - CIPS / BDIAS (Paramedical): Dr. Dhara Patel
+  - BDIAS (Paramedical & Allied Sciences): Dr. Dhara Patel
 
 ================================================================================
 1. INSTITUTES, DEPARTMENTS & COURSE DIRECTORY
@@ -117,7 +117,7 @@
 • Approved by Gujarat State Council for Physiotherapy.
 • Programs: Bachelor of Physiotherapy (BPT - 4.5 Years with 6 months internship), Master of Physiotherapy (MPT - 2 Years) with specializations in Musculoskeletal, Neurological, Cardiopulmonary, and Pediatric Physiotherapy.
 
-1.9 Charusat Institute of Paramedical Sciences (CIPS)
+1.9 B. D. Patel Institute of Allied Sciences (BDIAS)
 • Programs: B.Sc in Medical Laboratory Technology (MLT), Radiology & Imaging Technology, Operation Theatre & Anaesthesia Technology, Optometry.
 
 ================================================================================

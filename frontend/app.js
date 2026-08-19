@@ -2360,7 +2360,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "hospital",
             name: "CHARUSAT Hospital (CHRF) & Medical Wing",
             icon: "🏥",
-            desc: "24/7 Emergency Medical Care, Ambulance, MTIN Nursing, ARIP Physiotherapy, CIPS.",
+            desc: "24/7 Emergency Medical Care, Ambulance, MTIN Nursing, ARIP Physiotherapy, BDIAS.",
             loc: "Gate No. 2, Changa Road",
             query: "What medical facilities and nursing colleges are near CHARUSAT Hospital?"
         },

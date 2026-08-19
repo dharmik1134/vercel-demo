@@ -162,7 +162,7 @@ class RAGPipeline:
             content = getattr(msg, "content", None) or (msg.get("content") if isinstance(msg, dict) else str(msg))
             if content:
                 # Find prominent university entities in past messages
-                found_entities = re.findall(r'\b(CSPIT|DEPSTAR|CMPICA|RPCP|I2IM|PDPIAS|MTIN|ARIP|CIPS|B\.Tech|BCA|MCA|MBA|B\.Pharm|Library|Hostel|Bus|ACPC|GUJCET|Placements|Scholarship)\b', content, re.IGNORECASE)
+                found_entities = re.findall(r'\b(CSPIT|DEPSTAR|CMPICA|RPCP|I2IM|PDPIAS|MTIN|ARIP|BDIAS|CIPS|B\.Tech|BCA|MCA|MBA|B\.Pharm|Library|Hostel|Bus|ACPC|GUJCET|Placements|Scholarship)\b', content, re.IGNORECASE)
                 for ent in found_entities:
                     if ent.upper() not in [e.upper() for e in last_context_snippets]:
                         last_context_snippets.append(ent)
@@ -238,7 +238,7 @@ class RAGPipeline:
             "   • PDPIAS: Biotech, Microbiology, Biochemistry, Physics, Chemistry, Mathematics.\n"
             "   • MTIN: B.Sc Nursing, M.Sc Nursing, GNM.\n"
             "   • ARIP: BPT, MPT.\n"
-            "   • CIPS: B.Sc MLT, Radiology, Operation Theatre.\n"
+            "   • BDIAS: B.Sc MLT, Radiology, Operation Theatre, Optometry.\n"
             "6. NATURAL SCRIPT & LANGUAGE MIRRORING MANDATE (CRITICAL):\n"
             "   You must match BOTH the language AND the exact script/typing style of the user:\n"
             "   • ROMANIZED GUJARATI (GUJLISH): If the user writes Gujarati using English letters (e.g. 'cspit ma kaya kaya dept che and eemni badha nii details aap', 'hostel ni fee ketli che?', 'depstar ma admission kevi rite male?'), you MUST respond in natural, conversational ROMANIZED GUJARATI (GUJLISH) using English alphabet (e.g. 'CSPIT ma Computer Engineering (CE), IT, AI & ML, EC, EE, Mechanical ane Civil aam badha 7 engineering departments che. Emna seat intake ane badha details aa mujab che: ...').\n"
@@ -250,7 +250,7 @@ class RAGPipeline:
             "7. STRICT CHARUSAT-ONLY DOMAIN BOUNDARY (STRICTEST RULE):\n"
             "   You are EXCLUSIVELY the AI Assistant for CHARUSAT University.\n"
             "   • If the user asks about ANY OTHER college, institute, or university (e.g. Nirma, DAIICT, Parul, GTU, IIT, MSU, DDU, BVM, PDPU/PDEU, Marwadi, Silver Oak, LJ, Indus, Ganpat, etc.), you MUST STRICTLY DECLINE to answer about other colleges.\n"
-            "   • State clearly that you are exclusively built for CHARUSAT University and invite them to ask about CHARUSAT's constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS), admissions, fees, syllabus, library, or hostels.\n"
+            "   • State clearly that you are exclusively built for CHARUSAT University and invite them to ask about CHARUSAT's constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS), admissions, fees, syllabus, library, or hostels.\n"
             "   • If the user asks general non-academic trivia or random facts outside CHARUSAT, politely decline and steer them back to CHARUSAT.\n"
             "8. OFFICIAL UNIVERSITY LEADERSHIP & DEPARTMENT HODs (CURRENT & VERIFIED):\n"
             "   • President: Shri Surendra M. Patel\n"
@@ -271,7 +271,7 @@ class RAGPipeline:
             "   • PDPIAS Principal: Dr. Abhishek Dadhania\n"
             "   • MTIN Principal: Dr. Anil Sharma\n"
             "   • ARIP Principal: Dr. Dhruv Dave\n"
-            "   • CIPS / BDIAS Principal: Dr. Dhara Patel\n"
+            "   • BDIAS Principal: Dr. Dhara Patel\n"
             "9. CHARUSAT OFFICIAL ACADEMIC CALENDAR & HOLIDAYS LOOKUP:\n"
             "   When asked about holidays, vacations, exam schedules, or specific dates:\n"
             "   • ODD SEMESTER: Classes begin 1st week of July | Mid-Sem 1 in mid-Sept | Mid-Sem 2 in late Oct | End-Sem Regular Exams in late Nov - early Dec | Winter Vacation: late Nov to mid Dec | Remedial Exams in early Dec.\n"
@@ -316,7 +316,7 @@ class RAGPipeline:
             "   • CMPICA: Computer Applications (BCA, MCA, M.Sc IT).\n"
             "   • RPCP & I2IM: Pharmacy and Management institutes.\n"
             "   • Shreeji Central Canteen & Sports Plaza: Main cafeteria, cricket ground, badminton and basketball courts.\n"
-            "   • Gate No. 2: Hospital entrance connecting to CHARUSAT Hospital (CHRF), MTIN, ARIP, CIPS, and Lotus Complex (Tea Post, Hot N Spicy)."
+            "   • Gate No. 2: Hospital entrance connecting to CHARUSAT Hospital (CHRF), MTIN, ARIP, BDIAS, and Lotus Complex (Tea Post, Hot N Spicy)."
         )
 
         history_section = ""
@@ -412,7 +412,7 @@ class RAGPipeline:
                     "• **PDPIAS (Applied Sciences)**: Dr. Abhishek Dadhania\n"
                     "• **MTIN (Nursing)**: Dr. Anil Sharma\n"
                     "• **ARIP (Physiotherapy)**: Dr. Dhruv Dave\n"
-                    "• **CIPS / BDIAS (Paramedical)**: Dr. Dhara Patel"
+                    "• **BDIAS (Paramedical & Allied Sciences)**: Dr. Dhara Patel"
                 )
             if any(w in q_lower for w in ["ai & ml", "aiml", "artificial intelligence", "machine learning"]):
                 return (
@@ -452,7 +452,7 @@ class RAGPipeline:
                     return (
                         "### 🪔 CHARUSAT Diwali Vacation & Break\n\n"
                         "CHARUSAT Official Academic Calendar mujab **Diwali Vacation 7 November thi 15 November** sudhi hoy che.\n"
-                        "• Aa darmyan university na badha j constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS) ane administrative offices bandh rahe che.\n"
+                        "• Aa darmyan university na badha j constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS) ane administrative offices bandh rahe che.\n"
                         "• Diwali vacation pachi even semester classes schedule thaye che."
                     )
                 if any(w in q_lower for w in ["uttarayan", "sankranti", "14 jan", "14 january", "15 jan"]):
@@ -821,7 +821,7 @@ class RAGPipeline:
                     "Hu fakt **Charotar University of Science and Technology (CHARUSAT)** no dedicated official AI Assistant chu.\n\n"
                     "⚠️ **Hu biji koi external colleges athva universities vishe mahiti aapi shakto nathi.**\n\n"
                     "Tame mane **CHARUSAT Campus** na vishe kai pan puchhi shako cho, jem ke:\n"
-                    "• **Constituent Institutes**: CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS\n"
+                    "• **Constituent Institutes**: CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS\n"
                     "• **Admissions & Cutoffs**: ACPC Gujarat, GUJCET, JEE Main merit\n"
                     "• **Degrees**: B.Tech, BCA, MCA, MBA, B.Pharm, Physiotherapy, Nursing, Applied Sciences\n"
                     "• **Campus Life**: Central Library books, AC/Non-AC Hostels, Transportation, 32.5+ LPA Placements"
@@ -845,7 +845,7 @@ class RAGPipeline:
                     "### 🏛️ CHARUSAT Virtual Intelligence\n\n"
                     "I am the dedicated official AI Assistant for **Charotar University of Science and Technology (CHARUSAT)**.\n\n"
                     "⚠️ **I am strictly configured to provide information exclusively about CHARUSAT and cannot answer queries regarding other external universities or colleges.**\n\n"
-                    "You can ask me about CHARUSAT's 9 constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, CIPS), admissions, syllabus, fees, library books, placements, and hostel facilities."
+                    "You can ask me about CHARUSAT's 9 constituent institutes (CSPIT, DEPSTAR, CMPICA, RPCP, I2IM, PDPIAS, MTIN, ARIP, BDIAS), admissions, syllabus, fees, library books, placements, and hostel facilities."
                 )
 
         return None

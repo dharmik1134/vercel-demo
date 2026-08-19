@@ -12,7 +12,7 @@ CHARUSAT is a premier university located in Changa, Anand district, Gujarat, Ind
 6. **I2IM** - Indukaka Ipcowala Institute of Management (MBA, BBA)
 7. **MTIN** - Manikaka Topawala Institute of Nursing (B.Sc Nursing, GNM, M.Sc Nursing)
 8. **ARIP** - Ashok & Rita Patel Institute of Physiotherapy (BPT, MPT)
-9. **CIPS** - Charusat Institute of Paramedical Sciences
+9. **BDIAS** - B. D. Patel Institute of Allied Sciences (Paramedical, MLT, Radiology, Operation Theatre, Optometry)
 
 ## Admissions & Eligibility
 - **B.Tech Programs**: Admission is governed by ACPC (Admission Committee for Professional Courses), Gujarat and through JEE Main / GUJCET scores. Management quota seats are filled based on merit.
