@@ -1,81 +1,81 @@
 {
   "version": 2,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
+      "src": "/api/(.*)",
+      "dest": "/api/index.py"
     },
     {
-      "source": "/health",
-      "destination": "/api/index.py"
+      "src": "/health",
+      "dest": "/api/index.py"
     },
     {
-      "source": "/egovernance",
-      "destination": "/frontend/egovernance.html"
+      "src": "/egovernance",
+      "dest": "/frontend/egovernance.html"
     },
     {
-      "source": "/egov",
-      "destination": "/frontend/egovernance.html"
+      "src": "/egov",
+      "dest": "/frontend/egovernance.html"
     },
     {
-      "source": "/widget.js",
-      "destination": "/frontend/widget.js"
+      "src": "/widget.js",
+      "dest": "/frontend/widget.js"
     },
     {
-      "source": "/style.css",
-      "destination": "/frontend/style.css"
+      "src": "/style.css",
+      "dest": "/frontend/style.css"
     },
     {
-      "source": "/app.js",
-      "destination": "/frontend/app.js"
+      "src": "/app.js",
+      "dest": "/frontend/app.js"
     },
     {
-      "source": "/logo.png",
-      "destination": "/frontend/logo.png"
+      "src": "/logo.png",
+      "dest": "/frontend/logo.png"
     },
     {
-      "source": "/logo.jpg",
-      "destination": "/frontend/logo.jpg"
+      "src": "/logo.jpg",
+      "dest": "/frontend/logo.jpg"
     },
     {
-      "source": "/logo.svg",
-      "destination": "/frontend/logo.svg"
+      "src": "/logo.svg",
+      "dest": "/frontend/logo.svg"
     },
     {
-      "source": "/favicon.ico",
-      "destination": "/frontend/favicon.ico"
+      "src": "/favicon.ico",
+      "dest": "/frontend/favicon.ico"
     },
     {
-      "source": "/favicon.png",
-      "destination": "/frontend/favicon.png"
+      "src": "/favicon.png",
+      "dest": "/frontend/favicon.png"
     },
     {
-      "source": "/manifest.json",
-      "destination": "/frontend/manifest.json"
+      "src": "/manifest.json",
+      "dest": "/frontend/manifest.json"
     },
     {
-      "source": "/sw.js",
-      "destination": "/frontend/sw.js"
+      "src": "/sw.js",
+      "dest": "/frontend/sw.js"
     },
     {
-      "source": "/sitemap.xml",
-      "destination": "/frontend/sitemap.xml"
+      "src": "/sitemap.xml",
+      "dest": "/frontend/sitemap.xml"
     },
     {
-      "source": "/robots.txt",
-      "destination": "/frontend/robots.txt"
+      "src": "/robots.txt",
+      "dest": "/frontend/robots.txt"
     },
     {
-      "source": "/charusatAIassistant/(.*)",
-      "destination": "/frontend/$1"
+      "src": "/charusatAIassistant/(.*)",
+      "dest": "/frontend/$1"
     },
     {
-      "source": "/frontend/(.*)",
-      "destination": "/frontend/$1"
+      "src": "/frontend/(.*)",
+      "dest": "/frontend/$1"
     },
     {
-      "source": "/",
-      "destination": "/frontend/index.html"
+      "src": "/",
+      "dest": "/frontend/index.html"
     }
   ]
 }
