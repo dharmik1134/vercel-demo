@@ -43,6 +43,9 @@ class RAGPipeline:
 
     def _ensure_knowledge_base_loaded(self):
         """Auto-seed vector store from all raw documents in data/raw."""
+        if os.environ.get("VERCEL") or os.environ.get("VERCEL_ENV"):
+            return
+
         try:
             base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
             raw_dir = os.path.join(base_dir, "data", "raw")

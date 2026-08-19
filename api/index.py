@@ -9,3 +9,7 @@ if CURRENT_DIR not in sys.path:
     sys.path.insert(0, CURRENT_DIR)
 
 from backend.main import app
+
+# Export both app and handler for Vercel Serverless Function compatibility
+handler = app
+

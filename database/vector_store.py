@@ -50,6 +50,12 @@ class VectorStore:
         if self._client is not None:
             return
 
+        # Force fast zero-dependency in-memory vector engine on Vercel / Cloud Serverless
+        if os.environ.get("VERCEL") or os.environ.get("VERCEL_ENV") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
+            self._client = "in-memory"
+            self._collection = None
+            return
+
         try:
             chromadb = importlib.import_module("chromadb")
             os.makedirs(self.persist_dir, exist_ok=True)
