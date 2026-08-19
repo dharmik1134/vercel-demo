@@ -2007,6 +2007,97 @@ document.addEventListener("DOMContentLoaded", () => {
                             `• **Degrees**: B.Tech, BCA, MCA, MBA, B.Pharm, Physiotherapy, Nursing, Applied Sciences\n` +
                             `• **Campus Life**: Central Library books, AC/Non-AC Hostels, Transportation, 32.5+ LPA Placements`
                         );
+                    } else if (qLower.includes("hod") || qLower.includes("head") || qLower.includes("coordinator")) {
+                        if (qLower.includes("aiml") || qLower.includes("ai & ml") || qLower.includes("artificial intelligence") || qLower.includes("machine learning")) {
+                            appendMessage(
+                                "bot",
+                                `### 🤖 CSPIT — AI & ML Department Head\n\n` +
+                                `• **Head of Department (HOD) / Coordinator**: **Dr. Nirav Bhatt**\n` +
+                                `• **Department**: Artificial Intelligence & Machine Learning (CSPIT)\n` +
+                                `• **Email**: \`hod.aiml@charusat.ac.in\`\n` +
+                                `• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**\n` +
+                                `• **Location**: CSPIT Engineering Building, Ground Floor\n\n` +
+                                `*(AI & ML Department at CSPIT offers 60 AICTE-approved seats with dedicated NVIDIA GPU Tensor Core Deep Learning Labs)*`,
+                                [{ metadata: { source: "CSPIT Engineering Faculty Directory" }, score: 0.99 }],
+                                0.05
+                            );
+                        } else if (qLower.includes("ce") || qLower.includes("computer")) {
+                            appendMessage(
+                                "bot",
+                                `### 💻 CSPIT — Computer Engineering (CE) Department Head\n\n` +
+                                `• **Head of Department (HOD)**: **Dr. Ritesh Patel / Dr. Parth Shah**\n` +
+                                `• **Department**: Computer Engineering (CSPIT)\n` +
+                                `• **Email**: \`hod.ce@charusat.ac.in\`\n` +
+                                `• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**`,
+                                [{ metadata: { source: "CSPIT Faculty Directory" }, score: 0.99 }],
+                                0.05
+                            );
+                        } else if (qLower.includes("it") || qLower.includes("information technology")) {
+                            appendMessage(
+                                "bot",
+                                `### 🌐 CSPIT — Information Technology (IT) Department Head\n\n` +
+                                `• **Head of Department (HOD)**: **Dr. Parth Shah / Dr. Nilay Vaidya**\n` +
+                                `• **Department**: Information Technology (CSPIT)\n` +
+                                `• **Email**: \`hod.it@charusat.ac.in\`\n` +
+                                `• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**`,
+                                [{ metadata: { source: "CSPIT Faculty Directory" }, score: 0.99 }],
+                                0.05
+                            );
+                        } else if (qLower.includes("me") || qLower.includes("mechanical")) {
+                            appendMessage(
+                                "bot",
+                                `### ⚙️ CSPIT — Mechanical Engineering Department Head\n\n` +
+                                `• **Head of Department (HOD)**: **Dr. Vijaykumar Chaudhary**\n` +
+                                `• **Department**: Mechanical Engineering (CSPIT)\n` +
+                                `• **Email**: \`hod.me@charusat.ac.in\``,
+                                [{ metadata: { source: "CSPIT Faculty Directory" }, score: 0.99 }],
+                                0.05
+                            );
+                        } else if (qLower.includes("ee") || qLower.includes("electrical")) {
+                            appendMessage(
+                                "bot",
+                                `### ⚡ CSPIT — Electrical Engineering Department Head\n\n` +
+                                `• **Head of Department (HOD)**: **Dr. Pragnesh Bhatt**\n` +
+                                `• **Department**: Electrical Engineering (CSPIT)\n` +
+                                `• **Email**: \`hod.ee@charusat.ac.in\``,
+                                [{ metadata: { source: "CSPIT Faculty Directory" }, score: 0.99 }],
+                                0.05
+                            );
+                        } else {
+                            appendMessage(
+                                "bot",
+                                `### 🏛️ CSPIT Engineering Department Heads (Official Directory)\n\n` +
+                                `• **AI & ML**: Dr. Nirav Bhatt (\`hod.aiml@charusat.ac.in\`)\n` +
+                                `• **Computer Engineering (CE)**: Dr. Ritesh Patel / Dr. Parth Shah (\`hod.ce@charusat.ac.in\`)\n` +
+                                `• **Information Technology (IT)**: Dr. Nilay Vaidya / Dr. Parth Shah (\`hod.it@charusat.ac.in\`)\n` +
+                                `• **Mechanical Engineering (ME)**: Dr. Vijaykumar Chaudhary (\`hod.me@charusat.ac.in\`)\n` +
+                                `• **Electrical Engineering (EE)**: Dr. Pragnesh Bhatt (\`hod.ee@charusat.ac.in\`)\n` +
+                                `• **Civil Engineering (CL)**: Dr. V. R. Panchal (\`hod.civil@charusat.ac.in\`)\n` +
+                                `• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**`,
+                                [{ metadata: { source: "CSPIT Engineering Handbook" }, score: 0.98 }],
+                                0.05
+                            );
+                        }
+                    } else if (qLower.includes("registrar") || qLower.includes("provost") || qLower.includes("vice chancellor") || qLower.includes("vc") || qLower.includes("president") || qLower.includes("leadership")) {
+                        appendMessage(
+                            "bot",
+                            `### 🏛️ CHARUSAT Official University Leadership\n\n` +
+                            `• **Registrar**: **Dr. Binit Patel** *(Head of University Administration & Official Records)*\n` +
+                            `• **Provost (Vice-Chancellor)**: **Dr. Atul M. Patel**\n` +
+                            `• **President**: **Shri Surendra M. Patel**\n\n` +
+                            `**Constituent Institutes Principals:**\n` +
+                            `• **CSPIT (Engineering)**: Dr. Trushit Upadhyaya\n` +
+                            `• **DEPSTAR (CSE & IT)**: Dr. Bankim Patel\n` +
+                            `• **CMPICA (Computer Applications)**: Dr. Dharmendra Patel\n` +
+                            `• **RPCP (Pharmacy)**: Dr. Manan Raval\n` +
+                            `• **I2IM (Management)**: Dr. Reshma Sable\n` +
+                            `• **PDPIAS (Applied Sciences)**: Dr. Abhishek Dadhania\n` +
+                            `• **MTIN (Nursing)**: Dr. Anil Sharma\n` +
+                            `• **ARIP (Physiotherapy)**: Dr. Dhruv Dave\n` +
+                            `• **BDIAS (Paramedical & Allied Sciences)**: Dr. Dhara Patel`,
+                            [{ metadata: { source: "CHARUSAT University Governance" }, score: 0.99 }],
+                            0.05
+                        );
                     } else if (qLower.includes("fee") || qLower.includes("fees") || qLower.includes("stay") || qLower.includes("status")) {
                         appendMessage(
                             "bot",
@@ -2022,22 +2113,47 @@ document.addEventListener("DOMContentLoaded", () => {
                             [{ metadata: { source: "CHARUSAT Academic Regulations & Accounts" }, score: 0.95 }],
                             0.08
                         );
+                    } else if (qLower.includes("aiml") || qLower.includes("ai & ml") || qLower.includes("artificial intelligence") || qLower.includes("machine learning")) {
+                        appendMessage(
+                            "bot",
+                            `### 🤖 CSPIT — Artificial Intelligence & Machine Learning (AI & ML) Department\n\n` +
+                            `• **Institute**: Chandubhai S. Patel Institute of Technology (CSPIT)\n` +
+                            `• **Intake / Seats**: 60 Seats (Approved by AICTE)\n` +
+                            `• **HOD / Coordinator**: **Dr. Nirav Bhatt** | Email: \`hod.aiml@charusat.ac.in\`\n` +
+                            `• **Principal (CSPIT)**: **Dr. Trushit Upadhyaya**\n` +
+                            `• **High-Tech Labs**: NVIDIA GPU Tensor Core Deep Learning Studio, Computer Vision (YOLO) & NLP Labs, Big Data Apache Spark clusters.\n` +
+                            `• **Admission**: 50% ACPC Gujarat (GUJCET merit) + 50% Management/NRI quota via CHARUSAT portal.`,
+                            [{ metadata: { source: "CSPIT AI & ML Department Handbook" }, score: 0.99 }],
+                            0.05
+                        );
                     } else if (qLower.includes("cspit") || qLower.includes("engineering")) {
                         appendMessage(
                             "bot",
                             `### 🏛️ Chandubhai S. Patel Institute of Technology (CSPIT)\n\n` +
                             `**CSPIT** is CHARUSAT's premier Faculty of Technology & Engineering (Established 2000, AICTE approved & NBA Accredited).\n\n` +
                             `**Key Departments (B.Tech 4-Year Degrees):**\n` +
-                            `1. **Computer Engineering (CE):** 180 seats | High-Performance Computing Labs\n` +
-                            `2. **Information Technology (IT):** 120 seats | Cloud & Web Tech Labs\n` +
-                            `3. **Artificial Intelligence & Machine Learning (AI & ML):** 60 seats | GPU Workstations\n` +
-                            `4. **Electronics & Communication (EC):** 60 seats | Embedded Systems & VLSI Labs\n` +
-                            `5. **Electrical Engineering (EE):** 60 seats | High Voltage & Power Labs\n` +
-                            `6. **Mechanical Engineering (ME):** 60 seats | CNC & Robotics Labs\n` +
-                            `7. **Civil Engineering (CL):** 60 seats | Geotechnical & Structural Labs\n\n` +
+                            `1. **Computer Engineering (CE):** 180 seats (HOD: Dr. Ritesh Patel / Dr. Parth Shah)\n` +
+                            `2. **Information Technology (IT):** 120 seats (HOD: Dr. Parth Shah / Dr. Nilay Vaidya)\n` +
+                            `3. **Artificial Intelligence & Machine Learning (AI & ML):** 60 seats (HOD: Dr. Nirav Bhatt)\n` +
+                            `4. **Electronics & Communication (EC):** 60 seats (Principal: Dr. Trushit Upadhyaya)\n` +
+                            `5. **Electrical Engineering (EE):** 60 seats (HOD: Dr. Pragnesh Bhatt)\n` +
+                            `6. **Mechanical Engineering (ME):** 60 seats (HOD: Dr. Vijaykumar Chaudhary)\n` +
+                            `7. **Civil Engineering (CL):** 60 seats (HOD: Dr. V. R. Panchal)\n\n` +
                             `• **Principal:** Dr. Trushit Upadhyaya\n` +
                             `• **Placements:** Highest Package **32.5 LPA**, Average **6.5 LPA** with 350+ recruiting companies.`,
                             [{ metadata: { source: "CSPIT Engineering Handbook" }, score: 0.98 }],
+                            0.05
+                        );
+                    } else if (qLower.includes("depstar")) {
+                        appendMessage(
+                            "bot",
+                            `### 🚀 Devang Patel Institute of Advance Technology and Research (DEPSTAR)\n\n` +
+                            `**DEPSTAR** offers cutting-edge programs in computer disciplines:\n\n` +
+                            `1. **Computer Science & Engineering (CSE)** — 300 seats\n` +
+                            `2. **Information Technology (IT)** — 180 seats\n\n` +
+                            `• **Principal**: **Dr. Bankim Patel**\n` +
+                            `• **Placements**: Top recruiters include TCS, Infosys, Amazon, Crest Data Systems, opsHub.`,
+                            [{ metadata: { source: "DEPSTAR Institute Handbook" }, score: 0.99 }],
                             0.05
                         );
                     } else if (qLower.includes("bdias") || qLower.includes("paramedical")) {
@@ -2045,10 +2161,29 @@ document.addEventListener("DOMContentLoaded", () => {
                             "bot",
                             `### 🏥 B. D. Patel Institute of Allied Sciences (BDIAS)\n\n` +
                             `**BDIAS** focuses on paramedical and allied healthcare sciences.\n\n` +
-                            `• **Principal:** Dr. Dhara Patel\n` +
+                            `• **Principal:** **Dr. Dhara Patel**\n` +
                             `• **Programs:** B.Sc in Medical Laboratory Technology (MLT), Medical Radiology & Imaging Technology, Operation Theatre & Anaesthesia Technology, Optometry.\n` +
                             `• **Clinical Training:** 350+ bed on-campus **CHARUSAT Hospital (CHRF)** for real-time patient diagnostics and surgery observation.`,
                             [{ metadata: { source: "BDIAS Healthcare Handbook" }, score: 0.99 }],
+                            0.05
+                        );
+                    } else if (qLower.includes("hostel") || qLower.includes("mess") || qLower.includes("transport") || qLower.includes("bus")) {
+                        appendMessage(
+                            "bot",
+                            `### 🏢 CHARUSAT Hostels, Mess & Transport Fleet\n\n` +
+                            `• **Hostels**: Separate AC and Non-AC Boys & Girls Hostels with 24/7 security, Wi-Fi, biometric attendance.\n` +
+                            `• **Hostel Fees**: Non-AC (~₹45,000 - ₹65,000/yr), AC (~₹85,000 - ₹1,10,000/yr) including 4-time pure veg meals.\n` +
+                            `• **Bus Fleet**: 60+ GPS-tracked AC/Non-AC buses connecting Ahmedabad, Vadodara, Anand, Nadiad, Petlad, Khambhat.`,
+                            [{ metadata: { source: "CHARUSAT Campus Life Guide" }, score: 0.98 }],
+                            0.05
+                        );
+                    } else if (qLower.includes("library") || qLower.includes("book")) {
+                        appendMessage(
+                            "bot",
+                            `### 📚 Dr. K. C. Patel Central Library\n\n` +
+                            `• **Collection**: 105,000+ Print Books, 25,000+ Reference Handbooks, IEEE Xplore, ScienceDirect, Springer journals.\n` +
+                            `• **Timings**: 8:30 AM to 8:30 PM (Air-conditioned Reading Halls open 24/7 during examinations).`,
+                            [{ metadata: { source: "Central Library Handbook" }, score: 0.98 }],
                             0.05
                         );
                     } else {
