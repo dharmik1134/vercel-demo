@@ -59,6 +59,13 @@ class DBClient:
             """)
             conn.commit()
 
+            # Automatic Schema Migration
+            try:
+                cursor.execute("ALTER TABLE query_logs ADD COLUMN user_email TEXT DEFAULT 'guest'")
+                conn.commit()
+            except Exception:
+                pass
+
     def _hash_password(self, password: str, salt: Optional[str] = None) -> tuple[str, str]:
         """Hash password securely using SHA-256 with random salt."""
         if not salt:

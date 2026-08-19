@@ -53,6 +53,23 @@ async def robots():
         return FileResponse(robots_file, media_type="text/plain")
     return RedirectResponse(url="/charusatAIassistant/robots.txt")
 
+@app.api_route("/egovernance", methods=["GET", "HEAD"])
+@app.api_route("/egov", methods=["GET", "HEAD"])
+async def egovernance_portal():
+    """Serve the e-Governance simulation portal with embedded floating AI bot."""
+    egov_file = os.path.join(frontend_dir, "egovernance.html")
+    if os.path.exists(egov_file):
+        return FileResponse(egov_file, media_type="text/html")
+    return RedirectResponse(url="/")
+
+@app.get("/widget.js")
+async def widget_script():
+    """Serve the standalone embeddable chat widget script."""
+    w_file = os.path.join(frontend_dir, "widget.js")
+    if os.path.exists(w_file):
+        return FileResponse(w_file, media_type="application/javascript")
+    return "console.error('Widget not found');"
+
 if os.path.exists(frontend_dir):
     # Mount aliases for convenience
     app.mount("/charusatAIassistant", StaticFiles(directory=frontend_dir, html=True), name="charusat_assistant")
