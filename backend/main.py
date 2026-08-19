@@ -43,6 +43,8 @@ app.add_middleware(
 @app.api_route("/health", methods=["GET", "HEAD"])
 @app.api_route("/api/health", methods=["GET", "HEAD"])
 @app.api_route("/api/v1/health", methods=["GET", "HEAD"])
+@app.api_route("/api/index.py", methods=["GET", "HEAD"])
+@app.api_route("/api/index", methods=["GET", "HEAD"])
 async def health():
     """Universal health endpoint requiring zero external dependencies."""
     return {
@@ -123,6 +125,8 @@ async def widget_script():
 # ------------------------------------------------------------------------------
 app.include_router(api_router, prefix=settings.API_V1_STR)
 app.include_router(api_router, prefix="/api")
+app.include_router(api_router, prefix="/api/index.py")
+app.include_router(api_router, prefix="/api/index")
 
 # ------------------------------------------------------------------------------
 # 5. Static Files Mounting (Local & Development)
