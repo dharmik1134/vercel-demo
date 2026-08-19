@@ -6,6 +6,10 @@
       "destination": "/api/index.py"
     },
     {
+      "source": "/health",
+      "destination": "/api/index.py"
+    },
+    {
       "source": "/egovernance",
       "destination": "/frontend/egovernance.html"
     },
@@ -30,6 +34,22 @@
       "destination": "/frontend/logo.png"
     },
     {
+      "source": "/logo.jpg",
+      "destination": "/frontend/logo.jpg"
+    },
+    {
+      "source": "/logo.svg",
+      "destination": "/frontend/logo.svg"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/frontend/favicon.ico"
+    },
+    {
+      "source": "/favicon.png",
+      "destination": "/frontend/favicon.png"
+    },
+    {
       "source": "/manifest.json",
       "destination": "/frontend/manifest.json"
     },
@@ -50,12 +70,12 @@
       "destination": "/frontend/$1"
     },
     {
-      "source": "/",
-      "destination": "/frontend/index.html"
+      "source": "/frontend/(.*)",
+      "destination": "/frontend/$1"
     },
     {
-      "source": "/(.*)",
-      "destination": "/frontend/$1"
+      "source": "/",
+      "destination": "/frontend/index.html"
     }
   ]
 }
