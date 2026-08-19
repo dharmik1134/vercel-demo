@@ -2,7 +2,7 @@
 name = "charusat-ai-assistant"
 version = "1.0.0"
 description = "Official CHARUSAT Virtual Intelligence and Academic RAG Assistant"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
     "fastapi>=0.110.0",
     "uvicorn>=0.28.0",
@@ -10,7 +10,5 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "google-generativeai>=0.4.1",
     "openai>=1.14.0",
-    "requests>=2.31.0",
-    "numpy>=1.26.0",
-    "tiktoken>=0.6.0"
+    "requests>=2.31.0"
 ]
