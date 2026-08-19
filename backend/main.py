@@ -36,18 +36,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Vercel Internal Rewrite Compatibility Middleware
-@app.middleware("http")
-async def vercel_path_rewrite_middleware(request: Request, call_next):
-    """
-    Ensures compatibility with Vercel's updated internal rewrite behavior.
-    Restores the original request path from Vercel headers if rewritten to '/api/index.py'.
-    """
-    original_path = request.headers.get("x-forwarded-uri") or request.headers.get("x-original-uri") or request.headers.get("x-matched-path")
-    if original_path and request.url.path in ("/api/index.py", "/api/index"):
-        request.scope["path"] = original_path.split("?")[0]
-    return await call_next(request)
-
 
 # ------------------------------------------------------------------------------
 # 1. Zero-Dependency Health & Status Endpoints (Supports GET & HEAD)
